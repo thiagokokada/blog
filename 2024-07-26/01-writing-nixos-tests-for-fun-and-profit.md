@@ -31,12 +31,12 @@ it was possible, and after doing a quick reading of the [Wiki
 entry](https://wiki.nixos.org/wiki/NixOS_VM_tests) about it, I was ready to
 start.
 
-The first part is to call `pkgs.nixosTest` and configure the machine as any
-other NixOS system, e.g.:
+The first part is to call `pkgs.testers.runNixOSTest` and configure the machine
+as any other NixOS system, e.g.:
 
 ```nix
 { pkgs, ... }:
-pkgs.nixosTest {
+pkgs.testers.runNixOSTest {
   name = "hyprland-go";
 
   nodes.machine =
@@ -112,7 +112,7 @@ something similar to:
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
         {
-          testVm = pkgs.nixosTest {
+          testVm = pkgs.testers.runNixOSTest {
             # the code above
           };
         }
