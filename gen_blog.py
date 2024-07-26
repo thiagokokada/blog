@@ -80,7 +80,7 @@ def grab_titles(pwd: Path) -> Posts:
             text = post.read_text()
             mTitle = re.match(r"# (?P<title>.*)\r?\n", text)
             if mTitle and (title := mTitle.groupdict().get("title")):
-                posts[date].append({"title": title, "file": post})
+                posts[date].append({"title": title, "file": str(post)})
             else:
                 print(f"WARN: did not find title for file: {post}", file=sys.stderr)
 
@@ -112,7 +112,7 @@ def gen_rss(posts: Posts):
         for post in dayPost:
             ET.SubElement(item, "title").text = post["title"]
             ET.SubElement(item, "link").text = urljoin(
-                RSS_POST_LINK_PREFIX, str(post["file"])
+                RSS_POST_LINK_PREFIX, post["file"]
             )
 
     tree = ET.ElementTree(rss)
