@@ -26,7 +26,7 @@ already.
 After a couple of hours hacking a Python script, you can see the result of this
 monstrosity [here](https://github.com/thiagokokada/blog). The script, called
 `gen_blog.py`, is available at the same repository (here is a
-[permalink](https://github.com/thiagokokada/blog/blob/0c7656fe3be7aa9e8173f9350109af8675cebc03/gen_blog.py)).
+[permalink](https://github.com/thiagokokada/blog/blob/c8986d1ab1b94c0986fd814629bb8eb4034fb6e7/gen_blog.py)).
 It automatically generates an index at
 [`README.md`](https://github.com/thiagokokada/blog/blob/main/README.md) with
 each blog post and a
@@ -143,13 +143,14 @@ def gen_rss(posts: Posts):
     ET.SubElement(channel, "description").text = "dd if=/dev/urandom of=/dev/brain0"
 
     # You create one item for each blog post
-    item = ET.SubElement(channel, "item")
     for date, dayPost in posts.items():
         for post in dayPost:
+            item = ET.SubElement(channel, "item")
+            link = urljoin(RSS_POST_LINK_PREFIX, post["file"])
             ET.SubElement(item, "title").text = post["title"]
-            ET.SubElement(item, "link").text = urljoin(
-                "https://github.com/thiagokokada/blog/blob/main", post["file"]
-            )
+            ET.SubElement(item, "guid").text = link
+            ET.SubElement(item, "link").text = link
+            ET.SubElement(item, "pubDate").text = date.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
     # Generate the XML and indent
     tree = ET.ElementTree(rss)
