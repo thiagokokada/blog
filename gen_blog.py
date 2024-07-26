@@ -39,7 +39,7 @@ from urllib.parse import urljoin
 README_TEMPLATE = """\
 # Blog
 
-Backup of my blog posts in https://kokada.capivaras.dev/.
+Mirror of my blog in https://kokada.capivaras.dev/.
 
 ## Posts
 
