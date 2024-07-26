@@ -110,10 +110,10 @@ def gen_rss(posts: Posts):
     for date, dayPost in posts.items():
         for post in dayPost:
             item = ET.SubElement(channel, "item")
+            link = urljoin(RSS_POST_LINK_PREFIX, post["file"])
             ET.SubElement(item, "title").text = post["title"]
-            ET.SubElement(item, "link").text = urljoin(
-                RSS_POST_LINK_PREFIX, post["file"]
-            )
+            ET.SubElement(item, "guid").text = link
+            ET.SubElement(item, "link").text = link
 
     tree = ET.ElementTree(rss)
     ET.indent(tree, space="\t", level=0)
