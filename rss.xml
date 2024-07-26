@@ -6,7 +6,7 @@
 		<description>dd if=/dev/urandom of=/dev/brain0</description>
 		<item>
 			<title>Writing NixOS tests for fun and profit</title>
-			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/00-writing-nixos-tests-for-fun-and-profit.md</link>
+			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md</link>
 		</item>
 	</channel>
 </rss>
