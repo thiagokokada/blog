@@ -169,5 +169,7 @@ want to use this RSS feed instead the one available in
 [capivaras.dev](https://kokada.capivaras.dev/rss/) anyway.
 
 So that is it. I am not saying this is a good idea for your primary blog
-platform or whatever, but if you want a backup of your posts and you are
-already writing Markdown anyway, well, there are worse ways to do it I think.
+platform or whatever, and I still prefer to publish to a platform that doesn't
+track users or have tons of JavaScript or whatever. But if you want a backup of
+your posts and you are already writing Markdown anyway, well, there are worse
+ways to do it I think.
