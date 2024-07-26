@@ -5,10 +5,10 @@
 		<link>https://github.com/thiagokokada/blog</link>
 		<description>dd if=/dev/urandom of=/dev/brain0</description>
 		<item>
-			<title>Writing NixOS tests for fun and profit</title>
-			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md</link>
 			<title>Using GitHub as a (bad) blog platform</title>
 			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/02-using-github-as-a-bad-blog-platform.md</link>
+			<title>Writing NixOS tests for fun and profit</title>
+			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md</link>
 		</item>
 	</channel>
 </rss>

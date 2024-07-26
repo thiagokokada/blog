@@ -58,7 +58,7 @@ Posts = dict[datetime, list[dict[str, str]]]
 def grab_posts(pwd: Path) -> Posts:
     posts = defaultdict(list)
 
-    for dir in sorted(pwd.iterdir()):
+    for dir in sorted(pwd.iterdir(), reverse=True):
         # Ignore non-directories or hidden files
         if not dir.is_dir() or dir.name[0] == ".":
             continue
@@ -71,7 +71,7 @@ def grab_posts(pwd: Path) -> Posts:
             continue
 
         # Iterate between the files in the date directory
-        for post in sorted(dir.iterdir()):
+        for post in sorted(dir.iterdir(), reverse=True):
             # Ignore non-markdown files or hidden files (draft)
             if not post.suffix == ".md" or post.name[0] == ".":
                 continue
