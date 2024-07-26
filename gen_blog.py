@@ -107,9 +107,9 @@ def gen_rss(posts: Posts):
     ET.SubElement(channel, "link").text = RSS_LINK
     ET.SubElement(channel, "description").text = RSS_DESCRIPTION
 
-    item = ET.SubElement(channel, "item")
     for date, dayPost in posts.items():
         for post in dayPost:
+            item = ET.SubElement(channel, "item")
             ET.SubElement(item, "title").text = post["title"]
             ET.SubElement(item, "link").text = urljoin(
                 RSS_POST_LINK_PREFIX, post["file"]
