@@ -55,7 +55,7 @@ RSS_POST_LINK_PREFIX = f"{RSS_LINK}/blob/main/"
 Posts = dict[datetime, list[dict[str, str]]]
 
 
-def grab_titles(pwd: Path) -> Posts:
+def grab_posts(pwd: Path) -> Posts:
     posts = defaultdict(list)
 
     for dir in sorted(pwd.iterdir()):
@@ -124,9 +124,9 @@ def main():
     if "-h" in sys.argv:
         print(__doc__, file=sys.stderr)
         sys.exit(0)
-    titles = grab_titles(Path())
-    gen_readme(titles)
-    gen_rss(titles)
+    posts = grab_posts(Path())
+    gen_readme(posts)
+    gen_rss(posts)
 
 
 if __name__ == "__main__":
