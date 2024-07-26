@@ -44,7 +44,7 @@ def grab_titles(pwd: Path) -> list[str]:
             continue
 
         # Iterate between the files in the date directory
-        for post in dir.iterdir():
+        for post in sorted(dir.iterdir()):
             # Ignore non-markdown files
             if not post.suffix == ".md":
                 continue
