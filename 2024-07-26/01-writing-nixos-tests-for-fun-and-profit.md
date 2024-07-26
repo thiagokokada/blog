@@ -122,7 +122,10 @@ something similar to:
 
 I can now run `nix build .#checks.x86_64-linux.testVm -L` to build and run the
 VM. However it is not really useful right now, since we didn't add any useful
-code in `testScript`, the core of the NixOS test framework.
+code in `testScript`, the core of the NixOS test framework. We can also run
+`nix build .#checks.x86_64-linux.testVm.driverInteractive` and
+`./result/bin/nixos-test-driver`: this will start a Python console where we can
+manually play with the VM (try typing `start_all()` for example).
 
 The `testScript` is a sequence of Python statements that perform various
 actions, such as starting VMs, executing commands in the VMs, and so on. More
