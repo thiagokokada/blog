@@ -74,7 +74,7 @@ and collect the necessary information to generate the index and RSS files:
 def grab_posts(pwd: Path) -> Posts:
     posts = defaultdict(list)
 
-    for dir in sorted(pwd.iterdir()):
+    for dir in sorted(pwd.iterdir(), reverse=True):
         # Ignore non-directories or hidden files
         if not dir.is_dir() or dir.name[0] == ".":
             continue
@@ -87,8 +87,8 @@ def grab_posts(pwd: Path) -> Posts:
             continue
 
         # Iterate between the files in the date directory
-        for post in sorted(dir.iterdir()):
-            # Ignore non-Markdown files or hidden files (draft)
+        for post in sorted(dir.iterdir(), reverse=True):
+            # Ignore non-markdown files or hidden files (draft)
             if not post.suffix == ".md" or post.name[0] == ".":
                 continue
 
@@ -105,7 +105,9 @@ def grab_posts(pwd: Path) -> Posts:
 
 Some interesting tidbits: if a Markdown file has a `.` at the start I assume it
 is a draft post, and ignore it from my scrapper. I added a bunch of `WARN`
-prints to make sure that the me in the future doesn't do anything dumb.
+prints to make sure that the me in the future doesn't do anything dumb. Also,
+sorting in reverse since reverse chronological order is the one most people
+expect in blogs (i.e.: more recent blog posts at top).
 
 After running the function above, I have a resulting dictionary that I can use
 to generate either a `README.md` file or Markdown:
