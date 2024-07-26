@@ -135,7 +135,7 @@ For our case we can start with something like this:
 
 ```nix
 {
-    textScript = /* python */ ''
+    testScript = /* python */ ''
       start_all()
 
       machine.wait_for_unit("multi-user.target")
