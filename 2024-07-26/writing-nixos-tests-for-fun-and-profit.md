@@ -93,7 +93,8 @@ virtio-gpu-pci` is in `virtualisation.qemu.options`, this enables OpenGL
 rendering via LLVMPipe, that while being slow since it is rendered in CPU, is
 sufficient for this case.
 
-Putting the above code inside a `flake.nix` for reproducibility, I had
+Putting the above code inside a
+[`flake.nix`](https://wiki.nixos.org/wiki/Flakes) for reproducibility, I had
 something similar to:
 
 ```nix
@@ -119,9 +120,9 @@ something similar to:
 }
 ```
 
-I can now run `nix build .#checks.x86_64-linux.testVm` to build and run the VM.
-However it is not really useful right now, since we didn't add any useful code
-in `testScript`, the core of the NixOS test framework.
+I can now run `nix build .#checks.x86_64-linux.testVm -L` to build and run the
+VM. However it is not really useful right now, since we didn't add any useful
+code in `testScript`, the core of the NixOS test framework.
 
 The `testScript` is a sequence of Python statements that perform various
 actions, such as starting VMs, executing commands in the VMs, and so on. More
