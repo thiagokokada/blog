@@ -88,7 +88,7 @@ but once combined make it greater than the sum of the parts.
 
 Second is something that I took a while to figure out: how to enable GPU
 acceleration inside the VM. You see, Hyprland, different from other Window
-Manager, requires OpenGL support. This is basically why the flag `-device
+Managers, requires OpenGL support. This is basically why the flag `-device
 virtio-gpu-pci` is in `virtualisation.qemu.options`, this enables OpenGL
 rendering via LLVMPipe, that while being slow since it is rendered in CPU, is
 sufficient for this case.
@@ -141,13 +141,14 @@ For our case we can start with something like this:
 ```
 
 The first statement, `start_all()`, starts all VMs, in this case we have only
-one called `machine`. We send two further commands to `machine`:
+one, called `machine`. We send two further commands to `machine`:
 `wait_for_unit("multi-user.target")` and
 `wait_for_file("/home/alice/test-finished")`.
 
 The first command waits until systemd's `multi-user.target` is ready, a good
 way to ensure that the system is ready for further commands. The second one we
-wait for a file called `test-finished` to appear in Alice's `$HOME`, but how?
+wait for a file called `test-finished` to appear in Alice's `$HOME` (basically,
+a canary), but how can we generate this file?
 
 Remember that we added `programs.bash.loginShellInit = "Hyprland"`, that
 automatically starts Hyprland when Alice logs in. We need to modify that
@@ -164,7 +165,7 @@ a terminal emulator and run our tests:
       testScript = pkgs.writeShellScript "hyprland-go-test" ''
         set -euo pipefail
 
-        trap 'echo $? > $HOME/test-finished' EXIT
+        trap 'echo $? > $HOME/test-finished' EXIT # creates the canary when the script finishes
 
         cd ${./.} # go to the library directory
         go test -v ./... > $HOME/test.log 2>&1 # run Go tests
@@ -182,7 +183,7 @@ So we are basically creating a custom Hyprland config that starts a
 [Kitty](https://sw.kovidgoyal.net/kitty/) terminal emulator, that then launches
 a shell script that runs the test. Since we have no way to get the results of
 the test, we pipe the output to a file that we can collect later (e.g.:
-`machine.succeded("cat /home/alice/test.log")`). And once the script exit we
+`machine.succeded("cat /home/alice/test.log")`). And once the script exit, we
 create the canary file `$HOME/test-finished`, that allows the `testScript`
 knows that the test finished and it can destroy the VM safely.
 
