@@ -114,6 +114,7 @@ def gen_rss(posts: Posts):
             ET.SubElement(item, "title").text = post["title"]
             ET.SubElement(item, "guid").text = link
             ET.SubElement(item, "link").text = link
+            ET.SubElement(item, "pubDate").text = date.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
     tree = ET.ElementTree(rss)
     ET.indent(tree, space="\t", level=0)
