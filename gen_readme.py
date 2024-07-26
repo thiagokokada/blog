@@ -31,7 +31,10 @@ Backup of my blog posts in https://kokada.capivaras.dev/.
 
 {posts}\
 """
-GITHUB_PREFIX = "https://github.com/thiagokokada/blog/blob/main/"
+RSS_TITLE = "kokada's blog"
+RSS_LINK = "https://github.com/thiagokokada/blog"
+RSS_DESCRIPTION = "dd if=/dev/urandom of=/dev/brain0"
+RSS_POST_LINK_PREFIX = f"{RSS_LINK}/blob/main/"
 
 Posts = dict[datetime, list[dict[str, str]]]
 
@@ -84,17 +87,20 @@ def gen_rss(posts: Posts):
     rss = ET.Element("rss", version="2.0")
 
     channel = ET.SubElement(rss, "channel")
-    ET.SubElement(channel, "title").text = "kokada's blog"
-    ET.SubElement(channel, "link").text = "https://github.com/thiagokokada/blog"
-    ET.SubElement(channel, "description").text = "dd if=/dev/urandom of=/dev/brain0"
+    ET.SubElement(channel, "title").text = RSS_TITLE
+    ET.SubElement(channel, "link").text = RSS_LINK
+    ET.SubElement(channel, "description").text = RSS_DESCRIPTION
 
     item = ET.SubElement(channel, "item")
     for date, dayPost in posts.items():
         for post in dayPost:
             ET.SubElement(item, "title").text = post["title"]
-            ET.SubElement(item, "link").text = urljoin(GITHUB_PREFIX, str(post["file"]))
+            ET.SubElement(item, "link").text = urljoin(
+                RSS_POST_LINK_PREFIX, str(post["file"])
+            )
 
     tree = ET.ElementTree(rss)
+    ET.indent(tree, space="\t", level=0)
     tree.write("rss.xml", xml_declaration=True, encoding="UTF-8")
 
 

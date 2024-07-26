@@ -1,2 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss version="2.0"><channel><title>kokada's blog</title><link>https://github.com/thiagokokada/blog</link><description>dd if=/dev/urandom of=/dev/brain0</description><item><title>Writing NixOS tests for fun and profit</title><link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/00-writing-nixos-tests-for-fun-and-profit.md</link></item></channel></rss>
+<rss version="2.0">
+	<channel>
+		<title>kokada's blog</title>
+		<link>https://github.com/thiagokokada/blog</link>
+		<description>dd if=/dev/urandom of=/dev/brain0</description>
+		<item>
+			<title>Writing NixOS tests for fun and profit</title>
+			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-26/00-writing-nixos-tests-for-fun-and-profit.md</link>
+		</item>
+	</channel>
+</rss>
