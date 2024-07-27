@@ -15,8 +15,9 @@ Git? So this is what I did, I now have an unofficial mirror in
 [GitHub](https://github.com/thiagokokada/blog).
 
 While I am here, why not to overcomplicate? Can I make an usable blog platform
-from GitHub? I mean, it already renders Markdown files by default, so no need
-to do anything in that space. To reach feature parity with
+from GitHub? And by that I don't mean GitHub pages, the repository itself. I
+mean, it already renders Markdown files by default, so no need to do anything
+in that space. To reach feature parity with
 [capivaras.dev](https://capivaras.dev/), I only need to have an index and RSS
 (since comments are not supported anyway). No need for newsletter since GitHub
 has a [watch
@@ -71,7 +72,7 @@ Using the above organisation, I have this function that scrap the repository
 and collect the necessary information to generate the index and RSS files:
 
 ```python
-def grab_posts(pwd: Path) -> Posts:
+def grab_posts(pwd: Path):
     posts = defaultdict(list)
 
     for dir in sorted(pwd.iterdir(), reverse=True):
@@ -113,7 +114,7 @@ After running the function above, I have a resulting dictionary that I can use
 to generate either a `README.md` file or Markdown:
 
 ```python
-def gen_readme(posts: Posts):
+def gen_readme(posts):
     titles = []
 
     for date, dayPosts in posts.items():
@@ -131,7 +132,7 @@ def gen_readme(posts: Posts):
     print(README_TEMPLATE.format(posts="\n".join(titles)))
 
 
-def gen_rss(posts: Posts):
+def gen_rss(posts):
     # Got most of the specification from here:
     # https://www.w3schools.com/XML/xml_rss.asp
     rss = ET.Element("rss", version="2.0")
@@ -170,6 +171,10 @@ probably fill the post description with more information if I really want, but
 it is enough for now. Not sure who is that interested in my writing that will
 want to use this RSS feed instead the one available in
 [capivaras.dev](https://kokada.capivaras.dev/rss/) anyway.
+
+Also, while I am using GitHub here, the same idea would work in GitLab, Gitea,
+sr.ht or whatever. As long as your source hub supports Markdown files it should
+work.
 
 So that is it. I am not saying this is a good idea for your primary blog
 platform or whatever, and I still prefer to publish to a platform that doesn't
