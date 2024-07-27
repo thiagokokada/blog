@@ -168,8 +168,11 @@ populated with the titles and links. The RSS is kind empty since it has no
 description, but it seems to work fine (at least in
 [Inoreader](https://www.inoreader.com/), my RSS reader of choice). I can
 probably fill the post description with more information if I really want, but
-it is enough for now. Not sure who is that interested in my writing that will
-want to use this RSS feed instead the one available in
+it is enough for now (update: it is working now, you just need to render the
+Markdown as HTML and escape the tags;
+[permalink](https://github.com/thiagokokada/blog/blob/9506051cc3d49f203304174b335ff62de9d17a05/gen_blog.py)
+for the updated script). Not sure who is that interested in my writing that
+will want to use this RSS feed instead the one available in
 [capivaras.dev](https://kokada.capivaras.dev/rss/) anyway.
 
 Also, while I am using GitHub here, the same idea would work in GitLab, Gitea,
