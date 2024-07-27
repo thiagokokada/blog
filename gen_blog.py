@@ -33,9 +33,11 @@ import re
 import sys
 import xml.etree.cElementTree as ET
 from collections import defaultdict
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urljoin
+from typing import Optional
 
 try:
     import mistune
@@ -62,7 +64,15 @@ RSS_LINK = "https://github.com/thiagokokada/blog"
 RSS_DESCRIPTION = "dd if=/dev/urandom of=/dev/brain0"
 RSS_POST_LINK_PREFIX = f"{RSS_LINK}/blob/main/"
 
-Posts = dict[datetime, list[dict[str, str]]]
+
+@dataclass
+class Post:
+    title: str
+    file: str
+    contents: Optional[str] = None
+
+
+Posts = dict[datetime, list[Post]]
 
 
 def grab_posts(pwd: Path) -> Posts:
@@ -81,18 +91,18 @@ def grab_posts(pwd: Path) -> Posts:
             continue
 
         # Iterate between the files in the date directory
-        for post in sorted(dir.iterdir(), reverse=True):
+        for dateDir in sorted(dir.iterdir(), reverse=True):
             # Ignore non-markdown files or hidden files (draft)
-            if not post.suffix == ".md" or post.name[0] == ".":
+            if not dateDir.suffix == ".md" or dateDir.name[0] == ".":
                 continue
 
             # Grab the first H1 section to parse as title
-            text = post.read_text()
+            text = dateDir.read_text()
             mTitle = re.match(r"# (?P<title>.*)\r?\n", text)
             if mTitle and (title := mTitle.groupdict().get("title")):
-                post = {"title": title, "file": str(post)}
+                post = Post(title=title, file=str(dateDir))
                 if mistune:
-                    post["contents"] = mistune.html(text)
+                    post.contents = mistune.html(text)
                 posts[date].append(post)
             else:
                 print(f"WARN: did not find title for file: {post}", file=sys.stderr)
@@ -105,8 +115,8 @@ def gen_readme(posts: Posts):
 
     for date, dayPosts in posts.items():
         for post in dayPosts:
-            link = os.path.join(".", post["file"])  # to format as ./{filepath}
-            title = date.strftime(f"- [{post['title']}]({link}) - %Y-%m-%d")
+            link = os.path.join(".", post.file)  # to format as ./{filepath}
+            title = date.strftime(f"- [{post.title}]({link}) - %Y-%m-%d")
             titles.append(title)
 
     print(README_TEMPLATE.format(posts="\n".join(titles)))
@@ -123,10 +133,10 @@ def gen_rss(posts: Posts):
     for date, dayPost in posts.items():
         for post in dayPost:
             item = ET.SubElement(channel, "item")
-            link = urljoin(RSS_POST_LINK_PREFIX, post["file"])
-            ET.SubElement(item, "title").text = post["title"]
+            link = urljoin(RSS_POST_LINK_PREFIX, post.file)
+            ET.SubElement(item, "title").text = post.title
             ET.SubElement(item, "guid").text = link
-            ET.SubElement(item, "description").text = post["contents"]
+            ET.SubElement(item, "description").text = post.contents
             ET.SubElement(item, "link").text = link
             ET.SubElement(item, "pubDate").text = date.strftime(
                 "%a, %d %b %Y %H:%M:%S GMT"
