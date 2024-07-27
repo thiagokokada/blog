@@ -61,22 +61,12 @@ def clean_markdown(md):
     md = re.sub(r"\n(?!\n)", " ", md)
     # Remove code blocks (```code```)
     md = re.sub(r"```.*?```", "", md, flags=re.DOTALL)
-    # Remove inline code quotes (`code`)
-    md = re.sub(r'`([^`]*)`', r'\1', md)
     # Remove headers (# Header)
     md = re.sub(r"(^|\n)#+\s*.*(\n|$)", "\n", md)
     # Remove images (![alt text](url))
     md = re.sub(r"!\[.*?\]\(.*?\)", "", md)
     # Remove links but keep link text ([text](url))
     md = re.sub(r"\[(.*?)\]\(.*?\)", r"\1", md)
-    # Remove bold (**text** or __text__) with word boundaries
-    md = re.sub(r'\*\*(.*?)\*\*', r'\1', md)
-    md = re.sub(r'__(.*?)__', r'\1', md)
-    # Remove italics (*text* or _text_) with word boundaries
-    md = re.sub(r'\b\*(.*?)\*\b', r'\1', md)
-    md = re.sub(r'\b_(.*?)_\b', r'\1', md)
-    # Remove strikethrough (~~text~~)
-    md = re.sub(r'~~(.*?)~~', r'\1', md)
 
     # Replace multiple newlines with a single newline
     md = re.sub(r'\n\s*\n', '\n', md)
