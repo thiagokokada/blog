@@ -5,6 +5,20 @@
 		<link>https://github.com/thiagokokada/blog</link>
 		<description>dd if=/dev/urandom of=/dev/brain0</description>
 		<item>
+			<title>Quick bits: nix-shell is cursed</title>
+			<guid>https://github.com/thiagokokada/blog/blob/main/2024-07-27/01-quick-bits-nix-shell-is-cursed.md</guid>
+			<description>The other day I had to run a PHP project in my machine. I have no idea how PHP ecosystem work, I just wanted to get it to run.
+ The easiest way to get a script to run if you use Nix is to use `nix-shell`. As many of you probably know, you can add `nix-shell` as a shebang in your scripts to run them as `./script`. This was a PHP script so I wanted to do the same. Easy right?
+ And:
+ So it seems that `declare(strict_types=1)` needs to be the first line in a PHP script if used. I removed `declare(strict_types=1)` and while the script works, I don't have enough expertise in PHP to know if this would be safe or not.
+ I decided to try something that initially looked really dumb:
+ And:
+ Wat? I mean, it is not dumb if it works, but this at least looks cursed.
+ Eventually I found this comment in a Nix issue talking about cases where `nix-shell` shebang doesn't work. It looks like the classic case of a bug that becomes a feature.</description>
+			<link>https://github.com/thiagokokada/blog/blob/main/2024-07-27/01-quick-bits-nix-shell-is-cursed.md</link>
+			<pubDate>Sat, 27 Jul 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
 			<title>Using GitHub as a (bad) blog platform</title>
 			<guid>https://github.com/thiagokokada/blog/blob/main/2024-07-26/02-using-github-as-a-bad-blog-platform.md</guid>
 			<description>I finally started a new blog, thanks to the offer of @ratsclub to give me free access to capivaras.dev. But considering how small this blog platform is supposed to be, I want to have at least somewhere to have a backup of my posts. I know Mataroa, the blog platform that capivaras.dev runs, has automatic e-mail backups, but I want something more reliable.
