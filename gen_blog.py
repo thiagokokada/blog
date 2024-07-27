@@ -69,6 +69,19 @@ def clean_markdown(md):
     md = re.sub(r"!\[.*?\]\(.*?\)", "", md)
     # Remove links but keep link text ([text](url))
     md = re.sub(r"\[(.*?)\]\(.*?\)", r"\1", md)
+    # Remove bold (**text** or __text__) with word boundaries
+    md = re.sub(r'\*\*(.*?)\*\*', r'\1', md)
+    md = re.sub(r'__(.*?)__', r'\1', md)
+    # Remove italics (*text* or _text_) with word boundaries
+    md = re.sub(r'\b\*(.*?)\*\b', r'\1', md)
+    md = re.sub(r'\b_(.*?)_\b', r'\1', md)
+    # Remove strikethrough (~~text~~)
+    md = re.sub(r'~~(.*?)~~', r'\1', md)
+
+    # Replace multiple newlines with a single newline
+    md = re.sub(r'\n\s*\n', '\n', md)
+    # Replace multiple spaces with a single space
+    md = re.sub(r'[ \t]+', ' ', md)
 
     # Strip leading/trailing whitespace
     md = md.strip()
@@ -138,7 +151,7 @@ def gen_rss(posts: Posts):
             link = urljoin(RSS_POST_LINK_PREFIX, post["file"])
             ET.SubElement(item, "title").text = post["title"]
             ET.SubElement(item, "guid").text = link
-            ET.SubElement(item, "description").text = clean_markdown(post["description"])
+            ET.SubElement(item, "description").text = post["description"]
             ET.SubElement(item, "link").text = link
             ET.SubElement(item, "pubDate").text = date.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
