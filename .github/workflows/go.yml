@@ -11,6 +11,10 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
     - uses: actions/checkout@v4
 
@@ -19,7 +23,16 @@ jobs:
       with:
         go-version: '1.20'
 
+    - name: Update
+      run: make
+
     - name: Publish
       run: go run ./blog.go -publish
       env:
         MATAROA_TOKEN: ${{ secrets.MATAROA_TOKEN }}
+
+    - name: Commit
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "README/rss: update"
+
