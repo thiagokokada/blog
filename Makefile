@@ -16,6 +16,10 @@ rss.xml: blog $(MARKDOWN)
 publish: blog
 	./blog -publish
 
+.PHONY: today
+today:
+	mkdir $(shell date '+%Y-%m-%d')
+
 .PHONY: clean
 clean:
 	rm -rf blog
