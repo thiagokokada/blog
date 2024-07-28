@@ -199,51 +199,48 @@ func genReadme(posts []post) string {
 	return fmt.Sprintf(readmeTemplate, strings.Join(titles, "\n"))
 }
 
-func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	url := must1(url.JoinPath(mataroaApiUrl, "posts", post.slug, "/"))
-	req := must1(http.NewRequest("GET", url, nil))
+func mustMataroaReq(method string, elem []string, body []byte) (p  mataroaResponse, r *http.Response) {
+	// generate a Mataroa URL, ensure '/' at the end
+	reqUrl := must1(url.JoinPath(mataroaApiUrl, elem...))
+	reqUrl = must1(url.JoinPath(reqUrl, "/"))
+
+	// Prepare request payload if non-nil
+	var reqBuf io.Reader
+	if body != nil {
+		reqBuf = bytes.NewBuffer(body)
+	}
+	req := must1(http.NewRequest(method, reqUrl, reqBuf))
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
 
+	// Do request and return response
 	resp := must1(http.DefaultClient.Do(req))
-	body := must1(io.ReadAll(resp.Body))
-	json.Unmarshal(body, &p)
+	respBody := must1(io.ReadAll(resp.Body))
+	json.Unmarshal(respBody, &p)
 	return p, resp
 }
 
+func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+	return mustMataroaReq("GET", []string{"posts", post.slug}, nil)
+}
+
 func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	url := must1(url.JoinPath(mataroaApiUrl, "posts", post.slug, "/"))
 	reqBody := must1(json.Marshal(mataroaPatchRequest{
 		Title:       post.title,
 		Body:        string(post.contents),
 		Slug:        post.slug,
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
-	req := must1(http.NewRequest("PATCH", url, bytes.NewBuffer(reqBody)))
-	req.Header.Add("Accept", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
-
-	resp := must1(http.DefaultClient.Do(req))
-	body := must1(io.ReadAll(resp.Body))
-	json.Unmarshal(body, &p)
-	return p, resp
+	return mustMataroaReq("PATCH", []string{"posts", post.slug}, reqBody)
 }
 
 func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	url := must1(url.JoinPath(mataroaApiUrl, "posts", "/"))
 	reqBody := must1(json.Marshal(mataroaPostRequest{
 		Title:       post.title,
 		Body:        string(post.contents),
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
-	req := must1(http.NewRequest("POST", url, bytes.NewBuffer(reqBody)))
-	req.Header.Add("Accept", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
-
-	resp := must1(http.DefaultClient.Do(req))
-	body := must1(io.ReadAll(resp.Body))
-	json.Unmarshal(body, &p)
-	return p, resp
+	return mustMataroaReq("POST", []string{"posts"}, reqBody)
 }
 
 func publishToMataroa(posts []post) {
