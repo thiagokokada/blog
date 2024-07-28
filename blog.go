@@ -16,10 +16,13 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"io/fs"
 	"log"
+	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -28,10 +31,12 @@ import (
 	"time"
 
 	"github.com/gorilla/feeds"
+	"github.com/gosimple/slug"
 	"github.com/yuin/goldmark"
 )
 
-const rssBaseLink = "https://github.com/thiagokokada/blog/blob/main"
+const mataroaApiUrl = "https://capivaras.dev/api/"
+const rssBaseUrl = "https://github.com/thiagokokada/blog/blob/main"
 const readmeTemplate = `# Blog
 
 Mirror of my blog in https://kokada.capivaras.dev/.
@@ -43,11 +48,36 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 %s
 `
 
+var mataroaToken = os.Getenv("MATAROA_TOKEN")
+
 type post struct {
 	title    string
 	file     string
+	slug     string
 	contents []byte
 	date     time.Time
+}
+
+// https://capivaras.dev/api/docs/
+type mataroaResponse struct {
+	Ok    bool   `json:"ok"`
+	Title string `json:"title"`
+	Url   string `json:"url"`
+	Slug  string `json:"slug"`
+	// Error string `json:"error"`
+}
+
+type mataroaPostRequest struct {
+	Title       string `json:"title"`
+	Body        string `json:"body"`
+	PublishedAt string `json:"published_at"`
+}
+
+type mataroaPatchRequest struct {
+	Title       string `json:"title"`
+	Slug        string `json:"slug"`
+	Body        string `json:"body"`
+	PublishedAt string `json:"published_at"`
 }
 
 func must1[T any](v T, err error) T {
@@ -96,7 +126,7 @@ func grabPosts() []post {
 			// Parse directory name as a date
 			date, err := time.Parse(time.DateOnly, dir)
 			if err != nil {
-				log.Printf("WARN: ignoring non-date directory: %s\n", path)
+				log.Printf("[WARN]: ignoring non-date directory: %s\n", path)
 				return nil
 			}
 
@@ -117,6 +147,7 @@ func grabPosts() []post {
 			posts = append(posts, post{
 				title:    title,
 				file:     path,
+				slug:     slug.Make(title),
 				contents: contents,
 				date:     date,
 			})
@@ -139,7 +170,7 @@ func genRss(posts []post) string {
 	}
 	var items []*feeds.Item
 	for _, post := range posts {
-		link := must1(url.JoinPath(rssBaseLink, post.file))
+		link := must1(url.JoinPath(rssBaseUrl, post.file))
 		var buf bytes.Buffer
 		must(goldmark.Convert(post.contents, &buf))
 		items = append(items, &feeds.Item{
@@ -168,12 +199,80 @@ func genReadme(posts []post) string {
 	return fmt.Sprintf(readmeTemplate, strings.Join(titles, "\n"))
 }
 
+func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+	url := must1(url.JoinPath(mataroaApiUrl, "posts", post.slug, "/"))
+	req := must1(http.NewRequest("GET", url, nil))
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
+
+	resp := must1(http.DefaultClient.Do(req))
+	body := must1(io.ReadAll(resp.Body))
+	json.Unmarshal(body, &p)
+	return p, resp
+}
+
+func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+	url := must1(url.JoinPath(mataroaApiUrl, "posts", post.slug, "/"))
+	reqBody := must1(json.Marshal(mataroaPatchRequest{
+		Title:       post.title,
+		Body:        string(post.contents),
+		Slug:        post.slug,
+		PublishedAt: post.date.Format(time.DateOnly),
+	}))
+	req := must1(http.NewRequest("PATCH", url, bytes.NewBuffer(reqBody)))
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
+
+	resp := must1(http.DefaultClient.Do(req))
+	body := must1(io.ReadAll(resp.Body))
+	json.Unmarshal(body, &p)
+	return p, resp
+}
+
+func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+	url := must1(url.JoinPath(mataroaApiUrl, "posts", "/"))
+	reqBody := must1(json.Marshal(mataroaPostRequest{
+		Title:       post.title,
+		Body:        string(post.contents),
+		PublishedAt: post.date.Format(time.DateOnly),
+	}))
+	req := must1(http.NewRequest("POST", url, bytes.NewBuffer(reqBody)))
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
+
+	resp := must1(http.DefaultClient.Do(req))
+	body := must1(io.ReadAll(resp.Body))
+	json.Unmarshal(body, &p)
+	return p, resp
+}
+
+func publishToMataroa(posts []post) {
+	for _, post := range posts {
+		p, resp := mustGetMataroaPost(post)
+		if p.Ok {
+			p, resp := mustPatchMataroaPost(post)
+			fmt.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
+		} else if resp.StatusCode == 404 {
+			p, resp := mustPostMataroaPost(post)
+			fmt.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
+		} else {
+			fmt.Printf("[ERROR] %s: %+v\n", post.slug, resp)
+		}
+	}
+}
+
 func main() {
 	rss := flag.Bool("rss", false, "Generate RSS (XML) instead of README.md")
+	publish := flag.Bool("publish", false, "Publish updates to Maratoa instance")
 	flag.Parse()
 
 	posts := grabPosts()
-	if *rss {
+	if *publish {
+		if mataroaToken == "" {
+			log.Println("[WARN]: empty MATAROA_TOKEN env var")
+		}
+		publishToMataroa(posts)
+	} else if *rss {
 		fmt.Print(genRss(posts))
 	} else {
 		fmt.Print(genReadme(posts))
