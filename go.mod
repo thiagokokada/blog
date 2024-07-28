@@ -1,6 +1,6 @@
 module github.com/thiagokokada/blog
 
-go 1.22.5
+go 1.20
 
 require (
 	github.com/gorilla/feeds v1.2.0
