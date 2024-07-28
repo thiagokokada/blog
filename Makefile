@@ -12,6 +12,10 @@ README.md: blog $(MARKDOWN)
 rss.xml: blog $(MARKDOWN)
 	./blog -rss > rss.xml
 
+.PHONY: publish
+publish: blog
+	./blog -publish
+
 .PHONY: clean
 clean:
 	rm -rf blog

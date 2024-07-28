@@ -27,7 +27,7 @@ jobs:
       run: make
 
     - name: Publish
-      run: go run ./blog.go -publish
+      run: make publish
       env:
         MATAROA_TOKEN: ${{ secrets.MATAROA_TOKEN }}
 
