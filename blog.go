@@ -101,7 +101,7 @@ func extractTitleAndContents(raw []byte) (title string, contents []byte, err err
 				return "", nil, fmt.Errorf("could not find title")
 			}
 			title = clean
-			contents = raw[i:]
+			contents = bytes.TrimSpace(raw[i:])
 			break
 		}
 	}
@@ -257,6 +257,10 @@ func publishToMataroa(posts []post) {
 			fmt.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
 		} else {
 			fmt.Printf("[ERROR] %s: %+v\n", post.slug, resp)
+		}
+
+		if resp.StatusCode != 200 {
+			panic(fmt.Sprintf("non-200 response: %s", post.slug))
 		}
 	}
 }
