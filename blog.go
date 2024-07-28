@@ -251,12 +251,12 @@ func publishToMataroa(posts []post) {
 		p, resp := mustGetMataroaPost(post)
 		if p.Ok {
 			p, resp = mustPatchMataroaPost(post)
-			fmt.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
+			log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
 		} else if resp.StatusCode == 404 {
 			p, resp = mustPostMataroaPost(post)
-			fmt.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
+			log.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
 		} else {
-			fmt.Printf("[ERROR] %s: %+v\n", post.slug, resp)
+			log.Printf("[ERROR] %s: %+v\n", post.slug, resp)
 		}
 
 		if resp.StatusCode != 200 {
