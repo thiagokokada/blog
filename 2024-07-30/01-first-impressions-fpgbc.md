@@ -123,19 +123,23 @@ than FPGBC, like wireless multiplayer,
 [RetroArchivements](https://retroachievements.org/) and save states.
 
 But the actual reason to get a FPGBC is nostalgia, and for that I think the
-FPGBC is difficult to beat. The price of the kit to assemble ($69.90) is
-cheaper than most Game Boy's in good condition you can find in eBay, and you
-get for that price a rechargable battery, an amazing quality screen, the PCB
-and the speaker. You need to buy separately the case and the buttons, but in
-total you will still end up paying less. And the result device is not only in
-mint condition, it is really convenient too: recharging batteries (via USB-C
-even) is much more convenient than buying AA batteries, and the screen not only
-is better but it even has backlight.
+FPGBC is difficult to beat. The price of the [kit to
+assemble](https://funnyplaying.com/products/fpgbc-kit) ($69.90) is cheaper than
+most Game Boy's in good condition you can find in eBay, and you get for that
+price a rechargable battery, an amazing quality screen, the PCB and the
+speaker. You need to buy separately the case and the buttons, but in total you
+will still end up paying less, and allows you to fully customise your build.
+And the result device is not only in mint condition, it is really convenient
+too: recharging batteries (via USB-C even) is much more convenient than buying
+AA batteries, and the screen not only is better but it even has backlight. You
+can also a fully built console for
+[$99.00](https://funnyplaying.com/products/fpgbc-console), but you have less
+options of customisation.
 
 This is the classic case of do what I say, don't do what I do. This FPGBC is a
 gift, and I will buy another one soon. Can't wait to play [Pokémon
 Gold](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Gold_and_Silver) in (almost)
-original hardware.
+original hardware again.
 
 <!-- PXL_20240729_123847458 -->
 [![The kit before assemble.](https://capivaras.dev/images/7f34caba.jpeg)](https://capivaras.dev/images/7f34caba.jpeg)
