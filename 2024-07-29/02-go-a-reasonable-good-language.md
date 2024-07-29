@@ -74,9 +74,10 @@ func GreaterOrEqual[T cmp.Ordered](t *testing.T, actual, expected T) {
 
 Just one of those things that I end up re-writing in every project. Yes, I know
 about [testify](https://github.com/stretchr/testify) and other assertion
-libraries, but nowadays I believe if you can avoid importing a library, as long
-the code you write is trivial, it is better to duplicate the code than try to
-import a dependency.
+libraries, but quoting [Rob
+Pike](https://www.youtube.com/watch?v=PAAkCSZUG1c&t=568s) here, "a little
+copying is better than a little dependency". As long the code you write is
+trivial, it is better to duplicate the code than try to import a dependency.
 
 About another piece of code that generics allows me to write and I always end
 up re-writing in every project is the `must*` family of functions:
