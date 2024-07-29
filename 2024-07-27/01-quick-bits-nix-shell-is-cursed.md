@@ -51,12 +51,12 @@ like the classic case of a [bug that becomes a
 feature](https://github.com/NixOS/nix/issues/2570#issuecomment-446222206).
 
 Update: after posting this in
-[Lobte.rs](https://lobste.rs/s/gkcgza/quick_bits_nix_shell_is_cursed) it seems
+[Lobte.rs](https://lobste.rs/s/gkcgza/quick_bits_nix_shell_is_cursed), it seems
 someone decided to open a [Pull
 Request](https://github.com/NixOS/nix/pull/11202) to document this behavior.
 Also the equivalent for the new [nix
 CLI](https://nix.dev/manual/nix/2.23/command-ref/new-cli/nix#shebang-interpreter)
 explicitly documents this behavior:
 
-> Note that the `#!` nix lines don't need to follow after the first line, to
+> Note that the `#! nix` lines don't need to follow after the first line, to
 > accomodate other interpreters.
