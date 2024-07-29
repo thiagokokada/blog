@@ -153,10 +153,11 @@ prefer immutability by default, but I find that in general as long as you split
 your functions at a reasonable size it is generally fine.
 
 And for a language that is supposed to be straightforward, it is strange on how
-much magic the language relies on, in the form of things like
-[`internal`](https://go.dev/doc/modules/layout) modules, conditional compiling
-by filenames (e.g.: `foo_amd64.go`, `bar_linux.go`), magic comments (e.g.:
-`//go:build`), etc.
+much magic the language relies on, in the form of things like [`internal` and
+`main`](https://go.dev/doc/modules/layout) packages, name capitalisation to
+indicate visibility (`private` vs `Public`), conditional compiling by filenames
+(e.g.: `foo_amd64.go`, `bar_linux.go`), magic comments (e.g.: `//go:build`),
+etc.
 
 I expect to write more Go code going forward. Not because it is the perfect
 language or whatever, but just because it a is language that has some really
