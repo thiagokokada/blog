@@ -46,6 +46,10 @@ etc., all with just the "compiler" for the language is excelent. Still probably
 one of the best developer experiences I know in any programming language (maybe
 only rivaled by [Zig](https://ziglang.org/)).
 
+I will not even talk about the things that everyone talks about Go, like
+[goroutines](https://go.dev/doc/effective_go#goroutines), because I just don't
+think I can add anything interesting to the topic.
+
 Now for the parts that I like less, the test part still quirks me that it is
 not based in assertions, but thankfully it is easy to write assertions with
 generics nowadays:
