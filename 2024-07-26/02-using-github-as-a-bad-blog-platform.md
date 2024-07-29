@@ -14,7 +14,7 @@ supports](https://1.mataroa.blog/guides/markdown/)) files inside
 Git? So this is what I did, I now have an unofficial mirror in
 [GitHub](https://github.com/thiagokokada/blog).
 
-While I am here, why not to overcomplicate? Can I make an usable blog platform
+While I am here, why not overcomplicate? Can I make an usable blog platform
 from GitHub? And by that I don't mean GitHub pages, the repository itself. I
 mean, it already renders Markdown files by default, so no need to do anything
 in that space. To reach feature parity with
@@ -68,7 +68,7 @@ the files whatever you want.
 Also, I am assuming that each Markdown file has a header starting with `# `,
 and that is the title of the blog post.
 
-Using the above organisation, I have this function that scrap the repository
+Using the above organisation, I have this function that scrapes the repository
 and collect the necessary information to generate the index and RSS files:
 
 ```python
@@ -105,7 +105,7 @@ def grab_posts(pwd: Path):
 ```
 
 Some interesting tidbits: if a Markdown file has a `.` at the start I assume it
-is a draft post, and ignore it from my scrapper. I added a bunch of `WARN`
+is a draft post, and ignore it from my scraper. I added a bunch of `WARN`
 prints to make sure that the me in the future doesn't do anything dumb. Also,
 sorting in reverse since reverse chronological order is the one most people
 expect in blogs (i.e.: more recent blog posts at top).
@@ -159,12 +159,11 @@ def gen_rss(posts):
     tree.write("rss.xml", xml_declaration=True, encoding="UTF-8")
 ```
 
-To publish a new Post, a basically write a Markdown file, run
-`./gen_readme.py > README.md` at the root of the repository, and see the magic
-happens.
+To publish a new Post, a basically write a Markdown file, run `./gen_readme.py
+> README.md` at the root of the repository, and see the magic happen.
 
-It works much better than I initially antecipated. The `README.md` is properly
-populated with the titles and links. The RSS is kind empty since it has no
+It works much better than I initially anticipated. The `README.md` is properly
+populated with the titles and links. The RSS is kind of empty since it has no
 description, but it seems to work fine (at least in
 [Inoreader](https://www.inoreader.com/), my RSS reader of choice). I can
 probably fill the post description with more information if I really want, but
