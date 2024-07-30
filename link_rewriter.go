@@ -51,6 +51,9 @@ func (e *linkRewriter) Transform(node *ast.Document, reader text.Reader, pc pars
 		if link, ok := n.(*ast.Link); ok {
 			e.rewriteLink(link)
 		}
+		if image, ok := n.(*ast.Image); ok {
+			e.rewriteImage(image)
+		}
 		return ast.WalkContinue, nil
 	})
 }
@@ -79,5 +82,19 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 			dest := must1(url.JoinPath(e.prefixUrl, link))
 			l.Destination = []byte(dest)
 		}
+	}
+}
+
+// rewriteImage modifies the image URL
+func (e *linkRewriter) rewriteImage(i *ast.Image) {
+	image := string(i.Destination)
+
+	if strings.HasPrefix(image, ".") {
+		log.Printf("[WARN]: relative image link reference found: %s\n", image)
+	}
+
+	if strings.HasPrefix(image, "/") {
+		dest := must1(url.JoinPath(blogRawUrl, image))
+		i.Destination = []byte(dest)
 	}
 }

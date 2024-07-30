@@ -31,11 +31,9 @@ Cable](https://en.wikipedia.org/wiki/Game_Link_Cable) (I don't have another
 Game Boy to test). Sadly it is missing the infrared sensor, but the usage of
 that was pretty limited anyway.
 
-<!-- PXL_20240729_175245569 -->
-[![FPGBC running Tetris.](https://capivaras.dev/images/1545d11f.jpeg)](https://capivaras.dev/images/1545d11f.jpeg)
+[![FPGBC running Tetris.](/2024-07-30/PXL_20240729_175245569.jpg)](/2024-07-30/PXL_20240729_175245569.jpg)
 
-<!-- PXL_20240729_175131157 -->
-[![Back of FPGBC. It includes even reproduction stickers of the original.](https://capivaras.dev/images/6746624f.jpeg)](https://capivaras.dev/images/6746624f.jpeg)
+[![Back of FPGBC. It includes even reproduction stickers of the original.](/2024-07-30/PXL_20240729_175131157.jpg)](/2024-07-30/PXL_20240729_175131157.jpg)
 
 So how well does it work? I can't say for sure. I don't have any original games
 with me, so I am relying in backups and a
@@ -72,8 +70,7 @@ came back to life.
 About the features of the device: if you press the volume button (yes, you can
 press it now), it opens the following menu:
 
-<!-- PXL_20240729_210604830 -->
-[![FPGBC menu.](https://capivaras.dev/images/4391c351.jpeg)](https://capivaras.dev/images/4391c351.jpeg)
+[![FPGBC menu.](/2024-07-30/PXL_20240729_210604830.jpg)](/2024-07-30/PXL_20240729_210604830.jpg)
 
 The first 2 features are the LCD backlight and volume. I didn't talk about
 those, but the LCD screen seems to be IPS, and the quality is really good, and
@@ -147,5 +144,4 @@ gift, and I will buy another one soon. Can't wait to play [Pokémon
 Gold](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Gold_and_Silver) in (almost)
 original hardware again.
 
-<!-- PXL_20240729_123847458 -->
-[![The kit before assemble.](https://capivaras.dev/images/7f34caba.jpeg)](https://capivaras.dev/images/7f34caba.jpeg)
+[![The kit before assemble.](/2024-07-30/PXL_20240729_123847458.jpg)](/2024-07-30/PXL_20240729_123847458.jpg)
