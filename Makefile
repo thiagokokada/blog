@@ -3,7 +3,7 @@ MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
 .PHONY: all
 all: README.md rss.xml
 
-blog: blog.go go.*
+blog: *.go go.*
 	go build
 
 README.md: blog $(MARKDOWN)
