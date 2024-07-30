@@ -28,12 +28,13 @@ import (
 
 // linkRewriter is the main struct for your extension
 type linkRewriter struct {
-	posts posts
+	prefixUrl string
+	posts     posts
 }
 
 // NewLinkRewriter returns a new instance of LinkRewriter
-func NewLinkRewriter(posts posts) *linkRewriter {
-	return &linkRewriter{posts}
+func NewLinkRewriter(prefixUrl string, posts posts) *linkRewriter {
+	return &linkRewriter{prefixUrl, posts}
 }
 
 // Extend will be called by Goldmark to add your extension
@@ -63,12 +64,20 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 	}
 
 	if strings.HasPrefix(link, "/") {
-		post, ok := e.posts.Get(link[1:])
-		if ok {
-			dest := must1(url.JoinPath(mataroaBlogUrl, post.slug))
-			l.Destination = []byte(dest)
+		if e.posts != nil {
+			// If posts are not nil, it means we will grab the slug
+			// from posts
+			post, ok := e.posts.Get(link[1:])
+			if ok {
+				dest := must1(url.JoinPath(e.prefixUrl, post.slug))
+				l.Destination = []byte(dest)
+			} else {
+				log.Printf("[WARN]: did not find reference to link: %s\n", link)
+			}
 		} else {
-			log.Printf("[WARN]: did not find reference to link: %s\n", link)
+			// Else we will just append the prefixUrl to the link
+			dest := must1(url.JoinPath(e.prefixUrl, link))
+			l.Destination = []byte(dest)
 		}
 	}
 }

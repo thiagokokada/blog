@@ -32,7 +32,7 @@ import (
 	"github.com/yuin/goldmark"
 )
 
-const rssBaseUrl = "https://github.com/thiagokokada/blog/blob/main"
+const blogBaseUrl = "https://github.com/thiagokokada/blog/blob/main"
 const readmeTemplate = `# Blog
 
 Mirror of my blog in https://kokada.capivaras.dev/.
@@ -149,12 +149,14 @@ func genRss(posts posts) string {
 		Title:       "kokada's blog",
 		Description: "# dd if=/dev/urandom of=/dev/brain0",
 	}
+	md := goldmark.New(goldmark.WithExtensions(NewLinkRewriter(blogBaseUrl, nil)))
+
 	var items []*feeds.Item
 	for el := posts.Back(); el != nil; el = el.Prev() {
 		post := el.Value
-		link := must1(url.JoinPath(rssBaseUrl, post.file))
+		link := must1(url.JoinPath(blogBaseUrl, post.file))
 		var buf bytes.Buffer
-		must(goldmark.Convert(post.contents, &buf))
+		must(md.Convert(post.contents, &buf))
 		items = append(items, &feeds.Item{
 			Title:       post.title,
 			Link:        &feeds.Link{Href: link},

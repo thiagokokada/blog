@@ -108,7 +108,7 @@ func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r 
 func publishToMataroa(posts posts) {
 	md := goldmark.New(
 		goldmark.WithRenderer(markdown.NewRenderer()),
-		goldmark.WithExtensions(NewLinkRewriter(posts)),
+		goldmark.WithExtensions(NewLinkRewriter(mataroaBlogUrl, posts)),
 	)
 	for el := posts.Front(); el != nil; el = el.Next() {
 		post := el.Value
