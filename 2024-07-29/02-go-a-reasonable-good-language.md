@@ -8,7 +8,9 @@ different beast: no modules, no generics, no easy way to error wrap yet, etc.
 Go forward 2023 (no pun indented), I wrote my [first project in
 Go](https://github.com/thiagokokada/twenty-twenty-twenty/), wrote some scripts
 at `$CURRENT_JOB` in the language, and now wrote [my first
-library](https://github.com/thiagokokada/hyprland-go/). I am also writing more
+library](https://github.com/thiagokokada/hyprland-go/) (with an [interesting
+way to run CI](/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md).
+I am also writing more
 [scripts](https://github.com/thiagokokada/nix-configs/blob/8c559527ed12e1d4f57a3fc5c72630b956f4c290/home-manager/desktop/wayland/hyprland/hyprtabs/hyprtabs.go)
 in the language, where I would prefer to use Bash or Python before. Heck, even
 this blog is automatically published with a [Go
