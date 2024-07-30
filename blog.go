@@ -23,10 +23,10 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
 	"time"
 
+	"github.com/elliotchance/orderedmap/v2"
 	"github.com/gorilla/feeds"
 	"github.com/gosimple/slug"
 	"github.com/yuin/goldmark"
@@ -51,6 +51,8 @@ type post struct {
 	contents []byte
 	date     time.Time
 }
+
+type posts = *orderedmap.OrderedMap[string, post]
 
 func must1[T any](v T, err error) T {
 	must(err)
@@ -83,8 +85,9 @@ func extractTitleAndContents(raw []byte) (title string, contents []byte, err err
 	return title, contents, nil
 }
 
-func grabPosts() []post {
-	var posts []post
+func grabPosts() posts {
+	posts := orderedmap.NewOrderedMap[string, post]()
+
 	must(filepath.WalkDir(".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
@@ -127,7 +130,7 @@ func grabPosts() []post {
 			)
 		}
 
-		posts = append(posts, post{
+		posts.Set(path, post{
 			title:    title,
 			file:     path,
 			slug:     slug.Make(title),
@@ -138,21 +141,17 @@ func grabPosts() []post {
 		return nil
 	}))
 
-	sort.Slice(posts, func(i, j int) bool {
-		// Reverse sorting based on filename
-		return posts[i].file > posts[j].file
-	})
-
 	return posts
 }
 
-func genRss(posts []post) string {
+func genRss(posts posts) string {
 	feed := &feeds.Feed{
 		Title:       "kokada's blog",
 		Description: "# dd if=/dev/urandom of=/dev/brain0",
 	}
 	var items []*feeds.Item
-	for _, post := range posts {
+	for el := posts.Back(); el != nil; el = el.Prev() {
+		post := el.Value
 		link := must1(url.JoinPath(rssBaseUrl, post.file))
 		var buf bytes.Buffer
 		must(goldmark.Convert(post.contents, &buf))
@@ -168,9 +167,10 @@ func genRss(posts []post) string {
 	return must1(feed.ToRss())
 }
 
-func genReadme(posts []post) string {
+func genReadme(posts posts) string {
 	var titles []string
-	for _, post := range posts {
+	for el := posts.Back(); el != nil; el = el.Prev() {
+		post := el.Value
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,

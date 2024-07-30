@@ -96,8 +96,9 @@ func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 	return mustMataroaReq("POST", []string{"posts"}, reqBody)
 }
 
-func publishToMataroa(posts []post) {
-	for _, post := range posts {
+func publishToMataroa(posts posts) {
+	for el := posts.Back(); el != nil; el = el.Prev() {
+		post := el.Value
 		p, resp := mustGetMataroaPost(post)
 		if p.Ok {
 			p, resp = mustPatchMataroaPost(post)
