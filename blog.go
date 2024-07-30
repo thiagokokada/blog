@@ -46,7 +46,6 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 type post struct {
 	title    string
-	file     string
 	slug     string
 	contents []byte
 	date     time.Time
@@ -132,7 +131,6 @@ func grabPosts() posts {
 
 		posts.Set(path, post{
 			title:    title,
-			file:     path,
 			slug:     slug.Make(title),
 			contents: contents,
 			date:     date,
@@ -154,7 +152,7 @@ func genRss(posts posts) string {
 	var items []*feeds.Item
 	for el := posts.Back(); el != nil; el = el.Prev() {
 		post := el.Value
-		link := must1(url.JoinPath(blogBaseUrl, post.file))
+		link := must1(url.JoinPath(blogBaseUrl, el.Key))
 		var buf bytes.Buffer
 		must(md.Convert(post.contents, &buf))
 		items = append(items, &feeds.Item{
@@ -176,7 +174,7 @@ func genReadme(posts posts) string {
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,
-			post.file,
+			el.Key,
 			post.date.Format(time.DateOnly),
 		)
 		titles = append(titles, title)
