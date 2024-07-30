@@ -93,7 +93,12 @@ func must1[T any](v T, err error) T {
 	return v
 }
 
-// must2, must3, etc...
+func must2[T1 any, T2 any](v1 T1, v2 T2, err error) T {
+	must(err)
+	return v1, v2
+}
+
+// must3, must4, etc...
 ```
 
 Those functions are so useful, especially for scripts where I generally don't
