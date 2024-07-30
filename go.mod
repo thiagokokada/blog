@@ -1,11 +1,12 @@
 module github.com/thiagokokada/blog
 
-go 1.20
+go 1.21
 
 require (
 	github.com/elliotchance/orderedmap/v2 v2.2.0
 	github.com/gorilla/feeds v1.2.0
 	github.com/gosimple/slug v1.14.0
+	github.com/teekennedy/goldmark-markdown v0.3.0
 	github.com/yuin/goldmark v1.7.4
 )
 

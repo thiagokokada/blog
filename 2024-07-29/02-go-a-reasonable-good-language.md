@@ -12,12 +12,11 @@ library](https://github.com/thiagokokada/hyprland-go/). I am also writing more
 [scripts](https://github.com/thiagokokada/nix-configs/blob/8c559527ed12e1d4f57a3fc5c72630b956f4c290/home-manager/desktop/wayland/hyprland/hyprtabs/hyprtabs.go)
 in the language, where I would prefer to use Bash or Python before. Heck, even
 this blog is automatically published with a [Go
-script](https://kokada.capivaras.dev/blog/quick-bits-why-you-should-automate-everything/),
-that used to be a [Python
-one](https://kokada.capivaras.dev/blog/using-github-as-a-bad-blog-platform/)
-before. I can say that nowadays it is another language in my toolbox, and while
-it is still a love and hate relationship, recently it is more about love and
-less about hate.
+script](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md), that
+used to be a [Python
+one](/2024-07-26/02-using-github-as-a-bad-blog-platform.md) before. I can say
+that nowadays it is another language in my toolbox, and while it is still a
+love and hate relationship, recently it is more about love and less about hate.
 
 The points that I love about Go is probably obvious for some, but still
 interesting to talk about anyway. The fact that the language generates static

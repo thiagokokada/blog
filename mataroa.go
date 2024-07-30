@@ -24,9 +24,14 @@ import (
 	"net/url"
 	"os"
 	"time"
+
+	markdown "github.com/teekennedy/goldmark-markdown"
+	"github.com/yuin/goldmark"
 )
 
-const mataroaApiUrl = "https://capivaras.dev/api/"
+const mataroaBaseUrl = "https://kokada.capivaras.dev"
+const mataroaApiUrl = mataroaBaseUrl + "/api/"
+const mataroaBlogUrl = mataroaBaseUrl + "/blog/"
 
 var mataroaToken = os.Getenv("MATAROA_TOKEN")
 
@@ -77,34 +82,42 @@ func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 	return mustMataroaReq("GET", []string{"posts", post.slug}, nil)
 }
 
-func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+func mustPatchMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
+	buf := bytes.Buffer{}
+	must(md.Convert([]byte(post.contents), &buf))
 	reqBody := must1(json.Marshal(mataroaPatchRequest{
 		Title:       post.title,
-		Body:        string(post.contents),
+		Body:        buf.String(),
 		Slug:        post.slug,
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
 	return mustMataroaReq("PATCH", []string{"posts", post.slug}, reqBody)
 }
 
-func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
+	buf := bytes.Buffer{}
+	must(md.Convert([]byte(post.contents), &buf))
 	reqBody := must1(json.Marshal(mataroaPostRequest{
 		Title:       post.title,
-		Body:        string(post.contents),
+		Body:        buf.String(),
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
 	return mustMataroaReq("POST", []string{"posts"}, reqBody)
 }
 
 func publishToMataroa(posts posts) {
-	for el := posts.Back(); el != nil; el = el.Prev() {
+	md := goldmark.New(
+		goldmark.WithRenderer(markdown.NewRenderer()),
+		goldmark.WithExtensions(NewLinkRewriter(posts)),
+	)
+	for el := posts.Front(); el != nil; el = el.Next() {
 		post := el.Value
 		p, resp := mustGetMataroaPost(post)
 		if p.Ok {
-			p, resp = mustPatchMataroaPost(post)
+			p, resp = mustPatchMataroaPost(md, post)
 			log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
 		} else if resp.StatusCode == 404 {
-			p, resp = mustPostMataroaPost(post)
+			p, resp = mustPostMataroaPost(md, post)
 			log.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
 		} else {
 			log.Printf("[ERROR] %s: %+v\n", post.slug, resp)
