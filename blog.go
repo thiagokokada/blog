@@ -115,43 +115,52 @@ func grabPosts() []post {
 		if err != nil {
 			return err
 		}
-		// Find markdown files, but ignore hidden files
-		if filepath.Ext(d.Name()) == ".md" && d.Name()[0] != '.' {
-			dir := filepath.Dir(path)
-			// Ignore root directory
-			if dir == "." {
-				return nil
-			}
 
-			// Parse directory name as a date
-			date, err := time.Parse(time.DateOnly, dir)
-			if err != nil {
-				log.Printf("[WARN]: ignoring non-date directory: %s\n", path)
-				return nil
-			}
-
-			// Load the contents of the Markdown and try to parse
-			// the title
-			raw := must1(os.ReadFile(path))
-			title, contents, err := extractTitleAndContents(raw)
-			if err != nil || title == "" || contents == nil {
-				return fmt.Errorf(
-					"something is wrong with file: %s, title: %s, contents: %s, error: %w",
-					path,
-					title,
-					contents,
-					err,
-				)
-			}
-
-			posts = append(posts, post{
-				title:    title,
-				file:     path,
-				slug:     slug.Make(title),
-				contents: contents,
-				date:     date,
-			})
+		// Ignore hidden files
+		if d.Name()[0] == '.' {
+			return nil
 		}
+		// Ignore non-Markdown files
+		if filepath.Ext(d.Name()) != ".md" {
+			return nil
+		}
+
+		// Get the directory of the file
+		dir := filepath.Dir(path)
+		// Ignore files in the current directory
+		if dir == "." {
+			return nil
+		}
+
+		// Parse directory name as a date
+		date, err := time.Parse(time.DateOnly, dir)
+		if err != nil {
+			log.Printf("[WARN]: ignoring non-date directory: %s\n", path)
+			return nil
+		}
+
+		// Load the contents of the Markdown and try to parse
+		// the title
+		raw := must1(os.ReadFile(path))
+		title, contents, err := extractTitleAndContents(raw)
+		if err != nil || title == "" || contents == nil {
+			return fmt.Errorf(
+				"something is wrong with file: %s, title: %s, contents: %s, error: %w",
+				path,
+				title,
+				contents,
+				err,
+			)
+		}
+
+		posts = append(posts, post{
+			title:    title,
+			file:     path,
+			slug:     slug.Make(title),
+			contents: contents,
+			date:     date,
+		})
+
 		return nil
 	}))
 
