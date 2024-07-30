@@ -63,6 +63,12 @@ firmware to boot the original logo instead of the ugly FPGBC one. And yes, for
 some reason the v1.09 firmware from this repository still doesn't work with my
 knockoff Everdrive.
 
+By the way, it seems the device is not easy to brick: I borked the firmware
+update process once while trying to downgrade back to v1.09, resulting in a
+black screen when I turned on the console. But just connecting the device to
+the computer and powering on, I could flash the firmware again and the device
+came back to life.
+
 About the features of the device: if you press the volume button (yes, you can
 press it now), it opens the following menu:
 
