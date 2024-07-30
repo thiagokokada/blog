@@ -67,15 +67,17 @@ func extractTitleAndContents(raw []byte) (title string, contents []byte, err err
 	for i, c := range raw {
 		// We are assuming that each file has one title as a H1 header
 		if c == '\n' {
-			original := string(raw[:i])
-			clean := strings.Replace(string(raw[:i]), "# ", "", 1)
-			if clean == original {
-				return "", nil, fmt.Errorf("could not find title")
+			if raw[0] != '#' {
+				return "", nil, fmt.Errorf("could not find '#', file seems to be missing a H1 header")
 			}
-			title = clean
+			title = string(bytes.TrimSpace(raw[1:i]))
 			contents = bytes.TrimSpace(raw[i:])
 			break
 		}
+	}
+
+	if title == "" || contents == nil {
+		return "", nil, fmt.Errorf("could not find title, the file may be empty")
 	}
 
 	return title, contents, nil
