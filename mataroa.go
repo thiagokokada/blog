@@ -29,9 +29,11 @@ import (
 	"github.com/yuin/goldmark"
 )
 
-const mataroaBaseUrl = "https://kokada.capivaras.dev"
-const mataroaApiUrl = mataroaBaseUrl + "/api/"
-const mataroaBlogUrl = mataroaBaseUrl + "/blog/"
+const (
+	mataroaBaseUrl = "https://kokada.capivaras.dev"
+	mataroaApiUrl  = mataroaBaseUrl + "/api/"
+	mataroaBlogUrl = mataroaBaseUrl + "/blog/"
+)
 
 var mataroaToken = os.Getenv("MATAROA_TOKEN")
 

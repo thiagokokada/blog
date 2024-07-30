@@ -32,10 +32,11 @@ import (
 	"github.com/yuin/goldmark"
 )
 
-const blogBaseUrl= "https://github.com/thiagokokada/blog"
-const blogMainUrl = blogBaseUrl + "/blob/main"
-const blogRawUrl = blogBaseUrl + "/raw/main"
-const readmeTemplate = `# Blog
+const (
+	blogBaseUrl    = "https://github.com/thiagokokada/blog"
+	blogMainUrl    = blogBaseUrl + "/blob/main/"
+	blogRawUrl     = blogBaseUrl + "/raw/main/"
+	readmeTemplate = `# Blog
 
 Mirror of my blog in https://kokada.capivaras.dev/.
 
@@ -45,6 +46,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 %s
 `
+)
 
 type post struct {
 	title    string
