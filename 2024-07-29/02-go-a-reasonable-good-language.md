@@ -40,10 +40,12 @@ hash of every dependency, make it reproducible (well, probably not at Nix
 level, but still reproducible).
 
 Since I started to talk about `go` CLI, what a great tool! The fact that you
-can manage dependencies, generate documentation, format code, lint, run tests,
-etc., all with just the "compiler" for the language is excelent. Still probably
-one of the best developer experiences I know in any programming language (maybe
-only rivaled by [Zig](https://ziglang.org/)).
+can manage dependencies, generate documentation, format code, lint, run
+tests/[benchmarks](https://blog.logrocket.com/benchmarking-golang-improve-function-performance/)/[fuzzing](https://go.dev/doc/security/fuzz/),
+check code for [races](https://go.dev/doc/articles/race_detector) etc., all
+with just the "compiler" for the language is excelent. Still probably one of
+the best developer experiences I know in any programming language (maybe only
+rivaled by [Zig](https://ziglang.org/)).
 
 I will not even talk about the things that everyone talks about Go, like
 [goroutines](https://go.dev/doc/effective_go#goroutines), because I just don't
