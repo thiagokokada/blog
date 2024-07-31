@@ -80,37 +80,34 @@ new `flake.nix` file and put the following contents:
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
         {
-          toYAML =
-            let
-              file = import ./foo.nix;
-              json = builtins.toJSON file;
-            in
-            pkgs.runCommand "toYAML" {
-              buildInputs = with pkgs; [ yj ];
-            } ''
-              mkdir -p $out
-              echo ${lib.escapeShellArg json} | yj -jy > $out/foo.yaml
-            '';
+          toYAML = pkgs.runCommand "toYAML" {
+            buildInputs = with pkgs; [ yj ];
+            json = builtins.toJSON (import ./go.nix);
+            passAsFile = [ "json" ]; # will be available as `$jsonPath`
+          } ''
+            mkdir -p $out
+            yj -jy < "$jsonPath" > $out/go.yaml
+          '';
         };
     };
 }
 ```
 
 We are loading the `./foo.nix` as a Nix file, converting it to JSON with
-`builtins.toJSON` function, and finally, using `pkgs.runCommand` to pipe the
-output of the JSON file to [yj](https://github.com/sclevine/yj), that allow
-convertion between serialisation formats. `-jy` flag means "JSON to YAML". The
-reason I choose `yj` is mostly because it is a single binary Go program, but
-you can use whatever you prefer.
-
-Note, I am using `lib.escapeShellArg` here to escape shell arguments, but it
-may be safer to save to a file first (with e.g.: `pkgs.writeText`) and load the
-contents from file instead. But I never had issues with the approch above.
+`builtins.toJSON` function, and finally, using `pkgs.runCommand` and its
+`passAsFile` option to load the contents of the JSON file into
+[yj](https://github.com/sclevine/yj), that converts between serialisation
+formats (`-jy` flag means "JSON to YAML"). The reason I choose `yj` is mostly
+because it is a single binary Go program, but you can use whatever you prefer.
 
 By the way, there is a
 [`lib.generators.toYAML`](https://github.com/NixOS/nixpkgs/blob/9f918d616c5321ad374ae6cb5ea89c9e04bf3e58/lib/generators.nix#L805)
-inside `nixpkgs.lib`, but as of 2024-07-31 it only calls `lib.strings.toJSON`
-(that in turn, calls `builtins.toJSON`). So it doesn't really help here.
+inside `nixpkgs.lib`, but as of the day of this post it only calls
+`lib.strings.toJSON` (that in turn, calls `builtins.toJSON`). So it doesn't
+really help here. Another option would be `pkgs.formats.yaml.generate`, that
+converts between formats, but it calls
+[`remarshal`](https://github.com/NixOS/nixpkgs/blob/008ceae1a2b47a84d7aa01e55f8468272c70b9ee/pkgs/pkgs-lib/formats.nix#L77-L84)
+(in Python), so not my favorite choice.
 
 If we run the following commands, we can see the result:
 
@@ -227,18 +224,15 @@ Let's modify our `flake.nix` to add the validation:
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
         {
-          toYAML =
-            let
-              file = import ./go.nix;
-              json = builtins.toJSON file;
-            in
-            pkgs.runCommand "toYAML" {
-              buildInputs = with pkgs; [ action-validator yj ];
-            } ''
-              mkdir -p $out
-              echo ${lib.escapeShellArg json} | yj -jy > $out/go.yaml
-              action-validator -v $out/go.yaml
-            '';
+          toYAML = pkgs.runCommand "toYAML" {
+            buildInputs = with pkgs; [ action-validator yj ];
+            json = builtins.toJSON (import ./go.nix);
+            passAsFile = [ "json" ];
+          } ''
+            mkdir -p $out
+            yj -jy < "$jsonPath" > $out/go.yaml
+            action-validator -v $out/go.yaml
+          '';
         };
     };
 }
