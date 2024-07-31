@@ -103,6 +103,10 @@ convertion between serialisation formats. `-jy` flag means "JSON to YAML". The
 reason I choose `yj` is mostly because it is a single binary Go program, but
 you can use whatever you prefer.
 
+Note, I am using `lib.escapeShellArg` here to escape shell arguments, but it
+may be safer to save to a file first (with e.g.: `pkgs.writeText`) and load the
+contents from file instead. But I never had issues with the approch above.
+
 By the way, there is a
 [`lib.generators.toYAML`](https://github.com/NixOS/nixpkgs/blob/9f918d616c5321ad374ae6cb5ea89c9e04bf3e58/lib/generators.nix#L805)
 inside `nixpkgs.lib`, but as of 2024-07-31 it only calls `lib.strings.toJSON`
