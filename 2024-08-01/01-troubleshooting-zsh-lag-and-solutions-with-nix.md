@@ -1,8 +1,8 @@
-# Troubleshoting: terminal lag and solutions with Nix
+# Troubleshoting: ZSH lag and solutions with Nix
 
 Inspired by this [blog post from
 Tavis](https://lock.cmpxchg8b.com/slowterm.html), I decided to document my own
-recent journey of reducing terminal lag startup. This post is way less
+recent journey of reducing terminal (ZSH) lag startup. This post is way less
 interesting than the one from Tavis that uses a debugger to patch applications
 on the fly, but should still be interesting for some. And it also shows how
 powerful Nix can be for some things.
