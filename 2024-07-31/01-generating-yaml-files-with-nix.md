@@ -295,3 +295,10 @@ error: builder for '/nix/store/j8wr6j1pvyf986sf74hqw8k31lvlzac5-toYAML.drv' fail
 Yes, the output of `action-validator` is awfully verbose, but it is still
 better than making ["8 commits/push in one
 hour"](https://x.com/eric_sink/status/1430954572848287744).
+
+If you are interested in how a more advantage usage of this technique is,
+including usage of functions and constants to share common steps between
+different actions, please take a look at the
+[actions](https://github.com/thiagokokada/nix-configs/tree/master/actions)
+([permalink](https://github.com/thiagokokada/nix-configs/tree/fbbc8f935cc7f774f691196e1612bbf7dd2054b5/actions))
+in my `nix-config` repository.
