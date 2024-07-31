@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Quick bits: realise Nix symlinks](2024-08-01/02-quick-bits-realise-nix-symlinks.md) - 2024-08-01
 - [Troubleshoting: ZSH lag and solutions with Nix](2024-08-01/01-troubleshooting-zsh-lag-and-solutions-with-nix.md) - 2024-08-01
 - [Generating YAML files with Nix](2024-07-31/01-generating-yaml-files-with-nix.md) - 2024-07-31
 - [First impressions: FPGBC](2024-07-30/01-first-impressions-fpgbc.md) - 2024-07-30
