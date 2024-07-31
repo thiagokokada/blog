@@ -20,6 +20,14 @@ publish: blog
 today:
 	mkdir $(shell date '+%Y-%m-%d')
 
+.PHONE: draft
+draft:
+	mv $(FILE) $(shell dirname $(FILE))/.$(shell basename $(FILE))
+
+.PHONE: undraft
+undraft:
+	mv $(FILE) $(shell dirname $(FILE))/$(shell echo $(shell basename $(FILE)) | tail -c +2)
+
 .PHONY: clean
 clean:
 	rm -rf blog
