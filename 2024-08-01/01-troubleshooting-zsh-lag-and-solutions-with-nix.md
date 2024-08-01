@@ -391,7 +391,7 @@ Benchmark 1: zsh -ic exit
 Another good improvement. The last change I did is switching between
 [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting)
 to
-[zsh-fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting),
+[`zsh-fast-syntax-highlighting`](https://github.com/zdharma-continuum/fast-syntax-highlighting),
 that is supposed to be faster and have better highlighting too. I got that from
 `_zsh_highlight_load_highlighters` using 26% of the time from my `zprof` above.
 And for the final `hyperfine` in my laptop:
