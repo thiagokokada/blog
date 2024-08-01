@@ -29,7 +29,7 @@ with [hot
 start](https://www.instabug.com/blog/understanding-cold-hot-and-warm-app-launch-time),
 while cold start it could take multiple seconds.
 
-The shell that I used is ZSH, and we check how long it takes to start by using:
+We can check how long ZSH takes to start by using:
 
 ```console
 $ time zsh -ci exit
@@ -55,8 +55,8 @@ shell startup time. A really great tool to have in your toolbox by the way, but
 I digress.
 
 So let's do a little time travelling. Going back to commit
-`b12757f90889653e359a1ab0a8cfd2f90cfabf31` from
-[nix-configs](https://github.com/thiagokokada/nix-configs/). Running
+[`b12757f`](https://github.com/thiagokokada/nix-configs/tree/b12757f90889653e359a1ab0a8cfd2f90cfabf31)
+from [nix-configs](https://github.com/thiagokokada/nix-configs/). Running
 `hyperfine` like above from my NixOS laptop, we have:
 
 ```console
@@ -131,15 +131,16 @@ optimised for startup time, but those 2 modules are kind slow.
 
 For [`zim-completion`](https://github.com/zimfw/completion), after taking a
 look at it, there isn't much I could do. It seems that the reason
-`zim-completion` takes so long during startup is because it is compiling all
-completions, ironically, for performance. I may eventually replace it for
-something else, but I really like what Zim brings here, so I decided to not
-touch it for now.
+`zim-completion` takes so long during startup is because it is trying to decide
+if it needs to recompile the completions (and replacing it with just a naive
+`autoload -U compinit && compinit` is even worse for startup performance). I
+may eventually replace it for something else, but I really like what Zim brings
+here, so I decided to not touch it for now.
 
 However [`zim-ssh`](https://github.com/zimfw/ssh) is another history. The only
 reason I used it is to start a `ssh-agent` and keep it between multiple ZSH
-sessions. So I took a look the code (since it is small, I am reproducing it
-here):
+sessions. It shouldn't have that much influence in startup time. So I took a
+look the code (since it is small, I am reproducing it here):
 
 ```bash
 #
@@ -246,9 +247,11 @@ _start_agent
 unfunction _check_agent _start_agent
 ```
 
-The idea here is simple: using `zsocket` to check if the `ssh-agent` is working
-instead of executing `ssh-add -l`. The only case we run any program now is to
-start the agent itself. Let's run `hyperfine` again:
+The idea here is simple: using
+[`zsocket`](https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fnet_002fsocket-Module)
+module from ZSH itself to check if the `ssh-agent` is working instead of
+executing `ssh-add -l`. The only case we run any program now is to start the
+agent itself if needed. Let's run `hyperfine` again:
 
 ```
 $ hyperfine "zsh -ic exit"
@@ -331,12 +334,12 @@ Benchmark 1: fzf --zsh
 ```
 
 See the range? While 1.7ms is something that is probably difficult to notice,
-however 6.8ms can be noticiable, especially if this accumulates with other slow
+6.8ms can be noticiable, especially if this accumulates with other slow
 starting apps.
 
-But the thing is, all those commands are just generating commands that are in
-the end fixed, at least for the current version of the program. Can we
-pre-generate them instead? If using Nix, of course we can:
+And the thing is, all those commands are just generating in the end a fixed
+output, at least for the current version of the program. Can we pre-generate
+them instead? If using Nix, of course we can:
 
 ```nix
 programs.zsh.initExtra =
@@ -388,9 +391,10 @@ Benchmark 1: zsh -ic exit
 Another good improvement. The last change I did is switching between
 [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting)
 to
-[zsh-fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting).
-I got that from `_zsh_highlight_load_highlighters` using 26% of the time from
-my `zprof` above. And for the final `hyperfine` in my laptop:
+[zsh-fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting),
+that is supposed to be faster and have better highlighting too. I got that from
+`_zsh_highlight_load_highlighters` using 26% of the time from my `zprof` above.
+And for the final `hyperfine` in my laptop:
 
 ```
 $ hyperfine "zsh -ic exit"
