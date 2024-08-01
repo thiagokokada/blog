@@ -30,6 +30,8 @@ import (
 	"github.com/gorilla/feeds"
 	"github.com/gosimple/slug"
 	"github.com/yuin/goldmark"
+	highlighting "github.com/yuin/goldmark-highlighting"
+	"github.com/yuin/goldmark/extension"
 )
 
 const (
@@ -151,7 +153,11 @@ func genRss(posts posts) string {
 		Title:       "kokada's blog",
 		Description: "# dd if=/dev/urandom of=/dev/brain0",
 	}
-	md := goldmark.New(goldmark.WithExtensions(NewLinkRewriter(blogMainUrl, nil)))
+	md := goldmark.New(goldmark.WithExtensions(
+		NewLinkRewriter(blogMainUrl, nil),
+		extension.GFM,
+		highlighting.NewHighlighting(highlighting.WithStyle("monokai")),
+	))
 
 	var items []*feeds.Item
 	for el := posts.Back(); el != nil; el = el.Prev() {

@@ -27,6 +27,7 @@ import (
 
 	markdown "github.com/teekennedy/goldmark-markdown"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
 )
 
 const (
@@ -110,7 +111,10 @@ func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r 
 func publishToMataroa(posts posts) {
 	md := goldmark.New(
 		goldmark.WithRenderer(markdown.NewRenderer()),
-		goldmark.WithExtensions(NewLinkRewriter(mataroaBlogUrl, posts)),
+		goldmark.WithExtensions(
+			NewLinkRewriter(mataroaBlogUrl, posts),
+			extension.GFM,
+		),
 	)
 	for el := posts.Front(); el != nil; el = el.Next() {
 		post := el.Value
