@@ -18,15 +18,15 @@ publish: blog
 
 .PHONY: today
 today:
-	mkdir $(shell date '+%Y-%m-%d')
+	mkdir -p $(shell date '+%Y-%m-%d')
 
 .PHONE: draft
 draft:
-	mv $(FILE) $(shell dirname $(FILE))/.$(shell basename $(FILE))
+	mv "$(FILE)" "$(dir $(FILE)).$(notdir $(FILE))"
 
 .PHONE: undraft
 undraft:
-	mv $(FILE) $(shell dirname $(FILE))/$(shell echo $(shell basename $(FILE)) | tail -c +2)
+	mv "$(FILE)" "$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))"
 
 .PHONY: clean
 clean:
