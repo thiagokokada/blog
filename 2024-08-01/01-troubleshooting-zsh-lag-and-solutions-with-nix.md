@@ -346,6 +346,11 @@ output, at least for the current version of the program. Can we pre-generate
 them instead? If using Nix, of course we can:
 
 ```nix
+# You need to disable the default integration
+programs.direnv.enableZshIntegration = false;
+programs.fzf.enableZshIntegration = false;
+programs.zoxide.enableZshIntegration = false;
+
 programs.zsh.initExtra =
   # bash
   ''
