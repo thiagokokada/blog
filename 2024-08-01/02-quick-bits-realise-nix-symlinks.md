@@ -98,7 +98,7 @@ $ ls -lah .zshrc
 lrwxrwxrwx 1 thiagoko users 69 Aug  1 00:20 .zshrc -> /nix/store/glz018yyh0qfqc9lywx1yhr7c3l96lv7-home-manager-files/.zshrc
 ```
 
-It even works with system files:
+It even works with system files (i.e.: NixOS):
 
 ```console
 $ sudo realise-symlink /etc/nix/nix.conf
