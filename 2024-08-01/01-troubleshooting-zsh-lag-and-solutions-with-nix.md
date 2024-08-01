@@ -16,9 +16,9 @@ frequently:
   and disk (NVMe)
 - [MacBook
   Pro](https://everymac.com/systems/apple/macbook_pro/specs/macbook-pro-m1-pro-10-core-cpu-16-core-gpu-16-2021-specs.html)
-  with a really fast CPU (M1 Pro) and disk, but of course running macOS
-    + Sadly this is being phased-out since this is a job owned machine and I am
-      changing jobs right now, but should be replaced with another one soon™
+  with a really fast CPU (M1 Pro) and disk, but of course running macOS, being
+  phased-out since this is a job owned machine and I am changing jobs right
+  now, but should be replaced with another one soon™
 - [Chromebook Duet
   3](https://chromeunboxed.com/lenovo-chromebook-duet-3-review-perfect-sequel)
   running ChromeOS, with slow CPU ([Snapdragon 7c Gen
