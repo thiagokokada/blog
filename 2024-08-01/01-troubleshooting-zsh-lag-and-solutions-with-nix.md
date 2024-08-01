@@ -10,16 +10,20 @@ powerful Nix can be for some things.
 For context, I have basically 3 systems where I interact with terminal
 frequently:
 
-- Thinkpad P14s Gen 1 running NixOS, with a reasonable fast CPU and disk
-- [MacBook Pro "M1
-  Pro"](https://everymac.com/systems/apple/macbook_pro/specs/macbook-pro-m1-pro-10-core-cpu-16-core-gpu-16-2021-specs.html)
-  (what an awful name scheme Apple) with a really fast CPU and disk, but of
-  course running macOS
-  + Sadly this is being phased-out since this is a job owned machine and I am
-    changing jobs right now, but should be replaced with another one soon™
+- [Thinkpad P14s Gen 1](https://www.notebookcheck.net/Lenovo-ThinkPad-P14s-Gen-1-Laptop-Review-AMD-workstation-sans-dedicated-GPU.528746.0.html)
+  running NixOS, with a reasonable fast CPU ([AMD Ryzen 7 PRO
+  4750U](https://www.notebookcheck.net/AMD-Ryzen-7-PRO-4750U-Processor-Benchmarks-and-Specs.464396.0.html))
+  and disk (NVMe)
+- [MacBook
+  Pro](https://everymac.com/systems/apple/macbook_pro/specs/macbook-pro-m1-pro-10-core-cpu-16-core-gpu-16-2021-specs.html)
+  with a really fast CPU (M1 Pro) and disk, but of course running macOS
+    + Sadly this is being phased-out since this is a job owned machine and I am
+      changing jobs right now, but should be replaced with another one soon™
 - [Chromebook Duet
   3](https://chromeunboxed.com/lenovo-chromebook-duet-3-review-perfect-sequel)
-  running ChromeOS, with slow CPU and disk
+  running ChromeOS, with slow CPU ([Snapdragon 7c Gen
+  2](https://www.notebookcheck.net/Qualcomm-Snapdragon-7c-Gen-2-Processor-Benchmarks-and-Specs.554426.0.html))
+  and disk (eMMC, really?)
 
 My experience is similar to Tavis, at around 300ms of startup time I don't care
 too much, but around 500ms+ is where I start to notice. I never had any issues
