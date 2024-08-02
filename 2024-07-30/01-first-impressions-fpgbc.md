@@ -135,7 +135,7 @@ will still end up paying less, and allows you to fully customise your build.
 And the result device is not only in mint condition, it is really convenient
 too: recharging batteries (via USB-C even) is much more convenient than buying
 AA batteries, and the screen not only is better but it even has backlight. You
-can also a fully built console for
+can also buy a fully built console for
 [$99.00](https://funnyplaying.com/products/fpgbc-console), but you have less
 options of customisation.
 
