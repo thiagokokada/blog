@@ -72,7 +72,7 @@ press it now), it opens the following menu:
 
 ![FPGBC menu.](/2024-07-30/PXL_20240729_210604830.jpg)
 
-The first 2 features are the LCD backlight and volume. I didn't talk about
+The first 2 options are the LCD backlight (`BKLT`) and volume (`VOL`). I didn't talk about
 those, but the LCD screen seems to be IPS, and the quality is really good, and
 also looks bright enough to play even under bad lightining conditions. And the
 speaker has good quality, the sound is better than I remember, but sadly the
