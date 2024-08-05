@@ -8,8 +8,8 @@ However the ship has sailed already, there are tons of projects everywhere that
 uses YAML: from most CI systems ([GitHub
 Actions](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions),
 [CircleCI](https://circleci.com/docs/introduction-to-yaml-configurations/),
-[Travis](https://docs.travis-ci.com/user/build-config-yaml), et tu
-[builds.sr.ht](https://man.sr.ht/builds.sr.ht/), to
+[Travis](https://docs.travis-ci.com/user/build-config-yaml), _et tu_
+[builds.sr.ht](https://man.sr.ht/builds.sr.ht/)), to
 [Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/),
 or in almost every
 [Rails](https://guides.rubyonrails.org/configuring.html#configuring-a-database)
