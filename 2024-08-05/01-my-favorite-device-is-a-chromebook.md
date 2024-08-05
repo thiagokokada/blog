@@ -8,8 +8,8 @@ that I bought for around EUR300. I was thinking why, because it is woefully
 underpowered: a [Snapdragon 7c Gen
 2](https://www.anandtech.com/show/16696/qualcomm-announces-snapdragon-7c-gen-2-entrylevel-pc-and-chromebook-refresh),
 a CPU that was already considered slow 3 years ago, coupled with an eMMC for
-storage, that is not much fast than a HDD; at least I have the 8GB RAM version
-instead of the 4GB one.
+storage, that is not much faster than a HDD. At least I have the 8GB RAM
+version instead of the 4GB one.
 
 It is a hybrid device, one that can be used as either a tablet or laptop, but
 is compromised experience in both cases: as a tablet, it lacks the better touch
