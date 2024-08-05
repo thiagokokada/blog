@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [My favorite device is a Chromebook](2024-08-05/01-my-favorite-device-is-a-chromebook.md) - 2024-08-05
 - [Make nixd module completion to work anywhere (with Flakes)](2024-08-04/01-make-nixd-modules-completion-work-anywhere-with-flakes.md) - 2024-08-04
 - [Quick bits: realise Nix symlinks](2024-08-01/02-quick-bits-realise-nix-symlinks.md) - 2024-08-01
 - [Troubleshoting: ZSH lag and solutions with Nix](2024-08-01/01-troubleshooting-zsh-lag-and-solutions-with-nix.md) - 2024-08-01
