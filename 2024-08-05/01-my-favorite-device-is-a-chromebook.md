@@ -20,7 +20,9 @@ as a result is a common occurence. It is not so bad that I can't get things
 done though. About the trackpad: its biggest quality is that I never feel the
 need to use the touchscreen in laptop mode, that is to say that it is
 acceptable. Just crank up the pointer speed in ChromeOS settings, otherwise you
-never get anywhere since the trackpad is so small.
+never get anywhere since the trackpad is so small. There is also an active
+stylus, that helped me sometimes when I needed to sign something but otherwise
+I can't comment too much.
 
 But I really love this device. It is generally the only device that I bring in
 trips nowadays, because while it is compromised it works well enough: I can use
