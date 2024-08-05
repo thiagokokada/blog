@@ -40,7 +40,9 @@ repository](https://github.com/thiagokokada/nix-configs). For any other
 repository, `nixosConfigurations.miku-nixos` or `homeConfigurations.home-linux`
 will not exist and the completion will not work.
 
-It may look like this is easy to fix if you have `specialArgs` set to have your
+It may look like this is easy to fix if you have
+[`specialArgs`](https://nixos.org/manual/nixos/unstable/options#opt-_module.args)
+(or `extraSpecialArgs` in Home-Manager) set to have your
 Flakes inputs, but:
 
 ```nix
@@ -64,8 +66,8 @@ Well, it was worth a try. Another option would be to:
 ```nix
 (builtins.getFlake "github:thiagokokada/nix-configs").nixosConfigurations.miku-linux.options
 # Or even something like this
-# BTW, using ${rev} means this wouldn't work in Flake repos, since it is not
-# set in those cases
+# However, using ${rev} means this wouldn't work in dirty Flake repos, since
+# ${rev} is not set in those cases
 (builtins.getFlake "github:thiagokokada/nix-configs/${rev}").nixosConfigurations.miku-linux.options
 ```
 
