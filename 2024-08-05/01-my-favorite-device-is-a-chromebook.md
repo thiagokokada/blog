@@ -26,9 +26,10 @@ this later). The fact that it is small (the size remembers me of a
 [netbook](https://en.wikipedia.org/wiki/Netbook)), lightweight (~1KG, including
 the keyboard), has a good screen (that is bright and also HiDPI) and good
 battery life (I don't have numbers but I almost never worry about it) is what
-makes this device the perfect companion to trips. Also, it has 2 USB-C ports
-and supports DisplayPort alt-mode (sadly not at 1440p, the maximum I got was
-1080p, altough some people at Reddit [seems to be
+makes this device the perfect companion to trips.
+
+Also, it has 2 USB-C ports and supports DisplayPort alt-mode (sadly not at
+1440p, the maximum I got was 1080p, altough some people at Reddit [seems to be
 successful](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 at this resolution; it may be my Dell S3423DWC being Ultrawide or the cable,
 who knows?), so it means you can charge it, connect to a external display and
@@ -93,7 +94,7 @@ Like I said at the start of the article, the device is woefully slow thanks to
 its CPU and eMMC. It does mean that, for example, activating my Home-Manager
 configuration takes a while (around 1 minute). But it is much faster than say,
 [nix-on-droid](https://github.com/nix-community/nix-on-droid-app), that the
-last time I tried in a much more powerful device ([Xiami Pad
+last time I tried in a much more powerful device ([Xiaomi Pad
 5](https://www.gsmarena.com/xiaomi_pad_5-11042.php)), took 30 minutes until I
 just decided to forget and uninstall it. Having a proper VM instead of
 [proot](https://wiki.termux.com/wiki/PRoot) makes all the difference here.
