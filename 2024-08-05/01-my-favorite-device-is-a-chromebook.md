@@ -50,9 +50,9 @@ distros](https://www.reddit.com/r/Crostini/wiki/howto/run-other-distros/)
 though) with a deep integration with ChromeOS, so you can run even graphical
 programs without issues (even OpenGL works!):
 
-![Fastfetch inside Crostini with gitk running side-by-side.](/2024-08-05/Screenshot 2024-08-05 21.22.29.png)
+![Fastfetch inside Crostini with gitk running side-by-side.](/2024-08-05/Screenshot_2024-08-05 21.22.29.png)
 
-![Running glxgears inside Crostini.](/2024-08-05/Screenshot 2024-08-05 21.39.58.png)
+![Running glxgears inside Crostini.](/2024-08-05/Screenshot_2024-08-05 21.39.58.png)
 
 This is all thanks to
 [Sommelier](https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/vm_tools/sommelier/README.md),
