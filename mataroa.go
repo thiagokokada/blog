@@ -60,17 +60,20 @@ type mataroaPatchRequest struct {
 	PublishedAt string `json:"published_at"`
 }
 
-func mustMataroaReq(method string, elem []string, body []byte) (p mataroaResponse, r *http.Response) {
+func mustMataroaUrl(elem ...string) string {
 	// generate a Mataroa URL, ensure '/' at the end
-	reqUrl := must1(url.JoinPath(mataroaApiUrl, elem...))
-	reqUrl = must1(url.JoinPath(reqUrl, "/"))
+	mUrl := must1(url.JoinPath(mataroaApiUrl, elem...))
+	mUrl = must1(url.JoinPath(mUrl, "/"))
+	return mUrl
+}
 
+func mustMataroaReq(method string, url string, body []byte) (p mataroaResponse, r *http.Response) {
 	// Prepare request payload if non-nil
 	var reqBuf io.Reader
 	if body != nil {
 		reqBuf = bytes.NewBuffer(body)
 	}
-	req := must1(http.NewRequest(method, reqUrl, reqBuf))
+	req := must1(http.NewRequest(method, url, reqBuf))
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
 
@@ -82,7 +85,7 @@ func mustMataroaReq(method string, elem []string, body []byte) (p mataroaRespons
 }
 
 func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	return mustMataroaReq("GET", []string{"posts", post.slug}, nil)
+	return mustMataroaReq("GET", mustMataroaUrl("posts", post.slug), nil)
 }
 
 func mustPatchMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
@@ -94,7 +97,7 @@ func mustPatchMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r
 		Slug:        post.slug,
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
-	return mustMataroaReq("PATCH", []string{"posts", post.slug}, reqBody)
+	return mustMataroaReq("PATCH", mustMataroaUrl("posts", post.slug), reqBody)
 }
 
 func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
@@ -105,7 +108,7 @@ func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r 
 		Body:        buf.String(),
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
-	return mustMataroaReq("POST", []string{"posts"}, reqBody)
+	return mustMataroaReq("POST", mustMataroaUrl("posts"), reqBody)
 }
 
 func publishToMataroa(posts posts) {
