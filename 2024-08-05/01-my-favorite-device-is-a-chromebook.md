@@ -7,9 +7,9 @@ unremarkable devices that I own: a cheap [Chromebook Duet
 that I bought for around EUR300. I was thinking why, because it is woefully
 underpowered: a [Snapdragon 7c Gen
 2](https://www.anandtech.com/show/16696/qualcomm-announces-snapdragon-7c-gen-2-entrylevel-pc-and-chromebook-refresh),
-a CPU that was already considered entry level 3 years ago, coupled with an eMMC
-for storage, that is not much fast than a HDD; at least I have the 8GB RAM
-version instead of the 4GB one.
+a CPU that was already considered slow 3 years ago, coupled with an eMMC for
+storage, that is not much fast than a HDD; at least I have the 8GB RAM version
+instead of the 4GB one.
 
 It is a hybrid device, one that can be used as either a tablet or laptop, but
 is compromised experience in both cases: as a tablet, it lacks the better touch
@@ -32,12 +32,15 @@ the keyboard), has a good screen (that is bright and also HiDPI) and good
 battery life (I don't have numbers but I almost never worry about it) is what
 makes this device the perfect companion to trips.
 
-Also, it has 2 USB-C ports and supports DisplayPort alt-mode (sadly not at
-1440p, the maximum I got was 1080p, altough some people at Reddit [seems to be
+Also, it has 2 USB-C ports and supports DisplayPort alt-mode, so it means you
+can charge it, connect to a external display and peripherals, all at the same
+time. Sadly, the maximum output resolution I got was 1080p, altough some people
+at Reddit [seems to been
 successful](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
-at this resolution; it may be my Dell S3423DWC being Ultrawide or the cable,
-who knows?), so it means you can charge it, connect to a external display and
-peripherals, all at the same time.
+at 1440p, and the specs suggests it supports even 4k. It may be my Dell
+S3423DWC monitor being wonky, the fact that it is Ultrawide or the cable, who
+knows? I even tried to change the monitor to "High Resolution" mode in
+settings, but no dice.
 
 ChromeOS is also really interesting nowadays. Being a Chrome-first OS makes it
 a compromised experience, for example, it is the only device that I use Chrome
