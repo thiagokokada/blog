@@ -14,9 +14,13 @@ version instead of the 4GB one.
 It is a hybrid device, one that can be used as either a tablet or laptop, but
 is compromised experience in both cases: as a tablet, it lacks the better touch
 optimised interface from iOS or Android; as a laptop, you have to depend on the
-stand to adjust the screen, and the detachable keyboard is worse then any
+stand to adjust the screen, and the detachable keyboard is worse than any
 laptop I have ever owned: getting keys stucked and characters being duplicated
- as a result is a common occurence.
+as a result is a common occurence. It is not so bad that I can't get things
+done though. About the trackpad: its biggest quality is that I never feel the
+need to use the touchscreen in laptop mode, that is to say that it is
+acceptable. Just crank up the pointer speed in ChromeOS settings, otherwise you
+never get anywhere since the trackpad is so small.
 
 But I really love this device. It is generally the only device that I bring in
 trips nowadays, because while it is compromised it works well enough: I can use
