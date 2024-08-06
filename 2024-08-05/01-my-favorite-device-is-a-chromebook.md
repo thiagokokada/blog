@@ -36,9 +36,9 @@ this device the perfect companion to trips.
 
 Also, it has 2 USB-C ports and supports DisplayPort alt-mode, so it means you
 can charge it, connect to a external display and peripherals, all at the same
-time. Sadly, the maximum output resolution I got was 1080p, altough some people
-at Reddit [seems to been
-successful](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+time. Sadly, the maximum output resolution I got was 1080p, although some
+people at Reddit [seems to have
+success](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 at 1440p, and the specs suggests it supports 4k. It may be my Dell S3423DWC
 monitor being wonky, the fact that it is Ultrawide or the cable, who knows? I
 even tried to change the monitor to "High Resolution" mode in settings, but to
