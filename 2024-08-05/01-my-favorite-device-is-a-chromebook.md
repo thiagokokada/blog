@@ -30,19 +30,19 @@ to consume media in tablet mode (the fact that ChromeOS supports Android apps
 is a plus in those cases), browse the web and even do Linux stuff (more about
 this later). The fact that it is small (the size remembers me of a
 [netbook](https://en.wikipedia.org/wiki/Netbook)), lightweight (~1KG, including
-the keyboard), has a good screen (that is bright and also HiDPI) and good
-battery life (I don't have numbers but I almost never worry about it) is what
-makes this device the perfect companion to trips.
+the keyboard), has a good screen (that is bright and HiDPI) and good battery
+life (I don't have numbers but I almost never worry about it) is what makes
+this device the perfect companion to trips.
 
 Also, it has 2 USB-C ports and supports DisplayPort alt-mode, so it means you
 can charge it, connect to a external display and peripherals, all at the same
 time. Sadly, the maximum output resolution I got was 1080p, altough some people
 at Reddit [seems to been
 successful](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
-at 1440p, and the specs suggests it supports even 4k. It may be my Dell
-S3423DWC monitor being wonky, the fact that it is Ultrawide or the cable, who
-knows? I even tried to change the monitor to "High Resolution" mode in
-settings, but to no avail.
+at 1440p, and the specs suggests it supports 4k. It may be my Dell S3423DWC
+monitor being wonky, the fact that it is Ultrawide or the cable, who knows? I
+even tried to change the monitor to "High Resolution" mode in settings, but to
+no avail.
 
 ChromeOS is also really interesting nowadays. To start, it is designed from the
 ground up to be a [secure computing
@@ -61,7 +61,7 @@ And what I think makes ChromeOS really powerful is
 inside ChromeOS. It runs Debian (it seems you can [run other
 distros](https://www.reddit.com/r/Crostini/wiki/howto/run-other-distros/)
 though) with a deep integration with ChromeOS, so you can run even graphical
-programs without issues (even OpenGL works!):
+programs without issues (including OpenGL!):
 
 ![Fastfetch inside Crostini with gitk running side-by-side.](/2024-08-05/Screenshot_2024-08-05_21.22.29.png)
 
@@ -71,10 +71,9 @@ This is all thanks to
 [Sommelier](https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/vm_tools/sommelier/README.md),
 a nested Wayland compositor that runs inside Crostini and allow both Wayland
 and X11 applications to be forwarded to ChromeOS. The integration is so good
-that I can even run Firefox inside Crostini and works well enough, but sadly
-Firefox is too slow in this device (I am not sure if the issue is ChromeOS or
-Firefox, but I suspect the later since Google does some optimisation per
-device).
+that I can run Firefox inside Crostini and works well enough, but sadly Firefox
+is too slow in this device (I am not sure if the issue is ChromeOS or Firefox,
+but I suspect the later since Google does some optimisation per device).
 
 One interesting tidbit about the OpenGL situation in this device: this seems to
 be the first Chromebook to ship with open source drivers, thanks to Freedreno.
@@ -97,10 +96,9 @@ instead of NixOS and run [Home-Manager
 standalone](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone).
 I recommend checking the official [NixOS Wiki article about
 Crostini](https://wiki.nixos.org/wiki/Installing_Nix_on_Crostinihttps://wiki.nixos.org/wiki/Installing_Nix_on_Crostini),
-that details how to register applications in ChromeOS (so graphical
-applications appear in menu) and also how to use
-[nixGL](https://github.com/nix-community/nixGL) to make OpenGL applications
-work.
+that details how to register applications in ChromeOS (so desktop applications
+appear in menu) and use [nixGL](https://github.com/nix-community/nixGL) to make
+OpenGL applications work.
 
 Like I said at the start of the article, the device is woefully slow thanks to
 its CPU and eMMC. It does mean that, for example, activating my Home-Manager
@@ -119,7 +117,7 @@ example, I did most of the code that [powers this
 blog](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md) using
 this Chromebook. If I need more power, I can use the [Tailscale app for
 Android](https://tailscale.com/kb/1267/install-chromebook) to connect to any
-other of my hosts via SSH. Yes, the Tailscale app works even in Crostini, sadly
+other of my hosts via SSH. Yes, the Tailscale app works in Crostini, sadly
 without MagicDNS, so you need to use the internal Tailscale IPs instead.
 
 Until Google decides to give us a proper VM or user namespaces in Android or
