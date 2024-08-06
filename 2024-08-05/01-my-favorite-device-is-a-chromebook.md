@@ -44,14 +44,17 @@ S3423DWC monitor being wonky, the fact that it is Ultrawide or the cable, who
 knows? I even tried to change the monitor to "High Resolution" mode in
 settings, but to no avail.
 
-ChromeOS is also really interesting nowadays. Being a Chrome-first OS makes it
-a compromised experience, for example, it is the only device that I use Chrome
-as my main browser (since I personally prefer Firefox). But having a OS that
-boots fast is great: I never worry about OS updates because I know the device
-will be ready in seconds after a reboot. And the whole desktop experience
-inside the ChromeOS desktop is good, having shortcuts for many operations so
-you can get things done fast, and support for virtual desktops (ChromeOS call
-it "desks") means you can organise your windows as much as you want.
+ChromeOS is also really interesting nowadays. To start, it is designed from the
+ground up to be a [secure computing
+environment](https://support.google.com/chromebook/answer/3438631), probably
+the most secure OS for consumers right now. Being a Chrome-first OS makes it a
+compromised experience, for example, it is the only device that I use Chrome as
+my main browser (since I personally prefer Firefox). But having a OS that boots
+fast is great: I never worry about OS updates because I know the device will be
+ready in seconds after a reboot. And the whole desktop experience inside the
+ChromeOS desktop is good, having shortcuts for many operations so you can get
+things done fast, and support for virtual desktops (ChromeOS call it "desks")
+means you can organise your windows as much as you want.
 
 And what I think makes ChromeOS really powerful is
 [Crostini](https://chromeos.dev/en/linux), a full Linux VM that you can run
@@ -101,7 +104,8 @@ work.
 
 Like I said at the start of the article, the device is woefully slow thanks to
 its CPU and eMMC. It does mean that, for example, activating my Home-Manager
-configuration takes a while (around 1 minute). But it is much faster than say,
+configuration takes a while (around 1 minute, vs a few seconds in my laptop).
+But it is much faster than say,
 [nix-on-droid](https://github.com/nix-community/nix-on-droid-app), that the
 last time I tried in a much more powerful device ([Xiaomi Pad
 5](https://www.gsmarena.com/xiaomi_pad_5-11042.php)), took 30 minutes until I
@@ -118,6 +122,6 @@ Android](https://tailscale.com/kb/1267/install-chromebook) to connect to any
 other of my hosts via SSH. Yes, the Tailscale app works even in Crostini, sadly
 without MagicDNS, so you need to use the internal Tailscale IPs instead.
 
-Until Google decides to give us a proper VM in Android or release a hybrid
-Chromebook device with better specs, this small Chromebook will probably stay
-as my travel companion, and is one of my favorite devices.
+Until Google decides to give us a proper VM or user namespaces in Android or
+release a hybrid Chromebook device with better specs, this small Chromebook
+will probably stay as my travel companion, and is one of my favorite devices.
