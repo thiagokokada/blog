@@ -1,7 +1,7 @@
 # My favorite device is a Chromebook
 
-Most of the blog posts in this blog (including this one) and most of I would
-call "personal computing" that I do nowadays is mostly done in one of the most
+Most of the posts in this blog (including this one) and most of I would call
+"personal computing" that I do nowadays is mostly done in one of the most
 unremarkable devices that I own: a cheap [Chromebook Duet
 3](https://www.lenovo.com/us/en/p/laptops/lenovo/lenovo-edu-chromebooks/ideapad-duet-3-chromebook-11-inch,-qlc/len101i0034),
 that I bought for around EUR300. I was thinking why, because it is woefully
@@ -12,13 +12,13 @@ storage, that is not much faster than a HDD. At least I have the 8GB RAM
 version instead of the 4GB one.
 
 It is a hybrid device, one that can be used as either a tablet or laptop, but
-is compromised experience in both cases: as a tablet, it lacks the better touch
-optimised interface from iOS or Android; as a laptop, you have to depend on the
-stand to adjust the screen, and the detachable keyboard is worse than any
-laptop I have ever owned: getting keys stucked and characters being duplicated
-as a result is a common occurence. It is not so bad that I can't get things
-done though. About the trackpad: its biggest quality is that I never feel the
-need to use the touchscreen in laptop mode, that is to say that it is
+it is compromised experience in both cases: as a tablet, it lacks the better
+touch optimised interface from iOS or Android; as a laptop, you have to depend
+on the stand to adjust the screen, and the detachable keyboard is worse than
+any laptop I have ever owned: getting keys stucked and characters being
+duplicated as a result is a common occurence. It is not so bad that I can't get
+things done though. About the trackpad: its biggest quality is that I never
+feel the need to use the touchscreen in laptop mode, that is to say that it is
 acceptable. Just crank up the pointer speed in ChromeOS settings, otherwise you
 never get anywhere since the trackpad is so small. There is also an active
 stylus, that helped me sometimes when I needed to sign something but otherwise
@@ -42,7 +42,7 @@ successful](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?u
 at 1440p, and the specs suggests it supports even 4k. It may be my Dell
 S3423DWC monitor being wonky, the fact that it is Ultrawide or the cable, who
 knows? I even tried to change the monitor to "High Resolution" mode in
-settings, but no dice.
+settings, but to no avail.
 
 ChromeOS is also really interesting nowadays. Being a Chrome-first OS makes it
 a compromised experience, for example, it is the only device that I use Chrome
@@ -51,7 +51,7 @@ boots fast is great: I never worry about OS updates because I know the device
 will be ready in seconds after a reboot. And the whole desktop experience
 inside the ChromeOS desktop is good, having shortcuts for many operations so
 you can get things done fast, and support for virtual desktops (ChromeOS call
-it "desks") means you can organise your window as much as you want.
+it "desks") means you can organise your windows as much as you want.
 
 And what I think makes ChromeOS really powerful is
 [Crostini](https://chromeos.dev/en/linux), a full Linux VM that you can run
@@ -84,13 +84,13 @@ The Crostini integration is probably the best VM integration with Linux I ever
 saw in an OS: you can manage files inside the VM, share directories between the
 OS and VM, copy and paste works between the two, GUI applications installed
 inside the VM appear in the ChromeOS menu, memory allocation inside the VM is
-transparent, etc. Even the themes for applications are customised to match
-ChromeOS. It is unironically one of the best Linux desktop experiences I ever
-had.
+transparent, etc. Even the themes for Linux GUI applications are customised to
+match ChromeOS. It is unironically one of the best Linux desktop experiences I
+ever had.
 
-Of course I am using Nix, but since the Crostini integration depends in some
-services, I decided to run Nix inside Debian instead of NixOS and run
-[Home-Manager
+Of course I am using Nix, but since the Crostini integration depends on some
+services being configured and installed, I decided to run Nix inside Debian
+instead of NixOS and run [Home-Manager
 standalone](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone).
 I recommend checking the official [NixOS Wiki article about
 Crostini](https://wiki.nixos.org/wiki/Installing_Nix_on_Crostinihttps://wiki.nixos.org/wiki/Installing_Nix_on_Crostini),
@@ -105,7 +105,7 @@ configuration takes a while (around 1 minute). But it is much faster than say,
 [nix-on-droid](https://github.com/nix-community/nix-on-droid-app), that the
 last time I tried in a much more powerful device ([Xiaomi Pad
 5](https://www.gsmarena.com/xiaomi_pad_5-11042.php)), took 30 minutes until I
-just decided to forget and uninstall it. Having a proper VM instead of
+just decided to cancel the operation. Having a proper VM instead of
 [proot](https://wiki.termux.com/wiki/PRoot) makes all the difference here.
 
 I can even do some light programming here: using my
@@ -114,10 +114,10 @@ neovim configuration (including LSP for coding) is reasonable fast. For
 example, I did most of the code that [powers this
 blog](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md) using
 this Chromebook. If I need more power, I can use the [Tailscale app for
-Android](https://tailscale.com/kb/1267/install-chromebook) to connect to any my
-hosts via SSH. Yes, Tailscale app works even in Crostini, sadly without
-MagicDNS, so you need to use the internal Tailscale IPs instead.
+Android](https://tailscale.com/kb/1267/install-chromebook) to connect to any
+other of my hosts via SSH. Yes, the Tailscale app works even in Crostini, sadly
+without MagicDNS, so you need to use the internal Tailscale IPs instead.
 
 Until Google decides to give us a proper VM in Android or release a hybrid
 Chromebook device with better specs, this small Chromebook will probably stay
-as my travel companion, and one of my favorite devices.
+as my travel companion, and is one of my favorite devices.
