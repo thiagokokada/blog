@@ -38,10 +38,10 @@ Rust". So I would say it is safe to say crosvm itself is a micro VM.
 But
 [Crostini](https://www.chromium.org/chromium-os/developer-library/guides/containers/containers-and-vms/)
 itself is a combination of virtualization AND containerization. Basically
-inside the VM it runs a Linux kernel and LXC, that can start arbitrary
-containers inside it. From the Crostini documentation this choice seems to be
-to keep startup times down, and also to increase security (e.g.: in case of a
-security issue inside the container).
+inside the VM it runs a Linux kernel and [LXC](https://linuxcontainers.org/),
+that can start arbitrary containers inside it. From the Crostini documentation
+this choice seems to be to keep startup times down, and also to increase
+security (e.g.: in case of a security issue inside the container).
 
 This is definitely an interesting choice, since containers allow the overhead
 of each distro that you run inside Crostini to be low, and the main VM itself
