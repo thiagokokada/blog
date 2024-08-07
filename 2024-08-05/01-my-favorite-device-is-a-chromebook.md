@@ -95,10 +95,10 @@ services being configured and installed, I decided to run Nix inside Debian
 instead of NixOS and run [Home-Manager
 standalone](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone).
 I recommend checking the official [NixOS Wiki article about
-Crostini](https://wiki.nixos.org/wiki/Installing_Nix_on_Crostinihttps://wiki.nixos.org/wiki/Installing_Nix_on_Crostini),
-that details how to register applications in ChromeOS (so desktop applications
-appear in menu) and use [nixGL](https://github.com/nix-community/nixGL) to make
-OpenGL applications work.
+Crostini](https://wiki.nixos.org/wiki/Installing_Nix_on_Crostini), that details
+how to register applications in ChromeOS (so desktop applications appear in
+menu) and use [nixGL](https://github.com/nix-community/nixGL) to make OpenGL
+applications work.
 
 Like I said at the start of the article, the device is woefully slow thanks to
 its CPU and eMMC. It does mean that, for example, activating my Home-Manager
