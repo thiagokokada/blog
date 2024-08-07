@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Meta: are quick bits really quick?](2024-08-07/02-meta-are-quick-bits-really-quick.md) - 2024-08-07
 - [Quick bits: is Crostini a micro VM?](2024-08-07/01-quick-bits-is-crostini-a-microvm.md) - 2024-08-07
 - [My favorite device is a Chromebook](2024-08-05/01-my-favorite-device-is-a-chromebook.md) - 2024-08-05
 - [Make nixd module completion to work anywhere (with Flakes)](2024-08-04/01-make-nixd-modules-completion-work-anywhere-with-flakes.md) - 2024-08-04
