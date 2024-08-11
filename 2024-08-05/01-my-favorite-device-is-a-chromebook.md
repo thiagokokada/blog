@@ -36,13 +36,20 @@ this device the perfect companion to trips.
 
 Also, it has 2 USB-C ports and supports DisplayPort alt-mode, so it means you
 can charge it, connect to a external display and peripherals, all at the same
-time. Sadly, the maximum output resolution I got was 1080p, although some
-people at Reddit [seems to have
+time. Sadly, the maximum output resolution I got was 1080p (2560x1080),
+although some people at Reddit [seems to have
 success](https://www.reddit.com/r/chromeos/comments/zh27tg/comment/izku724/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 at 1440p, and the specs suggests it supports 4k. It may be my Dell S3423DWC
 monitor being wonky, the fact that it is Ultrawide or the cable, who knows? I
 even tried to change the monitor to "High Resolution" mode in settings, but to
 no avail.
+
+_Update:_ looking at the [product
+brief](https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/prod_brief_qcom_sd7c_gen2.pdf)
+for Snapdragon 7c Gen 2, it seems it supports up to QHD@60Hz (1440p) for the
+external display, and not 4k. This explains why it doesn't work at maximum
+resolution in my Dell S3423DWC, since while it is 1440p it is Ultrawide, so the
+resolution is bigger than QHD (3440x1440 vs 2560x1440).
 
 ChromeOS is also really interesting nowadays. To start, it is designed from the
 ground up to be a [secure computing
