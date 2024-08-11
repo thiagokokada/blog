@@ -184,7 +184,7 @@ track users or have tons of JavaScript or whatever. But if you want a backup of
 your posts and you are already writing Markdown anyway, well, there are worse
 ways to do it I think.
 
-Update: I rewrote the script again using Go
+_Update:_ I rewrote the script again using Go
 ([permalink](https://github.com/thiagokokada/blog/blob/3ece3853e7dd32977e7ec5238d2955e530ca4beb/blog.go)).
 The reason for it is because when I started rendering Markdown (for
 descriptions) the Python version got quite slow (not the fault of Python
