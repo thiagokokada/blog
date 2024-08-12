@@ -11,7 +11,9 @@ SLUG="$(cd "$SCRIPT_DIR" && ../blog -slugify "$TITLE")"
 readonly DAY TITLE SLUG
 
 for i in $(seq -f "%02g" 99); do
-	if compgen -G "$DAY/$i*.md" &>/dev/null; then
+	# Match either normal files or hidden post files
+	if compgen -G "$DAY/$i*.md" &>/dev/null || \
+		compgen -G "$DAY/.$i*.md" &>/dev/null; then
 		continue
 	fi
 
