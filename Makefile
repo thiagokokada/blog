@@ -1,5 +1,4 @@
 MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
-TODAY := $(shell date '+%Y-%m-%d')
 
 .PHONY: all
 all: README.md rss.xml
@@ -17,15 +16,17 @@ rss.xml: blog $(MARKDOWN)
 publish: blog
 	./blog -publish
 
-.PHONY: today
-today:
-	mkdir -p $(TODAY)
+DAY := $(shell date)
+_PARSED_DAY := $(shell date "+%Y-%m-%d" -d "$(DAY)")
+.PHONY: day
+day:
+	mkdir -p "$(_PARSED_DAY)"
 
 
 .PHONY: post
-post: blog today
+post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
-	./.scripts/gen-post.sh $(TODAY) "$(TITLE)"
+	./.scripts/gen-post.sh "$(_PARSED_DAY)" "$(TITLE)"
 
 .PHONE: draft
 draft:
