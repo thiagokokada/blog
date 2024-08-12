@@ -3,7 +3,8 @@
 So this is kind of a continuation from my [previous
 post](/2024-08-05/01-my-favorite-device-is-a-chromebook.md) talking why my
 favorite device is a Chromebook. In this post I want to talk about what makes
-me this device unhappy, and what would be my dream Chromebook device.
+me this device unhappy, and comment about things that if changed would make it
+a much better device.
 
 But before talking about the negative aspects, let me talk about a positive
 aspect that I just briefly talked in the previous post: the screen. It is a
