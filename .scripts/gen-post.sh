@@ -2,20 +2,22 @@
 
 set -euo pipefail
 
-day="$1"
-title="$2"
-slug="$(./blog -slugify "$title")"
-readonly day title slug
+SCRIPT_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
+readonly SCRIPT_DIR
+
+DAY="$1"
+TITLE="$2"
+SLUG="$(cd "$SCRIPT_DIR" && ../blog -slugify "$TITLE")"
+readonly DAY TITLE SLUG
 
 for i in $(seq -f "%02g" 99); do
-	# shellcheck disable=SC2144
-	if [ -f "$day/$i"*".md" ]; then
+	if compgen -G "$DAY/$i*.md" &>/dev/null; then
 		continue
 	fi
 
-	file="$day/$i-$slug.md"
+	file="$DAY/$i-$SLUG.md"
 	echo "Creating file: $file"
-	echo "# ${title}" > "$file"
+	echo "# ${TITLE}" > "$file"
 	exit 0
 done
 
