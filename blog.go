@@ -193,9 +193,15 @@ func genReadme(posts posts) string {
 }
 
 func main() {
+	slugify := flag.String("slugify", "", "Slugify input (e.g.: for blog titles)")
 	rss := flag.Bool("rss", false, "Generate RSS (XML) instead of README.md")
 	publish := flag.Bool("publish", false, "Publish updates to Maratoa instance")
 	flag.Parse()
+
+	if *slugify != "" {
+		fmt.Println(slug.Make(*slugify))
+		os.Exit(0)
+	}
 
 	posts := grabPosts()
 	if *publish {
