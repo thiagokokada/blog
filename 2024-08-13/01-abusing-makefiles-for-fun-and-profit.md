@@ -92,7 +92,7 @@ responsible to do some transformations in the Markdown files before posting.
 
 While I could manage everything by just using `go` CLI and a few other *nix
 commands, to make it easier to manager everything I have the following
-[`Makefile`](https://github.com/thiagokokada/blog/blob/0c103544b48742ebb69c93543f0de7603d910db5/Makefile):
+[`Makefile`](https://github.com/thiagokokada/blog/blob/77178d0fbf3bc4d38e341ff949a43786880f372f/Makefile):
 
 ```Makefile
 MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
@@ -114,25 +114,25 @@ publish: blog
 	./blog -publish
 
 DAY := $(shell date)
-_PARSED_DAY := $(shell date "+%Y-%m-%d" -d "$(DAY)")
+_PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)')
 .PHONY: day
 day:
-	mkdir -p "$(_PARSED_DAY)"
+	mkdir -p '$(_PARSED_DAY)'
 
 .PHONY: post
 post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
-	./.scripts/gen-post.sh "$(_PARSED_DAY)" "$(TITLE)"
+	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
 
 .PHONE: draft
 draft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
-	mv "$(FILE)" "$(dir $(FILE)).$(notdir $(FILE))"
+	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
 
 .PHONE: undraft
 undraft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
-	mv "$(FILE)" "$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))"
+	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
 
 .PHONY: clean
 clean:
