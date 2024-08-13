@@ -17,25 +17,25 @@ publish: blog
 	./blog -publish
 
 DAY := $(shell date)
-_PARSED_DAY := $(shell date "+%Y-%m-%d" -d "$(DAY)")
+_PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)')
 .PHONY: day
 day:
-	mkdir -p "$(_PARSED_DAY)"
+	mkdir -p '$(_PARSED_DAY)'
 
 .PHONY: post
 post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
-	./.scripts/gen-post.sh "$(_PARSED_DAY)" "$(TITLE)"
+	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
 
 .PHONE: draft
 draft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
-	mv "$(FILE)" "$(dir $(FILE)).$(notdir $(FILE))"
+	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
 
 .PHONE: undraft
 undraft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
-	mv "$(FILE)" "$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))"
+	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
 
 .PHONY: clean
 clean:
