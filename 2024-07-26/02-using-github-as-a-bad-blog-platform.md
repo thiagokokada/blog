@@ -47,7 +47,7 @@ easy way that makes it trivial to parse in a deterministic way. For example, my
 repository is organised in the following way:
 
 ```
-root
+.
 ├── 2024-07-26
 │   ├── 01-writing-nixos-tests-for-fun-and-profit.md
 │   └── 02-using-github-as-a-bad-blog-platform.md <- this file
