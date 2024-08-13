@@ -92,7 +92,7 @@ responsible to do some transformations in the Markdown files before posting.
 
 While I could manage everything by just using `go` CLI and a few other *nix
 commands, to make it easier to manager everything I have the following
-`Makefile`:
+[`Makefile`](https://github.com/thiagokokada/blog/blob/0c103544b48742ebb69c93543f0de7603d910db5/Makefile):
 
 ```Makefile
 MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
