@@ -12,12 +12,12 @@ itself](/2024-07-26/02-using-github-as-a-bad-blog-platform.md) as a backup
 blog) and publish to the [capivaras.dev
 website](https://kokada.capivaras.dev/).
 
-Now, considering how much about Nix I talk in this blog, it should be a
-surprise that the workflow above has **zero** Nix code inside it. I am not
-saying this blog will never have it, but I am only going to add if this is
-necessary, for example if I start using a tool to build this blog that I
-generally don't expect it to be installed by the machine I am currently using.
-Go is an exception of this rule since it is relatively straightfoward to
+Now, considering how much about [Nix](https://nixos.org/) I talk in this blog,
+it should be a surprise that the workflow above has **zero** Nix code inside
+it. I am not saying this blog will never have it, but I am only going to add if
+this is necessary, for example if I start using a tool to build this blog that
+I generally don't expect it to be installed by the machine I am currently
+using. Go is an exception of this rule since it is relatively straightfoward to
 install (just download the [binary](https://go.dev/doc/install)) and because
 its [stability guarantee](https://go.dev/doc/go1compat) means (hopefully) no
 breakage. But most other things I consider moving targets, and I wouldn't be
