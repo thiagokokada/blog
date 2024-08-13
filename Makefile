@@ -27,12 +27,12 @@ post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
 	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
 
-.PHONE: draft
+.PHONY: draft
 draft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
 
-.PHONE: undraft
+.PHONY: undraft
 undraft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
