@@ -22,7 +22,6 @@ _PARSED_DAY := $(shell date "+%Y-%m-%d" -d "$(DAY)")
 day:
 	mkdir -p "$(_PARSED_DAY)"
 
-
 .PHONY: post
 post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
