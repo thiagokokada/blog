@@ -120,6 +120,10 @@ func grabPosts() posts {
 			log.Printf("[WARN]: ignoring non-date directory: %s\n", path)
 			return nil
 		}
+		if date.After(time.Now()) {
+			log.Printf("[INFO]: ignoring future post: %s\n", path)
+			return nil
+		}
 
 		// Load the contents of the Markdown and try to parse
 		// the title
