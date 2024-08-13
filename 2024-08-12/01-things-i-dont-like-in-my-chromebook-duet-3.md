@@ -18,6 +18,12 @@ small workspace, but this is not a big issue for what I do in this device. It
 is also only 60Hz, but I thought I would miss high refresh rate more than I
 actually miss in this device.
 
+Update: I forgot to say one thing about the screen: it scratches really easy. I
+got my screen scratched after the first day of usage, and considering the price
+I don't think the screen has a hardened glass. I bought a cheap glass screen
+protector and this did the trick though, even hiding the previous scratch, and
+I have zero issues with the screen now.
+
 Now the first aspect that I don't like: the speakers. They sound tiny and even
 at maximum volume it is not really loud. The speakers is the only reason why I
 still keep my [Xiaomi Pad 5](https://www.gsmarena.com/xiaomi_pad_5-11042.php),
@@ -63,3 +69,10 @@ I don't know how much more expensive it would be to put a
 this device, but this is probably the choice that would most increase
 performance in this device, especially considering how aggressive Chromebooks
 use (z)swap.
+
+Update 2: I forgot to talk about the fact that the exterior of the device is
+covered in cloth. I thought I would hate this at first, but nowadays I kind
+like it. And it is also nice that it will never get scratched, I don't care too
+much about the exterior of this device and it is the only device that I have at
+home that doesn't have additional protection (except the screen protector
+mentioned above).
