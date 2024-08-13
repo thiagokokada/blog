@@ -92,7 +92,7 @@ responsible to do some transformations in the Markdown files before posting.
 
 While I could manage everything by just using `go` CLI and a few other *nix
 commands, to make it easier to manager everything I have the following
-[`Makefile`](https://github.com/thiagokokada/blog/blob/77178d0fbf3bc4d38e341ff949a43786880f372f/Makefile):
+[`Makefile`](https://github.com/thiagokokada/blog/blob/5a4377648161ceb9ffa8297bcec97b58a5650b21/Makefile):
 
 ```Makefile
 MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
@@ -124,12 +124,12 @@ post: blog day
 	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
 	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
 
-.PHONE: draft
+.PHONY: draft
 draft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
 
-.PHONE: undraft
+.PHONY: undraft
 undraft:
 	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
