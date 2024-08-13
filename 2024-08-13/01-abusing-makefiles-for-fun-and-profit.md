@@ -20,7 +20,7 @@ generally don't expect it to be installed by the machine I am currently using.
 Go is an exception of this rule since it is relatively straightfoward to
 install (just download the [binary](https://go.dev/doc/install)) and because
 its [stability guarantee](https://go.dev/doc/go1compat) means (hopefully) no
-breakage. But most other things I consider moving targets, and would not be
+breakage. But most other things I consider moving targets, and I wouldn't be
 comfortable to use unless I have Nix to ensure reproducibility.
 
 This is why the other tool that this blog (ab)uses during its workflow is
@@ -145,7 +145,7 @@ For those unfamiliar with `Makefile`, a quick explanation on how it works from
 
 > Each rule begins with a _dependency line_ which consists of the rule's target
 > name followed by a colon (:) and optionally a list of targets on which the
-> rule's target depends, its prerequisites
+> rule's target depends, its prerequisites.
 
 So if we look for example at the `blog` binary, the dependencies are all the
 `.go` files and Go module files like `go.mod` and `go.sum`. We can make the
@@ -172,8 +172,7 @@ go build
 
 But sometimes this property is undesirable. In those cases we can declare a
 target as `.PHONY`, that basically instructs `Makefile` to always make the
-target. One classic `.PHONY` target is `clean`, that removes the build
-artifacts:
+target. One classic example is `clean` target, that removes build artifacts:
 
 ```console
 $ make clean
@@ -185,14 +184,14 @@ rm -rf blog
 
 By the way, it is better to declare a target as `.PHONY` than declaring
 dependencies incorrectly, especially in languages that has fast build times
-like e.g.: Go, because the worst thing that can happen is something not being
-rebuild when it needs to. So my general recomendation if you are writing your
-first `Makefile` is to just declare everything as `.PHONY`. You can always
-improve it later.
+like e.g.: Go. The worst thing that can happen is something not being rebuild
+when it needs to. So my recomendation if you are writing your first `Makefile`
+is to just declare everything as `.PHONY`. You can always improve it later.
 
 One last basic concept that I want to explain about `Makefile` is the default
 target: it is the target that is run if you just run `make` without arguments
-inside the directory that contains a `Makefile`. It is common to have an `all`
+inside the directory that contains a `Makefile`. The default target is
+generally the first target in the `Makefile`. It is common to have an `all`
 target (that is also marked as `.PHONY`) that has as dependencies all the
 targets that you want to build by default. In this particular case I declare
 the `README.md` and `rss.xml` files to be build by default, and they themselves
@@ -276,11 +275,11 @@ mv "2024-12-12/.01-another-new-blog-post.md" "2024-12-12/01-another-new-blog-pos
 Why? Because hidden files are [explicit
 ignored](https://github.com/thiagokokada/blog/blob/894a388c61ca3a38dfc9d4cbe88dc684fd964bb7/blog.go#L101-L104)
 during my directory parser to mean they're a draft post and not ready to be
-published. And the reason I created them is because I was tired of trying to
-hide or unhide a file manually.
+published. And the reason I created those targets is because I was tired of
+trying to hide or unhide a file manually.
 
 So that's it, for the same reason you [should probably automate
 everything](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md),
-you also need to have some way to automate boring tasks. `Makefile` is one way
-to do it, maybe not the best way to do it, but it works and it is available
+you also need to have some way to automate your tasks. `Makefile` is one way to
+do it, maybe not the best way to do it, but it works and it is available
 anywhere.
