@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Abusing Makefiles for fun and profit](2024-08-13/01-abusing-makefiles-for-fun-and-profit.md) - 2024-08-13
 - [Things I don't like in my Chromebook Duet 3](2024-08-12/01-things-i-dont-like-in-my-chromebook-duet-3.md) - 2024-08-12
 - [Building static binaries in Nix](2024-08-11/01-building-static-binaries-in-nix.md) - 2024-08-11
 - [Meta: are quick bits really quick?](2024-08-07/02-meta-are-quick-bits-really-quick.md) - 2024-08-07
