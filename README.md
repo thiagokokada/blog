@@ -10,11 +10,11 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 - [Things I don't like in my Chromebook Duet 3](2024-08-12/01-things-i-dont-like-in-my-chromebook-duet-3.md) - 2024-08-12
 - [Building static binaries in Nix](2024-08-11/01-building-static-binaries-in-nix.md) - 2024-08-11
 - [Meta: are quick bits really quick?](2024-08-07/02-meta-are-quick-bits-really-quick.md) - 2024-08-07
-- [Quick bits: is Crostini a micro VM?](2024-08-07/01-quick-bits-is-crostini-a-microvm.md) - 2024-08-07
+- [Quick bits: is Crostini a micro VM?](2024-08-07/01-quick-bits-is-crostini-a-micro-vm.md) - 2024-08-07
 - [My favorite device is a Chromebook](2024-08-05/01-my-favorite-device-is-a-chromebook.md) - 2024-08-05
-- [Make nixd module completion to work anywhere (with Flakes)](2024-08-04/01-make-nixd-modules-completion-work-anywhere-with-flakes.md) - 2024-08-04
+- [Make nixd module completion to work anywhere (with Flakes)](2024-08-04/01-make-nixd-module-completion-to-work-anywhere-with-flakes.md) - 2024-08-04
 - [Quick bits: realise Nix symlinks](2024-08-01/02-quick-bits-realise-nix-symlinks.md) - 2024-08-01
-- [Troubleshoting: ZSH lag and solutions with Nix](2024-08-01/01-troubleshooting-zsh-lag-and-solutions-with-nix.md) - 2024-08-01
+- [Troubleshooting: ZSH lag and solutions with Nix](2024-08-01/01-troubleshoting-zsh-lag-and-solutions-with-nix.md) - 2024-08-01
 - [Generating YAML files with Nix](2024-07-31/01-generating-yaml-files-with-nix.md) - 2024-07-31
 - [First impressions: FPGBC](2024-07-30/01-first-impressions-fpgbc.md) - 2024-07-30
 - [Go, a reasonable good language](2024-07-29/02-go-a-reasonable-good-language.md) - 2024-07-29
