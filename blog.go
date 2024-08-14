@@ -23,6 +23,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"time"
 
@@ -90,18 +91,29 @@ func extractTitleAndContents(raw []byte) (title string, contents []byte, err err
 	return title, contents, nil
 }
 
-func getAndValidateSlug(mdFilename, title string) string {
+func getAndValidateSlug(mdFilename, title string) (string, error) {
+	// 01-my-awesome-blog-post.md => my-awesome-blog-post
 	filenameSlug := strings.TrimSuffix(mdFilename[3:], ".md")
+	// My awesome blog post => my-awesome-blog-post
 	titleSlug := slug.Make(title)
-	if filenameSlug != titleSlug {
-		log.Printf(
-			"[WARN] Slug difference detected, filename: %s, title: %s",
+
+	// Add any filename that are known to be broken, generally because the
+	// title got changed after publishing
+	knownBrokenFilenames := []string{
+		// Typo, should be "troubleshooting"
+		"01-troubleshoting-zsh-lag-and-solutions-with-nix.md",
+	}
+
+	if filenameSlug != titleSlug && !slices.Contains(knownBrokenFilenames, mdFilename) {
+		return filenameSlug, fmt.Errorf(
+			"slug difference for file: %s, filename slug: %s, title slug: %s",
+			mdFilename,
 			filenameSlug,
 			titleSlug,
 		)
 	}
 
-	return filenameSlug
+	return filenameSlug, nil
 }
 
 func grabPosts() posts {
@@ -155,7 +167,7 @@ func grabPosts() posts {
 
 		posts.Set(path, post{
 			title:    title,
-			slug:     getAndValidateSlug(d.Name(), title),
+			slug:     must1(getAndValidateSlug(d.Name(), title)),
 			contents: contents,
 			date:     date,
 		})
