@@ -1,4 +1,4 @@
-MARKDOWN := $(shell find . -type f -name '*.md' -not -name README.md)
+MARKDOWN := $(wildcard ./**/*.md)
 
 .PHONY: all
 all: README.md rss.xml
