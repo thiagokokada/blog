@@ -10,7 +10,7 @@ README.md: blog $(MARKDOWN)
 	./blog > README.md
 
 rss.xml: blog $(MARKDOWN)
-	./blog -rss > rss.xml
+	./blog -rss > rss.xml 2>/dev/null
 
 .PHONY: publish
 publish: blog

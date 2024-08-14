@@ -1,4 +1,4 @@
-# Troubleshoting: ZSH lag and solutions with Nix
+# Troubleshooting: ZSH lag and solutions with Nix
 
 Inspired by this [blog post from
 Tavis](https://lock.cmpxchg8b.com/slowterm.html), I decided to document my own

@@ -90,6 +90,20 @@ func extractTitleAndContents(raw []byte) (title string, contents []byte, err err
 	return title, contents, nil
 }
 
+func getAndValidateSlug(mdFilename, title string) string {
+	filenameSlug := strings.TrimSuffix(mdFilename[3:], ".md")
+	titleSlug := slug.Make(title)
+	if filenameSlug != titleSlug {
+		log.Printf(
+			"[WARN] Slug difference detected, filename: %s, title: %s",
+			filenameSlug,
+			titleSlug,
+		)
+	}
+
+	return filenameSlug
+}
+
 func grabPosts() posts {
 	posts := orderedmap.NewOrderedMap[string, post]()
 
@@ -141,7 +155,7 @@ func grabPosts() posts {
 
 		posts.Set(path, post{
 			title:    title,
-			slug:     slug.Make(title),
+			slug:     getAndValidateSlug(d.Name(), title),
 			contents: contents,
 			date:     date,
 		})
