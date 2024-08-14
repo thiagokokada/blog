@@ -246,9 +246,6 @@ func main() {
 
 	posts := grabPosts()
 	if *publish {
-		if mataroaToken == "" {
-			log.Println("[WARN]: empty MATAROA_TOKEN env var")
-		}
 		publishToMataroa(posts)
 	} else if *rss {
 		fmt.Print(genRss(posts))

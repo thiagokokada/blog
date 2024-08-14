@@ -36,7 +36,10 @@ const (
 	mataroaBlogUrl = mataroaBaseUrl + "/blog/"
 )
 
-var mataroaToken = os.Getenv("MATAROA_TOKEN")
+var (
+	mataroaToken = os.Getenv("MATAROA_TOKEN")
+	md           goldmark.Markdown
+)
 
 // https://capivaras.dev/api/docs/
 type mataroaResponse struct {
@@ -88,7 +91,7 @@ func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 	return mustMataroaReq("GET", mustMataroaUrl("posts", post.slug), nil)
 }
 
-func mustPatchMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
+func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 	buf := bytes.Buffer{}
 	must(md.Convert([]byte(post.contents), &buf))
 	reqBody := must1(json.Marshal(mataroaPatchRequest{
@@ -100,7 +103,7 @@ func mustPatchMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r
 	return mustMataroaReq("PATCH", mustMataroaUrl("posts", post.slug), reqBody)
 }
 
-func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r *http.Response) {
+func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 	buf := bytes.Buffer{}
 	must(md.Convert([]byte(post.contents), &buf))
 	reqBody := must1(json.Marshal(mataroaPostRequest{
@@ -112,7 +115,11 @@ func mustPostMataroaPost(md goldmark.Markdown, post post) (p mataroaResponse, r 
 }
 
 func publishToMataroa(posts posts) {
-	md := goldmark.New(
+	if mataroaToken == "" {
+		log.Fatal("empty MATAROA_TOKEN environment variable")
+	}
+
+	md = goldmark.New(
 		goldmark.WithRenderer(markdown.NewRenderer()),
 		goldmark.WithExtensions(
 			NewLinkRewriter(mataroaBlogUrl, posts),
@@ -123,10 +130,10 @@ func publishToMataroa(posts posts) {
 		post := el.Value
 		p, resp := mustGetMataroaPost(post)
 		if p.Ok {
-			p, resp = mustPatchMataroaPost(md, post)
+			p, resp = mustPatchMataroaPost(post)
 			log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
 		} else if resp.StatusCode == 404 {
-			p, resp = mustPostMataroaPost(md, post)
+			p, resp = mustPostMataroaPost(post)
 			log.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
 		} else {
 			log.Printf("[ERROR] %s: %+v\n", post.slug, resp)
