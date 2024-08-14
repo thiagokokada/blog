@@ -119,8 +119,7 @@ func getAndValidateSlug(mdFilename, title string) (string, error) {
 
 	if filenameSlug != titleSlug && !slices.Contains(knownBrokenFilenames, mdFilename) {
 		return filenameSlug, fmt.Errorf(
-			"slug difference for file: %s, filename slug: %s, title slug: %s",
-			mdFilename,
+			"got conflicting slugs: filename slug: %s, title slug: %s",
 			filenameSlug,
 			titleSlug,
 		)
@@ -159,14 +158,18 @@ func grabPosts() posts {
 			log.Printf("[WARN]: ignoring non-date directory: %s\n", path)
 			return nil
 		}
-		if date.After(time.Now()) {
-			log.Printf("[INFO]: ignoring future post: %s\n", path)
-			return nil
-		}
 
 		// Load the contents of the Markdown and try to parse
 		// the title
-		raw := must1(os.ReadFile(path))
+		raw, err := os.ReadFile(path)
+		if err != nil {
+			return fmt.Errorf(
+				"something went wrong when reading file: %s, error: %w",
+				path,
+				err,
+			)
+		}
+
 		title, contents, err := extractTitleAndContents(raw)
 		if err != nil || title == "" || contents == nil {
 			return fmt.Errorf(
@@ -176,9 +179,23 @@ func grabPosts() posts {
 			)
 		}
 
+		slug, err := getAndValidateSlug(d.Name(), title)
+		if err != nil {
+			return fmt.Errorf(
+				"slug for file: %s, error: %w",
+				path,
+				err,
+			)
+		}
+
+		if date.After(time.Now()) {
+			log.Printf("[INFO]: ignoring future post: %s\n", path)
+			return nil
+		}
+
 		posts.Set(path, post{
 			title:    title,
-			slug:     must1(getAndValidateSlug(d.Name(), title)),
+			slug:     slug,
 			contents: contents,
 			date:     date,
 		})
