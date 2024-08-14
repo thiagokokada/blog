@@ -36,6 +36,10 @@ draft:
 undraft:
 	cd '$(dir $(FILE))' && mv '$(notdir $(FILE))' '$(patsubst .%,%,$(notdir $(FILE)))'
 
+.PHONY: words
+words:
+	wc --words **/*.md
+
 .PHONY: clean
 clean:
 	rm -rf blog
