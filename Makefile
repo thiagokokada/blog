@@ -30,11 +30,11 @@ post: blog day
 TITLE = $(error FILE is not defined)
 .PHONY: draft
 draft:
-	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
+	cd '$(dir $(FILE))' && mv '$(notdir $(FILE))' '.$(notdir $(FILE))'
 
 .PHONY: undraft
 undraft:
-	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
+	cd '$(dir $(FILE))' && mv '$(notdir $(FILE))' '$(patsubst .%,%,$(notdir $(FILE)))'
 
 .PHONY: clean
 clean:
