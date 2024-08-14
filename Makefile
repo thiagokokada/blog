@@ -25,7 +25,7 @@ day:
 TITLE = $(error TITLE is not defined)
 .PHONY: post
 post: blog day
-	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
+	DAY=$(_PARSED_DAY) ./.scripts/gen-post.sh
 
 TITLE = $(error FILE is not defined)
 .PHONY: draft

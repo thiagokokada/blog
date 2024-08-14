@@ -2,13 +2,14 @@
 
 set -euo pipefail
 
+# Expect to be set as environment variables
+readonly DAY TITLE
+
 SCRIPT_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
 readonly SCRIPT_DIR
 
-DAY="$1"
-TITLE="$2"
 SLUG="$(cd "$SCRIPT_DIR" && ../blog -slugify "$TITLE")"
-readonly DAY TITLE SLUG
+readonly SLUG
 
 for i in $(seq -f "%02g" 99); do
 	# Match either normal files or hidden post files
