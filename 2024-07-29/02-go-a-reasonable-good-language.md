@@ -9,8 +9,8 @@ Go forward 2023 (no pun indented), I wrote my [first project in
 Go](https://github.com/thiagokokada/twenty-twenty-twenty/), wrote some scripts
 at `$CURRENT_JOB` in the language, and now wrote [my first
 library](https://github.com/thiagokokada/hyprland-go/) (with an [interesting
-way to run CI](/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md).
-I am also writing more
+way to run CI](/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md)). I am
+also writing more
 [scripts](https://github.com/thiagokokada/nix-configs/blob/8c559527ed12e1d4f57a3fc5c72630b956f4c290/home-manager/desktop/wayland/hyprland/hyprtabs/hyprtabs.go)
 in the language, where I would prefer to use Bash or Python before. Heck, even
 this blog is automatically published with a [Go
@@ -24,10 +24,10 @@ The points that I love about Go is probably obvious for some, but still
 interesting to talk about anyway. The fact that the language generates static
 binaries by default and have fast compilation times is something that I
 apreciate since I first heard about the language, and now that I am using the
-language frequently are points I appreciate even more. Something about getting
-almost instant feedback after changing a line of code and running `go run`
-(even with its quirks) are great for the developer experience. This is the main
-reason why I am using the language more frequently for scripts.
+language frequently, are points thatI appreciate even more. Something about
+getting almost instant feedback after changing a line of code and running `go
+run` (even with its quirks) are great for the developer experience. This is the
+main reason why I am using the language more frequently for scripts.
 
 Then we have the fast startup times. I am kind of sensitive to latency,
 especially of command line utilities that need to answer fast when I expect
@@ -38,7 +38,7 @@ an issue.
 Modules are also fantastic. It is not without its weirdness (like everything in
 Go ecossystem), but the fact that it is so easy to add and manage dependencies
 in a project using only the `go` CLI is great. I also like that it generates a
-hash of every dependency, make it reproducible (well, probably not at Nix
+hash of every dependency, making it reproducible (well, probably not at Nix
 level, but still reproducible).
 
 Since I started to talk about `go` CLI, what a great tool! The fact that you
@@ -46,8 +46,7 @@ can manage dependencies, generate documentation, format code, lint, run
 tests/[benchmarks](https://blog.logrocket.com/benchmarking-golang-improve-function-performance/)/[fuzzing](https://go.dev/doc/security/fuzz/),
 check code for [races](https://go.dev/doc/articles/race_detector) etc., all
 with just the "compiler" for the language is excelent. Still probably one of
-the best developer experiences I know in any programming language (maybe only
-rivaled by [Zig](https://ziglang.org/)).
+the best developer experiences I know in any programming language.
 
 I will not even talk about the things that everyone talks about Go, like
 [goroutines](https://go.dev/doc/effective_go#goroutines), because I just don't
