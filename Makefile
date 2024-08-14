@@ -22,19 +22,18 @@ _PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)')
 day:
 	mkdir -p '$(_PARSED_DAY)'
 
+TITLE = $(error TITLE is not defined)
 .PHONY: post
 post: blog day
-	@[ "${TITLE}" ] || ( echo ">> TITLE is not set"; exit 1 )
 	./.scripts/gen-post.sh '$(_PARSED_DAY)' '$(TITLE)'
 
+TITLE = $(error FILE is not defined)
 .PHONY: draft
 draft:
-	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE)).$(notdir $(FILE))'
 
 .PHONY: undraft
 undraft:
-	@[ "${FILE}" ] || ( echo ">> FILE is not set"; exit 1 )
 	mv '$(FILE)' '$(dir $(FILE))$(patsubst .%,%,$(notdir $(FILE)))'
 
 .PHONY: clean
