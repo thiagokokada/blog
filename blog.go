@@ -72,20 +72,31 @@ func must(err error) {
 }
 
 func extractTitleAndContents(raw []byte) (title string, contents []byte, err error) {
-	for i, c := range raw {
-		// We are assuming that each file has one title as a H1 header
-		if c == '\n' {
-			if raw[0] != '#' {
-				return "", nil, fmt.Errorf("could not find '#', file seems to be missing a H1 header")
-			}
-			title = string(bytes.TrimSpace(raw[1:i]))
-			contents = bytes.TrimSpace(raw[i:])
-			break
-		}
+	if len(raw) == 0 {
+		return "", nil, fmt.Errorf("empty file")
 	}
 
-	if title == "" || contents == nil {
-		return "", nil, fmt.Errorf("could not find title, the file may be empty")
+	// We are assuming that each file has one title as a H1 header...
+	if raw[0] != '#' {
+		return "", nil, fmt.Errorf("missing '#' (H1) at the start of file")
+	}
+	// ...followed by a line break and the contents
+	for i, c := range raw {
+		if c != '\n' {
+			continue
+		}
+
+		title = string(bytes.TrimSpace(raw[1:i]))
+		contents = bytes.TrimSpace(raw[i:])
+		break
+	}
+	// If we scan the whole file and title or contents are empty, something
+	// is wrong with the file
+	if title == "" {
+		return title, contents, fmt.Errorf("could not find title")
+	}
+	if contents == nil {
+		return title, contents, fmt.Errorf("could not find content")
 	}
 
 	return title, contents, nil
@@ -157,10 +168,8 @@ func grabPosts() posts {
 		title, contents, err := extractTitleAndContents(raw)
 		if err != nil || title == "" || contents == nil {
 			return fmt.Errorf(
-				"something is wrong with file: %s, title: %s, contents: %s, error: %w",
+				"something is wrong with file: %s, error: %w",
 				path,
-				title,
-				contents,
 				err,
 			)
 		}
