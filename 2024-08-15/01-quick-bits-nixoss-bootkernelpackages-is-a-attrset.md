@@ -43,7 +43,7 @@ it is better to do:
 }
 ```
 
-Than:
+Instead of:
 
 ```nix
 { pkgs, ... }:
