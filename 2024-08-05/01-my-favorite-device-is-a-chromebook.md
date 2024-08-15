@@ -118,7 +118,7 @@ just decided to cancel the operation. Having a proper VM instead of
 [proot](https://wiki.termux.com/wiki/PRoot) makes all the difference here.
 
 I can even do some light programming here: using my
-[ZSH](/2024-08-01/01-troubleshooting-zsh-lag-and-solutions-with-nix.md) and
+[ZSH](/2024-08-01/01-troubleshoting-zsh-lag-and-solutions-with-nix.md) and
 neovim configuration (including LSP for coding) is reasonable fast. For
 example, I did most of the code that [powers this
 blog](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md) using
