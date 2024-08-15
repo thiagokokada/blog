@@ -1,4 +1,4 @@
-# Quick bits: NixOS's boot.kernelPackages is a function
+# Quick bits: NixOS's boot.kernelPackages is a attrset
 
 I don't know if this is just something that got me by surprise or not, but
 [`boot.kernelPackages`](https://github.com/NixOS/nixpkgs/blob/bb16119a4a7639ebbc91ad0f516b324b0f7c9b68/nixos/modules/system/boot/kernel.nix#L40-L71)
