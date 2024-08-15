@@ -47,7 +47,7 @@ type mataroaResponse struct {
 	Title string `json:"title"`
 	Url   string `json:"url"`
 	Slug  string `json:"slug"`
-	// Error string `json:"error"`
+	Error string `json:"error"`
 }
 
 type mataroaPostRequest struct {
@@ -145,12 +145,16 @@ func publishToMataroa(posts posts) {
 				p, resp = mustPatchMataroaPost(p.Slug, post)
 				log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
 			}
-		} else {
-			log.Printf("[ERROR] %s: %+v\n", post.slug, resp)
 		}
 
 		if resp.StatusCode != 200 {
-			panic(fmt.Sprintf("non-200 response for post: %s", post.slug))
+			err := fmt.Errorf(
+				"non-200 (code=%d) status code for post=%s, response: %+v",
+				resp.StatusCode,
+				post.slug,
+				resp,
+			)
+			panic(err)
 		}
 	}
 }
