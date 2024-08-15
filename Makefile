@@ -16,8 +16,10 @@ rss.xml: blog $(MARKDOWN)
 publish: blog
 	./blog -publish
 
-DAY := $(shell date)
-_PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)')
+DAY := $(shell date '+%Y-%m-%d')
+# -d is a GNUism, but sadly -j/-f is a BSDism
+# If GNU date extensions doesn't work, just do not try to parse the DAY
+_PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)' 2>/dev/null || echo '$(DAY)')
 .PHONY: day
 day:
 	mkdir -p '$(_PARSED_DAY)'
