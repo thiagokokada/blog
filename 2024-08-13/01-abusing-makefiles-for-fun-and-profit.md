@@ -1,4 +1,4 @@
-# Why you should automate tasks, or abusing Makefiles for fun and profit
+# Abusing Makefiles for fun and profit
 
 If you are following this blog for a while, it should be no surprise that most
 of the workflow in this blog is [automated using

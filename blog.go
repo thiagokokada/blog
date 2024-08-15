@@ -113,8 +113,6 @@ func getAndValidateSlug(mdFilename, title string) (string, error) {
 	knownBrokenFilenames := []string{
 		// Typo, should be "troubleshooting"
 		"01-troubleshoting-zsh-lag-and-solutions-with-nix.md",
-		// Title updated on 2024-08-14
-		"01-abusing-makefiles-for-fun-and-profit.md",
 	}
 
 	if filenameSlug != titleSlug && !slices.Contains(knownBrokenFilenames, mdFilename) {
