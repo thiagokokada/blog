@@ -106,7 +106,7 @@ func getAndValidateSlug(mdFilename, title string) (string, error) {
 	// 01-my-awesome-blog-post.md => my-awesome-blog-post
 	filenameSlug := strings.TrimSuffix(mdFilename[3:], ".md")
 	// My awesome blog post => my-awesome-blog-post
-	titleSlug := slug.Make(title)
+	titleSlug := getSlug(title)
 
 	// Add any filename that are known to be broken, generally because the
 	// title got changed after publishing
@@ -124,6 +124,15 @@ func getAndValidateSlug(mdFilename, title string) (string, error) {
 	}
 
 	return filenameSlug, nil
+}
+
+func getSlug(s string) string {
+	// Mataroa slug function removes any "." from the slug
+	slug.CustomSub = map[string]string{
+		".": "",
+	}
+	return slug.Make(s)
+
 }
 
 func grabPosts() posts {
@@ -255,7 +264,7 @@ func main() {
 	flag.Parse()
 
 	if *slugify != "" {
-		fmt.Println(slug.Make(*slugify))
+		fmt.Println(getSlug(*slugify))
 		os.Exit(0)
 	}
 
