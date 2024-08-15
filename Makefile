@@ -29,7 +29,7 @@ TITLE = $(error TITLE is not defined)
 post: blog day
 	DAY=$(_PARSED_DAY) ./.scripts/gen-post.sh
 
-TITLE = $(error FILE is not defined)
+FILE = $(error FILE is not defined)
 .PHONY: draft
 draft:
 	cd '$(dir $(FILE))' && mv '$(notdir $(FILE))' '.$(notdir $(FILE))'
