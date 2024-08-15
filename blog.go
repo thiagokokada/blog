@@ -57,8 +57,8 @@ type post struct {
 	contents []byte
 	date     time.Time
 }
-
-type posts = *orderedmap.OrderedMap[string, post]
+type path = string
+type posts = *orderedmap.OrderedMap[path, post]
 
 func must1[T any](v T, err error) T {
 	must(err)
