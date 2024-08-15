@@ -87,11 +87,11 @@ func mustMataroaReq(method string, url string, body []byte) (p mataroaResponse, 
 	return p, resp
 }
 
-func mustGetMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	return mustMataroaReq("GET", mustMataroaUrl("posts", post.slug), nil)
+func mustGetMataroaPost(slug string) (p mataroaResponse, r *http.Response) {
+	return mustMataroaReq("GET", mustMataroaUrl("posts", slug), nil)
 }
 
-func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
+func mustPatchMataroaPost(slug string, post post) (p mataroaResponse, r *http.Response) {
 	buf := bytes.Buffer{}
 	must(md.Convert([]byte(post.contents), &buf))
 	reqBody := must1(json.Marshal(mataroaPatchRequest{
@@ -100,7 +100,7 @@ func mustPatchMataroaPost(post post) (p mataroaResponse, r *http.Response) {
 		Slug:        post.slug,
 		PublishedAt: post.date.Format(time.DateOnly),
 	}))
-	return mustMataroaReq("PATCH", mustMataroaUrl("posts", post.slug), reqBody)
+	return mustMataroaReq("PATCH", mustMataroaUrl("posts", slug), reqBody)
 }
 
 func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
@@ -128,13 +128,23 @@ func publishToMataroa(posts posts) {
 	)
 	for el := posts.Front(); el != nil; el = el.Next() {
 		post := el.Value
-		p, resp := mustGetMataroaPost(post)
+		p, resp := mustGetMataroaPost(post.slug)
 		if p.Ok {
-			p, resp = mustPatchMataroaPost(post)
+			p, resp = mustPatchMataroaPost(post.slug, post)
 			log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
 		} else if resp.StatusCode == 404 {
 			p, resp = mustPostMataroaPost(post)
 			log.Printf("[NEW] (code=%d): %+v\n", resp.StatusCode, p)
+
+			if p.Ok && p.Slug != post.slug {
+				log.Printf(
+					"[INFO] Updating slug since they're different, Mataroa slug: %s, generated one: %s",
+					p.Slug,
+					post.slug,
+				)
+				p, resp = mustPatchMataroaPost(p.Slug, post)
+				log.Printf("[UPDATED] (code=%d): %+v\n", resp.StatusCode, p)
+			}
 		} else {
 			log.Printf("[ERROR] %s: %+v\n", post.slug, resp)
 		}

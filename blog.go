@@ -127,12 +127,7 @@ func getAndValidateSlug(mdFilename, title string) (string, error) {
 }
 
 func getSlug(s string) string {
-	// Mataroa slug function removes any "." from the slug
-	slug.CustomSub = map[string]string{
-		".": "",
-	}
 	return slug.Make(s)
-
 }
 
 func grabPosts() posts {
