@@ -48,7 +48,7 @@ Than:
 ```nix
 { pkgs, ... }:
 {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     linuxPackages.cpupower
     linuxPackages.turbostat
   ];
