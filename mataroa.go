@@ -126,8 +126,7 @@ func publishToMataroa(posts posts) {
 			extension.GFM,
 		),
 	)
-	for el := posts.Front(); el != nil; el = el.Next() {
-		post := el.Value
+	for _, post := range posts.Iterator() {
 		p, resp := mustGetMataroaPost(post.slug)
 		if p.Ok {
 			p, resp = mustPatchMataroaPost(post.slug, post)
