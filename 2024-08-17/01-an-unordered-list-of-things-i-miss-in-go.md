@@ -213,8 +213,8 @@ Go is a surprising good language for some functional code, thanks to having
 first class functions and closures. Sadly the syntax doesn't help, since the
 only way you can use anonymous functions in Go is using `func`. Especially if
 the types are complex, this can result in some convoluted code. Take the
-examples from the [`range-over-func`
-experiment](https://go.dev/wiki/RangefuncExperiment) for example:
+example from the [`range-over-func`
+experiment](https://go.dev/wiki/RangefuncExperiment):
 
 ```go
 package slices
@@ -264,7 +264,7 @@ func Backward[E any](s []E) func(func(int, E) bool) {
 }
 ```
 
-This feature I still am somewhat hopeful that may become a reality in some
+This feature I am still somewhat hopeful that may become a reality in some
 future version of the language, since they didn't close the
 [issue](https://github.com/golang/go/issues/21498) yet, and the discussion
 about the possibility of this feature is still ongoing.
