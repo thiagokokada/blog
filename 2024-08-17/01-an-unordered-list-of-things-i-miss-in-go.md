@@ -207,6 +207,8 @@ newer versions with null-safety) is not a good sign.
 
 ## Lambdas
 
+_Added in 2024-08-18_
+
 Go is a surprising good language for some functional code, thanks to having
 first class functions and closures. Sadly the syntax doesn't help, since the
 only way you can use anonymous functions in Go is using `func`. Especially if
