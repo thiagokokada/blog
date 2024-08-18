@@ -115,8 +115,8 @@ with third party implementations, e.g.: I am using this
 being in standard library reduces the friction: if there was some
 implementation in standard library, I would generally prefer it unless I have
 some specific needs. However when the standard library doesn't offer what I
-need, I need to find it myself a suitable library, and this will take sometime
-since there are lots of alternatives.
+need, I need to find it myself a suitable library, and this ends up taking time
+since generally there are lots of alternatives.
 
 ## Keyword and default arguments for functions
 
