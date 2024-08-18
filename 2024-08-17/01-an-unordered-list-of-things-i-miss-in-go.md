@@ -204,3 +204,65 @@ successfully](https://dart.dev/null-safety/understanding-null-safety), but
 definitely it was not without its pains. And the fact that most people that
 program in Dart probably does because of Flutter (that eventually required
 newer versions with null-safety) is not a good sign.
+
+## Lambdas
+
+Go is a surprising good language for some functional code, thanks to having
+first class functions and closures. Sadly the syntax doesn't help, since the
+only way you can use anonymous functions in Go is using `func`. Especially if
+the types are complex, this can result in some convoluted code. Take the
+examples from the [`range-over-func`
+experiment](https://go.dev/wiki/RangefuncExperiment) for example:
+
+```go
+package slices
+
+func Backward[E any](s []E) func(func(int, E) bool) {
+    return func(yield func(int, E) bool) {
+        for i := len(s)-1; i >= 0; i-- {
+            if !yield(i, s[i]) {
+                return
+            }
+        }
+    }
+}
+```
+
+If Go had a syntax for lambdas, especially if we could elide the types, this
+could be simplified a lot:
+
+```go
+package slices
+
+func Backward[E any](s []E) func(func(int, E) bool) {
+    return (yield) => {
+        for i := len(s)-1; i >= 0; i-- {
+            if !yield(i, s[i]) {
+                return
+            }
+        }
+    }
+}
+```
+
+Or even something like this would already help, no special syntax but allowing
+the types to be elided in an unnamed function:
+
+```go
+package slices
+
+func Backward[E any](s []E) func(func(int, E) bool) {
+    return func(yield) {
+        for i := len(s)-1; i >= 0; i-- {
+            if !yield(i, s[i]) {
+                return
+            }
+        }
+    }
+}
+```
+
+This feature I still am somewhat hopeful that may become a reality in some
+future version of the language, since they didn't close the
+[issue](https://github.com/golang/go/issues/21498) yet, and the discussion
+about the possibility of this feature is still ongoing.
