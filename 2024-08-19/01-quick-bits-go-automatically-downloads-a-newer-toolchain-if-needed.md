@@ -53,7 +53,27 @@ e.g.: `GOTOOLCHAIN=1.23`
   + There is also `<name>+auto` and `path` options, that can be seen in the
   docs
 - The downloaded toolchains go to whatever your `GOPATH` is, inside
-`golang.org/toolchain` module, and version `v0.0.1-goVERSION.GOOS-GOARCH`.
+`golang.org/toolchain` module, and version `v0.0.1-goVERSION.GOOS-GOARCH`, for
+example:
+
+  ```console
+  $ ls -lah $GOPATH/pkg/mod/golang.org/toolchain@v0.0.1-go1.23.0.darwin-arm64
+  total 64
+  dr-xr-xr-x  14 user  staff   448B 19 Aug 12:01 .
+  drwxr-xr-x   4 user  staff   128B 19 Aug 12:01 ..
+  -r--r--r--   1 user  staff   1.3K 19 Aug 12:01 CONTRIBUTING.md
+  -r--r--r--   1 user  staff   1.4K 19 Aug 12:01 LICENSE
+  -r--r--r--   1 user  staff   1.3K 19 Aug 12:01 PATENTS
+  -r--r--r--   1 user  staff   1.4K 19 Aug 12:01 README.md
+  -r--r--r--   1 user  staff   426B 19 Aug 12:01 SECURITY.md
+  -r--r--r--   1 user  staff    35B 19 Aug 12:01 VERSION
+  dr-xr-xr-x   4 user  staff   128B 19 Aug 12:01 bin
+  -r--r--r--   1 user  staff    52B 19 Aug 12:01 codereview.cfg
+  -r--r--r--   1 user  staff   505B 19 Aug 12:01 go.env
+  dr-xr-xr-x   3 user  staff    96B 19 Aug 12:01 lib
+  dr-xr-xr-x   4 user  staff   128B 19 Aug 12:01 pkg
+  dr-xr-xr-x  77 user  staff   2.4K 19 Aug 12:02 src
+  ```
 
 By the way, this only works well because Go binaries are static, one of the
 things that make the language [reasonable
