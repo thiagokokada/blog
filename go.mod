@@ -3,7 +3,7 @@ module github.com/thiagokokada/blog
 go 1.21
 
 require (
-	github.com/elliotchance/orderedmap/v2 v2.2.0
+	github.com/elliotchance/orderedmap/v2 v2.4.0
 	github.com/gorilla/feeds v1.2.0
 	github.com/gosimple/slug v1.14.0
 	github.com/teekennedy/goldmark-markdown v0.3.0
@@ -13,6 +13,6 @@ require (
 
 require (
 	github.com/alecthomas/chroma v0.10.0 // indirect
-	github.com/dlclark/regexp2 v1.4.0 // indirect
+	github.com/dlclark/regexp2 v1.11.4 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
 )
