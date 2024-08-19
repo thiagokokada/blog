@@ -16,18 +16,15 @@ publish: blog
 	./blog -publish
 
 DATE := $(shell date '+%Y-%m-%d')
-# -d is a GNUism, but sadly -j/-f is a BSDism
-# If GNU date extensions doesn't work, just do not try to parse the DATE
-_PARSED_DATE := $(shell date '+%Y-%m-%d' -d '$(DATE)' 2>/dev/null || echo '$(DATE)')
 .PHONY: day
 day:
-	mkdir -p '$(_PARSED_DATE)'
+	mkdir -p '$(DATE)'
 
 TITLE = $(error TITLE is not defined)
 .PHONY: post
 post: blog day
 	@echo $(TITLE) >/dev/null # this is to force an error if TITLE is unset
-	DATE=$(_PARSED_DATE) ./.scripts/gen-post.sh
+	./.scripts/gen-post.sh
 
 FILE = $(error FILE is not defined)
 .PHONY: draft
