@@ -151,9 +151,9 @@ for Go standard library, for example, `string.Replace`:
 > of replacements.
 
 If Go had default arguments, `Replace` could have e.g.: `func Replace(s, old,
-new string, n int = -1)` signature, that would mean by default it would always
-replace every instance of the `s` string, something that is generally expected
-by default.
+new string, n int = -1)` signature, that would mean we don't need
+`strings.ReplaceAll` (since this is basically what this function does, call
+`strings.Replace(s, old, new, -1)`).
 
 ## Nullability (or nillability)
 
