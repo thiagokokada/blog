@@ -20,7 +20,7 @@ $ go build
 go: downloading go1.23.0 (darwin/arm64)
 ```
 
-Neat. And before you ask, yes, the compiled binary works perfectly:
+Nice. And before you ask, yes, the compiled binary works perfectly:
 
 ```console
 $ make
