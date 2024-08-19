@@ -184,7 +184,7 @@ func grabPosts() posts {
 		slug, err := getAndValidateSlug(d.Name(), title)
 		if err != nil {
 			return fmt.Errorf(
-				"slug for file: %s, error: %w",
+				"something is wrong with slug for file: %s, error: %w",
 				path,
 				err,
 			)
