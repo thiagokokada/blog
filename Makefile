@@ -40,7 +40,7 @@ undraft:
 
 .PHONY: words
 words:
-	wc --words **/*.md
+	wc -w **/*.md
 
 .PHONY: clean
 clean:
