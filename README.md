@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Quick bits: Go automatically downloads a newer toolchain if needed](2024-08-19/01-quick-bits-go-automatically-downloads-a-newer-toolchain-if-needed.md) - 2024-08-19
 - [An unordered list of things I miss in Go](2024-08-17/01-an-unordered-list-of-things-i-miss-in-go.md) - 2024-08-17
 - [Quick bits: NixOS's boot.kernelPackages is a attrset](2024-08-15/01-quick-bits-nixoss-boot-kernelpackages-is-a-attrset.md) - 2024-08-15
 - [Abusing Makefiles for fun and profit](2024-08-13/01-abusing-makefiles-for-fun-and-profit.md) - 2024-08-13
