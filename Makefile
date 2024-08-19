@@ -1,11 +1,10 @@
-MARKDOWN := $(wildcard ./**/*.md)
-
 .PHONY: all
 all: README.md rss.xml
 
 blog: *.go go.*
 	go build -v
 
+MARKDOWN := $(wildcard ./**/*.md)
 README.md: blog $(MARKDOWN)
 	./blog > README.md
 
@@ -16,18 +15,18 @@ rss.xml: blog $(MARKDOWN)
 publish: blog
 	./blog -publish
 
-DAY := $(shell date '+%Y-%m-%d')
+DATE := $(shell date '+%Y-%m-%d')
 # -d is a GNUism, but sadly -j/-f is a BSDism
-# If GNU date extensions doesn't work, just do not try to parse the DAY
-_PARSED_DAY := $(shell date '+%Y-%m-%d' -d '$(DAY)' 2>/dev/null || echo '$(DAY)')
+# If GNU date extensions doesn't work, just do not try to parse the DATE
+_PARSED_DATE := $(shell date '+%Y-%m-%d' -d '$(DATE)' 2>/dev/null || echo '$(DATE)')
 .PHONY: day
 day:
-	mkdir -p '$(_PARSED_DAY)'
+	mkdir -p '$(_PARSED_DATE)'
 
 TITLE = $(error TITLE is not defined)
 .PHONY: post
 post: blog day
-	DAY=$(_PARSED_DAY) ./.scripts/gen-post.sh
+	DATE=$(_PARSED_DATE) ./.scripts/gen-post.sh
 
 FILE = $(error FILE is not defined)
 .PHONY: draft
