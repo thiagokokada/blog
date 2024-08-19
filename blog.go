@@ -220,9 +220,8 @@ func genRss(posts posts) string {
 	))
 
 	var items []*feeds.Item
-	for el := posts.Back(); el != nil; el = el.Prev() {
-		post := el.Value
-		link := must1(url.JoinPath(blogMainUrl, el.Key))
+	for path, post := range posts.ReverseIterator() {
+		link := must1(url.JoinPath(blogMainUrl, path))
 		var buf bytes.Buffer
 		must(md.Convert(post.contents, &buf))
 		items = append(items, &feeds.Item{
@@ -239,12 +238,11 @@ func genRss(posts posts) string {
 
 func genReadme(posts posts) string {
 	var titles []string
-	for el := posts.Back(); el != nil; el = el.Prev() {
-		post := el.Value
+	for path, post := range posts.ReverseIterator() {
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,
-			el.Key,
+			path,
 			post.date.Format(time.DateOnly),
 		)
 		titles = append(titles, title)
