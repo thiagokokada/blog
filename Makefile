@@ -4,7 +4,7 @@ MARKDOWN := $(wildcard ./**/*.md)
 all: README.md rss.xml
 
 blog: *.go go.*
-	go build
+	go build -v
 
 README.md: blog $(MARKDOWN)
 	./blog > README.md
