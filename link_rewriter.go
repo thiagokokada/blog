@@ -58,6 +58,15 @@ func (e *linkRewriter) Transform(node *ast.Document, reader text.Reader, pc pars
 	})
 }
 
+func hasSuffixes(s string, suffixes ...string) bool {
+	for _, suffix := range suffixes {
+		if strings.HasSuffix(s, suffix) {
+			return true
+		}
+	}
+	return false
+}
+
 // rewriteLink modifies the link URL
 func (e *linkRewriter) rewriteLink(l *ast.Link) {
 	link := string(l.Destination)
@@ -67,21 +76,28 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 	}
 
 	if strings.HasPrefix(link, "/") {
-		if e.posts != nil {
+		var dest string
+
+		if hasSuffixes(link, ".png", ".jpg", ".jpeg") {
+			// If the link is an image, we will point it to
+			// blogRawUrl
+			dest = must1(url.JoinPath(blogRawUrl, link))
+		} else if e.posts != nil {
 			// If posts are not nil, it means we will grab the slug
 			// from posts
 			post, ok := e.posts.Get(link[1:])
 			if ok {
-				dest := must1(url.JoinPath(e.prefixUrl, post.slug))
-				l.Destination = []byte(dest)
+				dest = must1(url.JoinPath(e.prefixUrl, post.slug))
 			} else {
 				log.Printf("[WARN]: did not find reference to link: %s\n", link)
+				return
 			}
 		} else {
 			// Else we will just append the prefixUrl to the link
-			dest := must1(url.JoinPath(e.prefixUrl, link))
-			l.Destination = []byte(dest)
+			dest = must1(url.JoinPath(e.prefixUrl, link))
 		}
+
+		l.Destination = []byte(dest)
 	}
 }
 

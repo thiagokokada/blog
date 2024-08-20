@@ -62,7 +62,7 @@ would be much better. The fact that the cores are old doesn't help either.
 
 But the worst part is the IO. Not only it uses a eMMC module, it is slow:
 
-![CPDT Benchmark results from Chromebook Duet 3.](/2024-08-12/Screenshot_2024-08-12_20.50.42.png)
+[![CPDT Benchmark results from Chromebook Duet 3.](/2024-08-12/Screenshot_2024-08-12_20.50.42.png)](/2024-08-12/Screenshot_2024-08-12_20.50.42.png)
 
 I don't know how much more expensive it would be to put a
 [UFS](https://en.wikipedia.org/wiki/Universal_Flash_Storage) instead of eMMC in
