@@ -75,9 +75,7 @@ example:
   dr-xr-xr-x  77 user  staff   2.4K 19 Aug 12:02 src
   ```
 
-By the way, this only works well because Go binaries are static, one of the
-things that make the language [reasonable
-good](/2024-07-29/02-go-a-reasonable-good-language.md).
+By the way, this only works well because Go toolchain binaries are static.
 
 While I don't like a program downloading random binaries from the internet, I
 like what Go is doing here. It makes the whole bootstrapping process for a Go
