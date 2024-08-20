@@ -17,6 +17,7 @@ package main
 import (
 	"log"
 	"net/url"
+	"path/filepath"
 	"strings"
 
 	"github.com/yuin/goldmark"
@@ -58,9 +59,13 @@ func (e *linkRewriter) Transform(node *ast.Document, reader text.Reader, pc pars
 	})
 }
 
-func hasSuffixes(s string, suffixes ...string) bool {
-	for _, suffix := range suffixes {
-		if strings.HasSuffix(s, suffix) {
+func hasAnyExtension(s string, extensions ...string) bool {
+	ext := filepath.Ext(s)
+	if ext == "" {
+		return false
+	}
+	for _, e := range extensions {
+		if ext == e {
 			return true
 		}
 	}
@@ -78,7 +83,7 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 	if strings.HasPrefix(link, "/") {
 		var dest string
 
-		if hasSuffixes(link, ".png", ".jpg", ".jpeg") {
+		if hasAnyExtension(link, ".png", ".jpg", ".jpeg") {
 			// If the link is an image, we will point it to
 			// blogRawUrl
 			dest = must1(url.JoinPath(blogRawUrl, link))
