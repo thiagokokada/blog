@@ -1,24 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -euo pipefail
+set -eu
 
 # Expect to be set as environment variables
-readonly DATE TITLE
+readonly DATE SLUG TITLE
 
-SCRIPT_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
-readonly SCRIPT_DIR
-
-SLUG="$(cd "$SCRIPT_DIR" && ../blog -slugify "$TITLE")"
-readonly SLUG
-
-for i in $(seq -f "%02g" 99); do
+i=1
+while [ "$i" -ne 100 ]; do
+	n="$(printf '%.2d' "$i")"
 	# Match either normal files or hidden post files
-	if compgen -G "$DATE/$i*.md" &>/dev/null || \
-		compgen -G "$DATE/.$i*.md" &>/dev/null; then
+	if ls "$DATE/$n"*".md" >/dev/null 2>&1 || \
+		ls "$DATE/.$n"*".md" >/dev/null 2>&1; then
+		i=$(( i + 1 ))
 		continue
 	fi
 
-	file="$DATE/$i-$SLUG.md"
+	file="$DATE/$n-$SLUG.md"
 	echo "Creating file: $file"
 	echo "# ${TITLE}" > "$file"
 	exit 0

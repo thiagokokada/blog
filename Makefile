@@ -21,10 +21,10 @@ day:
 	mkdir -p '$(DATE)'
 
 TITLE = $(error TITLE is not defined)
+SLUG = $(shell ./blog -slugify "$(TITLE)")
 .PHONY: post
 post: blog day
-	@echo $(TITLE) >/dev/null # this is to force an error if TITLE is unset
-	DATE=$(DATE) ./.scripts/gen-post.sh
+	DATE=$(DATE) SLUG=$(SLUG) ./.scripts/gen-post.sh
 
 FILE = $(error FILE is not defined)
 .PHONY: draft
