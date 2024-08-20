@@ -8,10 +8,10 @@ remember myself, in future, if I have the same kind of issue what I need to do.
 
 The context: [Mataroa](https://mataroa.blog/), the blog platform
 [capivaras.dev](https://capivaras.dev) is hosted on, relies in
-[python-markdown](https://python-markdown.github.io/), predates CommonMark
-specification and as such, has some incompatibilities. One of those
-incompatibilities with CommonMark is the way sub lists are handled. From the
-documentation:
+[python-markdown](https://python-markdown.github.io/), predates
+[CommonMark](https://commonmark.org/) specification and as such, has some
+incompatibilities. One of those incompatibilities with CommonMark is the way
+sub lists are handled. From the documentation:
 
 > The syntax rules clearly state that when a list item consists of multiple
 > paragraphs, “each subsequent paragraph in a list item must be indented by
