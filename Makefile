@@ -24,7 +24,7 @@ TITLE = $(error TITLE is not defined)
 .PHONY: post
 post: blog day
 	@echo $(TITLE) >/dev/null # this is to force an error if TITLE is unset
-	./.scripts/gen-post.sh
+	DATE=$(DATE) ./.scripts/gen-post.sh
 
 FILE = $(error FILE is not defined)
 .PHONY: draft
