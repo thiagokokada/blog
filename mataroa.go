@@ -120,7 +120,9 @@ func publishToMataroa(posts posts) {
 	}
 
 	md = goldmark.New(
-		goldmark.WithRenderer(markdown.NewRenderer()),
+		goldmark.WithRenderer(
+			markdown.NewRenderer(markdown.WithSubListLength(2)),
+		),
 		goldmark.WithExtensions(
 			NewLinkRewriter(mataroaBlogUrl, posts),
 			extension.GFM,
