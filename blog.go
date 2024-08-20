@@ -253,6 +253,7 @@ func genReadme(ps posts) string {
 func main() {
 	slugify := flag.String("slugify", "", "Slugify input (e.g.: for blog titles)")
 	rss := flag.Bool("rss", false, "Generate RSS (XML) instead of README.md")
+	prepare := flag.Bool("prepare", false, "Prepare and print posts to Mataroa (mostly for debug)")
 	publish := flag.Bool("publish", false, "Publish updates to Maratoa instance")
 	flag.Parse()
 
@@ -262,7 +263,16 @@ func main() {
 	}
 
 	posts := grabPosts()
-	if *publish {
+	if *prepare {
+		for filename, post := range prepareToMataroa(posts).Iterator() {
+			fmt.Printf(
+				"%s\n# %s\n\n%s\n",
+				filename,
+				post.title,
+				post.contents,
+			)
+		}
+	} else if *publish {
 		publishToMataroa(posts)
 	} else if *rss {
 		fmt.Print(genRss(posts))
