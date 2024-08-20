@@ -60,6 +60,11 @@ type post struct {
 type path = string
 type posts = *orderedmap.OrderedMap[path, post]
 
+func must2[T1, T2 any](v1 T1, v2 T2, err error) (T1, T2) {
+	must(err)
+	return v1, v2
+}
+
 func must1[T any](v T, err error) T {
 	must(err)
 	return v
@@ -130,10 +135,10 @@ func getSlug(s string) string {
 	return slug.Make(s)
 }
 
-func grabPosts() posts {
+func grabPosts(root string) (posts, error) {
 	posts := orderedmap.NewOrderedMap[path, post]()
 
-	must(filepath.WalkDir(".", func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -203,9 +208,9 @@ func grabPosts() posts {
 		})
 
 		return nil
-	}))
+	})
 
-	return posts
+	return posts, err
 }
 
 func genRss(ps posts) string {
@@ -262,7 +267,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	posts := grabPosts()
+	posts := must1(grabPosts("."))
 	if *prepare {
 		for filename, post := range prepareToMataroa(posts).Iterator() {
 			fmt.Printf(
