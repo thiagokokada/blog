@@ -7,7 +7,7 @@ documentation is all scattered in the internet. So I am writing mostly to
 remember myself, in future, if I have the same kind of issue what I need to do.
 
 The context: [Mataroa](https://mataroa.blog/), the blog platform
-<capivaras.dev> is hosted on, relies in
+[capivaras.dev](https://capivaras.dev) is hosted on, relies in
 [python-markdown](https://python-markdown.github.io/), predates CommonMark
 specification and as such, has some incompatibilities. One of those
 incompatibilities with CommonMark is the way sub lists are handled. From the
@@ -29,9 +29,15 @@ CommonMark renderer called
 [Goldmark](https://github.com/yuin/goldmark/). I them re-render the Markdown to
 Mataroa using a [Markdown
 renderer](https://github.com/teekennedy/goldmark-markdown) before publising to
-<capivaras.dev>, because this allow me to do some transformations in the
-original Markdown. It mostly works fine except for sub lists, thanks to the
-fact that the Markdown renderer I am using renders sub lists with 2 spaces.
+[capivaras.dev](https://capivaras.dev), because this allow me to do some
+transformations in the original Markdown. It mostly works fine except for sub
+lists, thanks to the fact that the Markdown renderer I am using renders sub
+lists with 2 spaces.
+
+The only reason sub lists are working right now is because
+[@ratsclub](https://gluer.org/) fixed this issue in the fork that
+[capivaras.dev](https://capivaras.dev) runs. But I want to be compatible with
+the official instance if I ever need to migrate.
 
 The solution? Let's fix this in a
 [PR](https://github.com/teekennedy/goldmark-markdown/pull/21). However now that
