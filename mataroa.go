@@ -25,6 +25,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/elliotchance/orderedmap/v2"
 	markdown "github.com/teekennedy/goldmark-markdown"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
@@ -36,10 +37,7 @@ const (
 	mataroaBlogUrl = mataroaBaseUrl + "/blog/"
 )
 
-var (
-	mataroaToken = os.Getenv("MATAROA_TOKEN")
-	md           goldmark.Markdown
-)
+var mataroaToken = os.Getenv("MATAROA_TOKEN")
 
 // https://capivaras.dev/api/docs/
 type mataroaResponse struct {
@@ -70,7 +68,7 @@ func mustMataroaUrl(elem ...string) string {
 	return mUrl
 }
 
-func mustMataroaReq(method string, url string, body []byte) (p mataroaResponse, r *http.Response) {
+func mustMataroaReq(method string, url string, body []byte) (m mataroaResponse, r *http.Response) {
 	// Prepare request payload if non-nil
 	var reqBuf io.Reader
 	if body != nil {
@@ -81,54 +79,62 @@ func mustMataroaReq(method string, url string, body []byte) (p mataroaResponse, 
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", mataroaToken))
 
 	// Do request and return response
-	resp := must1(http.DefaultClient.Do(req))
-	respBody := must1(io.ReadAll(resp.Body))
-	json.Unmarshal(respBody, &p)
-	return p, resp
+	r = must1(http.DefaultClient.Do(req))
+	rBody := must1(io.ReadAll(r.Body))
+	json.Unmarshal(rBody, &m)
+	return m, r
 }
 
-func mustGetMataroaPost(slug string) (p mataroaResponse, r *http.Response) {
+func mustGetMataroaPost(slug string) (mataroaResponse, *http.Response) {
 	return mustMataroaReq("GET", mustMataroaUrl("posts", slug), nil)
 }
 
-func mustPatchMataroaPost(slug string, post post) (p mataroaResponse, r *http.Response) {
-	buf := bytes.Buffer{}
-	must(md.Convert([]byte(post.contents), &buf))
+func mustPatchMataroaPost(slug string, p post) (mataroaResponse, *http.Response) {
 	reqBody := must1(json.Marshal(mataroaPatchRequest{
-		Title:       post.title,
-		Body:        buf.String(),
-		Slug:        post.slug,
-		PublishedAt: post.date.Format(time.DateOnly),
+		Title:       p.title,
+		Body:        string(p.contents),
+		Slug:        p.slug,
+		PublishedAt: p.date.Format(time.DateOnly),
 	}))
 	return mustMataroaReq("PATCH", mustMataroaUrl("posts", slug), reqBody)
 }
 
-func mustPostMataroaPost(post post) (p mataroaResponse, r *http.Response) {
-	buf := bytes.Buffer{}
-	must(md.Convert([]byte(post.contents), &buf))
+func mustPostMataroaPost(p post) (mataroaResponse, *http.Response) {
 	reqBody := must1(json.Marshal(mataroaPostRequest{
-		Title:       post.title,
-		Body:        buf.String(),
-		PublishedAt: post.date.Format(time.DateOnly),
+		Title:       p.title,
+		Body:        string(p.contents),
+		PublishedAt: p.date.Format(time.DateOnly),
 	}))
 	return mustMataroaReq("POST", mustMataroaUrl("posts"), reqBody)
 }
 
-func publishToMataroa(posts posts) {
-	if mataroaToken == "" {
-		log.Fatal("empty MATAROA_TOKEN environment variable")
-	}
-
-	md = goldmark.New(
+func prepareToMataroa(ps posts) posts {
+	md := goldmark.New(
 		goldmark.WithRenderer(
 			markdown.NewRenderer(markdown.WithSubListLength(2)),
 		),
 		goldmark.WithExtensions(
-			NewLinkRewriter(mataroaBlogUrl, posts),
+			NewLinkRewriter(mataroaBlogUrl, ps),
 			extension.GFM,
 		),
 	)
-	for _, post := range posts.Iterator() {
+
+	preparedPosts := orderedmap.NewOrderedMap[path, post]()
+	for filename, p := range ps.Iterator() {
+		buf := bytes.Buffer{}
+		must(md.Convert([]byte(p.contents), &buf))
+		p.contents = buf.Bytes()
+		preparedPosts.Set(filename, p)
+	}
+	return preparedPosts
+}
+
+func publishToMataroa(ps posts) {
+	if mataroaToken == "" {
+		log.Fatal("empty MATAROA_TOKEN environment variable")
+	}
+
+	for _, post := range prepareToMataroa(ps).Iterator() {
 		p, resp := mustGetMataroaPost(post.slug)
 		if p.Ok {
 			p, resp = mustPatchMataroaPost(post.slug, post)

@@ -131,7 +131,7 @@ func getSlug(s string) string {
 }
 
 func grabPosts() posts {
-	posts := orderedmap.NewOrderedMap[string, post]()
+	posts := orderedmap.NewOrderedMap[path, post]()
 
 	must(filepath.WalkDir(".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
@@ -208,7 +208,7 @@ func grabPosts() posts {
 	return posts
 }
 
-func genRss(posts posts) string {
+func genRss(ps posts) string {
 	feed := &feeds.Feed{
 		Title:       "kokada's blog",
 		Description: "# dd if=/dev/urandom of=/dev/brain0",
@@ -220,7 +220,7 @@ func genRss(posts posts) string {
 	))
 
 	var items []*feeds.Item
-	for path, post := range posts.ReverseIterator() {
+	for path, post := range ps.ReverseIterator() {
 		link := must1(url.JoinPath(blogMainUrl, path))
 		var buf bytes.Buffer
 		must(md.Convert(post.contents, &buf))
@@ -236,9 +236,9 @@ func genRss(posts posts) string {
 	return must1(feed.ToRss())
 }
 
-func genReadme(posts posts) string {
+func genReadme(ps posts) string {
 	var titles []string
-	for path, post := range posts.ReverseIterator() {
+	for path, post := range ps.ReverseIterator() {
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,
