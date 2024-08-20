@@ -35,6 +35,10 @@ draft:
 undraft:
 	cd '$(dir $(FILE))' && mv '$(notdir $(FILE))' '$(patsubst .%,%,$(notdir $(FILE)))'
 
+.PHONY: image
+image:
+	@echo '[![$(DESCRIPTION)](/$(FILE))](/$(FILE))'
+
 .PHONY: words
 words:
 	wc -w **/*.md
