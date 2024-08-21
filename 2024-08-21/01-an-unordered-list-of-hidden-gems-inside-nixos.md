@@ -14,8 +14,7 @@ something else, but also I don't want to think too hard about an order here.
 
 With all above, let's start.
 
-##
-[`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/6afb255d976f85f3359e4929abd6f5149c323a02/nixos/modules/services/networking/nftables.nix)
+## [`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/6afb255d976f85f3359e4929abd6f5149c323a02/nixos/modules/services/networking/nftables.nix)
 
 [nftables](https://www.nftables.org/) is, accordingly to Wikipedia:
 
@@ -164,8 +163,7 @@ from network). I can't say that I have any system like this to test if it is
 actually more reliable or not, but I don't remember having any issues since I
 set `boot.initrd.systemd.enable = true`, so there is that.
 
-##
-[services.pipewire](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
+## [services.pipewire](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
 
 If there is something in that list that has a good chance that you're using
 already, it is this one, especially if you're using
