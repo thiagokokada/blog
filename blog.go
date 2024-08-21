@@ -152,8 +152,8 @@ func grabPosts(root string) (posts, error) {
 			return nil
 		}
 
-		// Get the directory of the file
-		dir := filepath.Dir(path)
+		// Get the base directory of the file
+		dir := filepath.Base(filepath.Dir(path))
 		// Ignore files in the current directory
 		if dir == "." {
 			return nil
@@ -267,7 +267,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	posts := must1(grabPosts("."))
+	posts := must1(grabPosts("posts"))
 	if *prepare {
 		for filename, post := range prepareToMataroa(posts).Iterator() {
 			fmt.Printf(

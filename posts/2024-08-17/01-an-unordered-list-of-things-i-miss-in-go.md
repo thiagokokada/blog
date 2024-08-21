@@ -1,9 +1,9 @@
 # An unordered list of things I miss in Go
 
 I like Go. I think it is a [reasonable good
-language](/2024-07-29/02-go-a-reasonable-good-language.md), and has some good
-qualities that makes up for its flaws. However, this doesn't mean I think the
-language couldn't be better, far from it.
+language](/posts/2024-07-29/02-go-a-reasonable-good-language.md), and has some
+good qualities that makes up for its flaws. However, this doesn't mean I think
+the language couldn't be better, far from it.
 
 This blog post is a list of things that I miss from Go from other languages.
 Some of the things here could probably be implemented soon, some other would
@@ -158,8 +158,8 @@ new string, n int = -1)` signature, that would mean we don't need
 ## Nullability (or nillability)
 
 I talked I little about this in [my previous post about
-Go](/2024-07-29/02-go-a-reasonable-good-language.md), but I want to expand
-here.
+Go](/posts/2024-07-29/02-go-a-reasonable-good-language.md), but I want to
+expand here.
 
 First, I don't think the language needs to support the generic solution for
 nullability, that would be either having proper Union or Sum types. Kotlin

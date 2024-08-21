@@ -4,9 +4,9 @@
 conclusion I got after some searching.
 
 Someone asked me in my [previous
-post](/2024-08-05/01-my-favorite-device-is-a-chromebook.md) about my Chromebook
-if Crostini could be considered a micro VM. This was a interesting question, so
-I decided to do another post.
+post](/posts/2024-08-05/01-my-favorite-device-is-a-chromebook.md) about my
+Chromebook if Crostini could be considered a micro VM. This was a interesting
+question, so I decided to do another post.
 
 To start, it is really difficult to get a good definition of what a "micro VM"
 is. [Firecracker](https://firecracker-microvm.github.io/) defines itself as a

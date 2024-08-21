@@ -2,14 +2,14 @@
 
 If you are following this blog for a while, it should be no surprise that most
 of the workflow in this blog is [automated using
-Go](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md). I
+Go](/posts/2024-07-29/01-quick-bits-why-you-should-automate-everything.md). I
 basically write Markdown files with some special rules inside the
 [repository](https://github.com/thiagokokada/blog), commit and push it. In
 seconds, the CI (currently [GitHub
 Actions](https://github.com/thiagokokada/blog/blob/4e3f25485c6682f3e066b219df2290934bc0d256/.github/workflows/go.yml))
 will take the latest commit, generate some files (since I use the [repository
-itself](/2024-07-26/02-using-github-as-a-bad-blog-platform.md) as a backup
-blog) and publish to the [capivaras.dev
+itself](/posts/2024-07-26/02-using-github-as-a-bad-blog-platform.md) as a
+backup blog) and publish to the [capivaras.dev
 website](https://kokada.capivaras.dev/).
 
 Now, considering how much about [Nix](https://nixos.org/) I talk in this blog,
@@ -37,9 +37,9 @@ be found [here](https://makefiletutorial.com/). Also, while I am using `Make`
 thanks to the reasons above, you can use many other tools for a similar
 objective, like [Justfiles](https://github.com/casey/just),
 [Taskfiles](https://taskfile.dev/) (sadly it uses
-[YAML](/2024-07-31/01-generating-yaml-files-with-nix.md)), or even a small
-script written in any language you want. The reason that I am writing this post
-is why you should do it, not how.
+[YAML](/posts/2024-07-31/01-generating-yaml-files-with-nix.md)), or even a
+small script written in any language you want. The reason that I am writing
+this post is why you should do it, not how.
 
 A quick recap on how this blog works: inside the
 [repository](https://github.com/thiagokokada/blog), a post is basically a
@@ -277,7 +277,7 @@ published. And the reason I created those targets is because I was tired of
 trying to hide or unhide a file manually.
 
 So that's it, for the same reason you [should probably automate
-everything](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md),
+everything](/posts/2024-07-29/01-quick-bits-why-you-should-automate-everything.md),
 you also need to have some way to automate your tasks. `Makefile` is one way to
 do it, maybe not the best way to do it, but it works and it is available
 anywhere.

@@ -1,10 +1,10 @@
 # Meta: are quick bits really quick?
 
 When I wrote my first [quick
-bits](/2024-07-27/01-quick-bits-nix-shell-is-cursed.md) post in this blog, I
-gave that title prefix without much thought: I knew it was supposed to be a
-quicker post than my previous one, but I never thought too deeply about it. But
-after:
+bits](/posts/2024-07-27/01-quick-bits-nix-shell-is-cursed.md) post in this
+blog, I gave that title prefix without much thought: I knew it was supposed to
+be a quicker post than my previous one, but I never thought too deeply about
+it. But after:
 
 ```console
 $ ls -lah **/*quick-bits*.md | wc -l

@@ -24,10 +24,9 @@ restrictions](https://spec.commonmark.org/0.31.2/#lists), allowing a sublist to
 be defined with just 2 spaces of indentation.
 
 So I have automated all posts from this blog [using
-Go](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md) and a
-CommonMark renderer called
-[Goldmark](https://github.com/yuin/goldmark/). I them re-render the Markdown to
-Mataroa using a [Markdown
+Go](/posts/2024-07-29/01-quick-bits-why-you-should-automate-everything.md) and
+a CommonMark renderer called [Goldmark](https://github.com/yuin/goldmark/). I
+them re-render the Markdown to Mataroa using a [Markdown
 renderer](https://github.com/teekennedy/goldmark-markdown) before publising to
 [capivaras.dev](https://capivaras.dev), because this allow me to do some
 transformations in the original Markdown. It mostly works fine except for sub

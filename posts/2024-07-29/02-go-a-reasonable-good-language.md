@@ -9,15 +9,16 @@ Go forward 2023 (no pun indented), I wrote my [first project in
 Go](https://github.com/thiagokokada/twenty-twenty-twenty/), wrote some scripts
 at `$CURRENT_JOB` in the language, and now wrote [my first
 library](https://github.com/thiagokokada/hyprland-go/) (with an [interesting
-way to run CI](/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md)). I am
-also writing more
+way to run
+CI](/posts/2024-07-26/01-writing-nixos-tests-for-fun-and-profit.md)). I am also
+writing more
 [scripts](https://github.com/thiagokokada/nix-configs/blob/8c559527ed12e1d4f57a3fc5c72630b956f4c290/home-manager/desktop/wayland/hyprland/hyprtabs/hyprtabs.go)
 in the language, where I would prefer to use Bash or Python before. Heck, even
 this blog is automatically published with a [Go
-script](/2024-07-29/01-quick-bits-why-you-should-automate-everything.md), that
-used to be a [Python
-one](/2024-07-26/02-using-github-as-a-bad-blog-platform.md) before. I can say
-that nowadays it is another language in my toolbox, and while it is still a
+script](/posts/2024-07-29/01-quick-bits-why-you-should-automate-everything.md),
+that used to be a [Python
+one](/posts/2024-07-26/02-using-github-as-a-bad-blog-platform.md) before. I can
+say that nowadays it is another language in my toolbox, and while it is still a
 love and hate relationship, recently it is more about love and less about hate.
 
 The points that I love about Go is probably obvious for some, but still

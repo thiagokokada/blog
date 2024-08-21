@@ -3,7 +3,7 @@
 If everything works as expected this blog post should appear in [in my
 blog](https://kokada.capivaras.dev/) without I ever touching the
 [capivaras.dev](https://capivavas.dev) website. I rewrote my [previous Python
-script](/2024-07-26/02-using-github-as-a-bad-blog-platform.md) to Go
+script](/posts/2024-07-26/02-using-github-as-a-bad-blog-platform.md) to Go
 ([permalink](https://github.com/thiagokokada/blog/blob/3c39e0f7cd58b1af885f69871490b05bf6fc7d99/blog.go))
 since my attempt to generate proper description to the RSS feed resulted in
 slow startup times (not because of Python, but because of my usage of

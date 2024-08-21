@@ -7,10 +7,11 @@ listed anywhere (well, except if you are the kind of person that reads `man 5
 configuration.nix` or the release notes in every release).
 
 So kind in the same spirit as my [list of things that I miss in
-Go](/2024-08-17/01-an-unordered-list-of-things-i-miss-in-go.md), here is a list
-of modules that I find neat in NixOS and are not default already. Again, the
-list is unordered since this makes it easier to update in the future if I find
-something else, but also I don't want to think too hard about an order here.
+Go](/posts/2024-08-17/01-an-unordered-list-of-things-i-miss-in-go.md), here is
+a list of modules that I find neat in NixOS and are not default already. Again,
+the list is unordered since this makes it easier to update in the future if I
+find something else, but also I don't want to think too hard about an order
+here.
 
 With all above, let's start.
 

@@ -3,8 +3,8 @@
 I am using
 [elliotchance/orderedmap](https://github.com/elliotchance/orderedmap/) as my
 choice of ordered maps (since Go [doesn't have
-one](/2024-08-17/01-an-unordered-list-of-things-i-miss-in-go.md) in standard
-library yet). I recently did a
+one](/posts/2024-08-17/01-an-unordered-list-of-things-i-miss-in-go.md) in
+standard library yet). I recently did a
 [PR](https://github.com/elliotchance/orderedmap/pull/41) to implement Go 1.23
 iterators, because I find them neat, however I was avoiding to use it in the
 code that generates this [blog](https://github.com/thiagokokada/blog) since Go

@@ -17,10 +17,10 @@ Linux.
 Since I never found a good multi-platform alternative, I decided to write my
 own. This became
 [twenty-twenty-twenty](https://github.com/thiagokokada/twenty-twenty-twenty/),
-the first [Go](/2024-07-29/02-go-a-reasonable-good-language.md) program that I
-ever wrote. I wrote it in Go because I wanted to learn the language, but also
-because Go made it easy to build static binaries. And the first
-version I could build static binaries without issues because I was using
+the first [Go](/posts/2024-07-29/02-go-a-reasonable-good-language.md) program
+that I ever wrote. I wrote it in Go because I wanted to learn the language, but
+also because Go made it easy to build static binaries. And the first version I
+could build static binaries without issues because I was using
 [beeep](https://github.com/gen2brain/beeep), that uses pure Go code in all
 supported platforms. However, it also meant that the notifications in macOS
 looked ugly, since it used
