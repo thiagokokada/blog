@@ -26,8 +26,8 @@ import (
 	"time"
 
 	"github.com/elliotchance/orderedmap/v2"
-	markdown "github.com/teekennedy/goldmark-markdown"
 	"github.com/yuin/goldmark"
+	highlighting "github.com/yuin/goldmark-highlighting"
 	"github.com/yuin/goldmark/extension"
 )
 
@@ -122,12 +122,10 @@ func postMataroaPost(p post) (mataroaResponse, *http.Response, error) {
 
 func prepareToMataroa(ps posts) posts {
 	md := goldmark.New(
-		goldmark.WithRenderer(
-			markdown.NewRenderer(markdown.WithSubListLength(2)),
-		),
 		goldmark.WithExtensions(
 			NewLinkRewriter(mataroaBlogUrl, ps),
 			extension.GFM,
+			highlighting.NewHighlighting(highlighting.WithStyle(highlightStyle)),
 		),
 	)
 
