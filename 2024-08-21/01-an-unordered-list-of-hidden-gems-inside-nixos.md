@@ -124,10 +124,10 @@ Benchmark 1: sudo nixos-rebuild switch
   Range (min … max):    3.325 s …  3.608 s    10 runs
 ```
 
-But yes, the difference is not enough to make a significant impact. The real
-reason for the rewrite is to make it easier to colaborate. I hope one day we
-also have someone brave enough to rewrite the `nixos-rebuild` script in
-something saner.
+But yes, the difference is not enough to make a significant impact, and it is
+not the objective anyway. The real reason for the rewrite is to make it easier
+to colaborate. I hope one day we also have someone brave enough to rewrite the
+`nixos-rebuild` script in something saner.
 
 ## [boot.initrd.systemd](https://github.com/NixOS/nixpkgs/blob/cce9aef6fd8f010d288d685b9d2a38f3b6ac47e9/nixos/modules/system/boot/systemd/initrd.nix)
 
@@ -162,4 +162,63 @@ But I think the main reason is that since `systemd` is event-driven, it should
 make boot more reliable, especially in challenging situations (like booting
 from network). I can't say that I have any system like this to test if it is
 actually more reliable or not, but I don't remember having any issues since I
-set `boot.initrd.systemd.enable = true`.
+set `boot.initrd.systemd.enable = true`, so there is that.
+
+##
+[services.pipewire](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
+
+If there is something in that list that has a good chance that you're using
+already, it is this one, especially if you're using
+[Wayland](https://wayland.freedesktop.org/). Still, I think it is interesting
+to include in this list since [PipeWire](https://www.pipewire.org/) is great.
+
+The experience with PipeWire until now for me was seamless: I never had any
+issues with it, all my applications still work exactly as it always worked. I
+also didn't had any issues with
+[PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) for a
+while, but I still remember when I first tried PulseAudio during the 0.x in
+Fedora and having tons of issues. So bonus points for PipeWire developers for
+polishing the experience of enough that most people will feel no diffference.
+
+To enable PipeWire, I would recommend:
+
+```nix
+{
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+    # jack.enable = true;
+  };
+  security.rtkit.enable = true;
+}
+```
+
+This enables both ALSA and PulseAudio emulation support in PipeWire for maximum
+compatibility with desktop applications (you can also enable
+[`jack`](https://jackaudio.org/) if you use professional audio applications).
+It also enables [`rtkit`](https://github.com/heftig/rtkit), allowing PipeWire
+to get (soft) realtime, helping avoiding cracks during high CPU load.
+
+I also recommend taking a look at the [Wiki
+article](https://wiki.nixos.org/wiki/PipeWire), that has multiple interesting
+configurations that can be added for low-latency setups or improved codecs for
+Bluetooth devices.
+
+## [`networking.networkmanager.wifi.backend = "iwd"`](https://github.com/NixOS/nixpkgs/blob/c9ec8289781a3c4ac4dd5c42c8d50dd65360e79c/nixos/modules/services/networking/networkmanager.nix#L264-L271)
+
+There is a good change that you're using
+[`NetworkManager`](https://www.networkmanager.dev/) to manage network,
+especially for Wi-Fi. And if that is the case, I can't recommend enough
+changing the backend from the default `wpa_supplicant` to
+[`iwd`](https://iwd.wiki.kernel.org/).
+
+If you think that your Wi-Fi takes a long time to connect/re-connect, it may be
+because `wpa_supplicant`. `iwd` seems much more optimised in this regard, and
+since switching to it I never felt that my Wi-Fi was worse than other OSes (and
+generally slightly better than Windows, but keep in mind that this is a
+non-scientific comparison).
+
+Not saying that I never had Wi-Fi issues since switching to `iwd`, however
+switching back to `wpa_supplicant` in those cases never fixed the issue (it was
+the same or worse), so I assume either bad hardware or drivers in those cases.
