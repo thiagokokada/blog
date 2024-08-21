@@ -44,7 +44,7 @@ image:
 
 .PHONY: words
 words:
-	wc -w **/*.md
+	wc -w $(POST_ROOT)/**/*.md
 
 .PHONY: clean
 clean:
