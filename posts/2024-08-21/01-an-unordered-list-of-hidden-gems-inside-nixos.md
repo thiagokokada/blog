@@ -222,7 +222,7 @@ Not saying that I never had Wi-Fi issues since switching to `iwd`, however
 switching back to `wpa_supplicant` in those cases never fixed the issue (it was
 the same or worse), so I assume either bad hardware or drivers in those cases.
 
-## [boot.tmp.useTmpfs](https://github.com/NixOS/nixpkgs/blob/d5badef1e0416160298aad6dd8604eaf8b6e7e52/nixos/modules/system/boot/tmp.nix#L25-L32)
+## [`boot.tmp.useTmpfs`](https://github.com/NixOS/nixpkgs/blob/d5badef1e0416160298aad6dd8604eaf8b6e7e52/nixos/modules/system/boot/tmp.nix#L25-L32)
 
 _Added in 2024-08-22_
 
@@ -254,7 +254,7 @@ least setting `boot.tmp.cleanOnBoot = true`. This is to avoid issues with e.g.:
 mistankely writing a program that depends in `/tmp` being persistent, because
 this is the behavior that most other distros expects.
 
-## [zramSwap](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/zram.nix)
+## [`zramSwap`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/zram.nix)
 
 _Added in 2024-08-22_
 
@@ -287,7 +287,7 @@ fast, since you probably want to minize CPU usage. Well, unless you have a very
 good CPU and small amounts of RAM, them it may make sense to use an algorithm
 that compress better but uses more CPU.
 
-## [services.fstrim](https://github.com/NixOS/nixpkgs/blob/master/nixos/maintainers/scripts/ec2/amazon-image.nix)
+## [`services.fstrim`](https://github.com/NixOS/nixpkgs/blob/master/nixos/maintainers/scripts/ec2/amazon-image.nix)
 
 _Added in 2024-08-22_
 
@@ -309,7 +309,7 @@ implications](https://asalor.blogspot.com/2011/08/trim-dm-crypt-problems.html).
 It shouldn't be an issue for most people, but if you are paranoid please assess
 your risks first.
 
-## [boot.binfmt.emulatedSystems](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/binfmt.nix)
+## [`boot.binfmt.emulatedSystems`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/binfmt.nix)
 
 _Added in 2024-08-22_
 
