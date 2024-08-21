@@ -17,6 +17,7 @@ package main
 import (
 	"log"
 	"net/url"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -86,7 +87,12 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 		if hasAnyExtension(link, ".png", ".jpg", ".jpeg") {
 			// If the link is an image, we will point it to
 			// blogRawUrl
-			dest = must1(url.JoinPath(blogRawUrl, link))
+			if _, err := os.Stat(filepath.Join(".", link)); err == nil {
+				dest = must1(url.JoinPath(blogRawUrl, link))
+			} else {
+				log.Printf("[WARN] did not find image: %s\n", link)
+				return
+			}
 		} else if e.posts != nil {
 			// If posts are not nil, it means we will grab the slug
 			// from posts
@@ -94,7 +100,7 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 			if ok {
 				dest = must1(url.JoinPath(e.prefixUrl, post.slug))
 			} else {
-				log.Printf("[WARN]: did not find reference to link: %s\n", link)
+				log.Printf("[WARN] did not find reference to link: %s\n", link)
 				return
 			}
 		} else {
