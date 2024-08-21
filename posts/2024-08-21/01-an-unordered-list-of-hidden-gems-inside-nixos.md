@@ -15,7 +15,7 @@ here.
 
 With all above, let's start.
 
-## [`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/6afb255d976f85f3359e4929abd6f5149c323a02/nixos/modules/services/networking/nftables.nix)
+## [`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/networking/nftables.nix)
 
 [nftables](https://www.nftables.org/) is, accordingly to Wikipedia:
 
@@ -129,7 +129,7 @@ not the objective anyway. The real reason for the rewrite is to make it easier
 to colaborate. I hope one day we also have someone brave enough to rewrite the
 `nixos-rebuild` script in something saner.
 
-## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/cce9aef6fd8f010d288d685b9d2a38f3b6ac47e9/nixos/modules/system/boot/systemd/initrd.nix)
+## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/systemd/initrd.nix)
 
 A quick recap on how a modern Linux distro generally boots: the first thing
 that the bootloader (say [GRUB](https://www.gnu.org/software/grub/) or
@@ -164,7 +164,7 @@ from network). I can't say that I have any system like this to test if it is
 actually more reliable or not, but I don't remember having any issues since I
 set `boot.initrd.systemd.enable = true`, so there is that.
 
-## [`services.pipewire`](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
+## [`services.pipewire`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/libraries/pipewire/default.nix)
 
 If there is something in that list that has a good chance that you're using
 already, it is this one, especially if you're using
@@ -221,3 +221,133 @@ non-scientific comparison).
 Not saying that I never had Wi-Fi issues since switching to `iwd`, however
 switching back to `wpa_supplicant` in those cases never fixed the issue (it was
 the same or worse), so I assume either bad hardware or drivers in those cases.
+
+## [boot.tmp.useTmpfs](https://github.com/NixOS/nixpkgs/blob/d5badef1e0416160298aad6dd8604eaf8b6e7e52/nixos/modules/system/boot/tmp.nix#L25-L32)
+
+_Added in 2024-08-22_
+
+Most Linux distro nowadays mount `/tmp` inside
+[tmpfs](https://en.wikipedia.org/wiki/Tmpfs), storing the files inside RAM (and
+making them actually temporary, e.g.: does not persist between reboots). There
+is a [long discussion](https://lwn.net/Articles/499410/) whether this makes
+sense or not, but it is a fact that using `/tmp` as an storage for small files
+generally makes sense.
+
+However, NixOS still stores `/tmp` inside `/` by default. The main reason for
+this is because Nix, by default, still builds everything in `TMPDIR` (that
+defaults to `/tmp` if not set). To fix the situation you can do:
+
+```nix
+{
+  boot.tmp.useTmpfs = true;
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
+}
+```
+
+This ensures that Nix will build in `/var/tmp`, that is the temporary directory
+for large files.
+
+If you don't want to use `/tmp` inside tmpfs for some reason, I recommend at
+least setting `boot.tmp.cleanOnBoot = true`. This is to avoid issues with e.g.:
+mistankely writing a program that depends in `/tmp` being persistent, because
+this is the behavior that most other distros expects.
+
+## [zramSwap](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/zram.nix)
+
+_Added in 2024-08-22_
+
+Have a system with small amounts of RAM? ~~You can download more RAM for free,
+just click this [link](https://downloadmoreram.com/).~~ Well, just kidding, but
+you can actually improve RAM usage by compressing it. This is what
+[`zram`](https://en.wikipedia.org/wiki/Zram) does: it will create a block
+device using part of your RAM that will be compressed.
+
+While this means that whatever is in the compressed part can't be used as-is
+(it needs to be decompressed first), it means you can store a lot more
+information. And since RAM is much faster than disk, this generally is a good
+trade-off. It is still recommended that you have some swap space though, e.g.:
+to swap pages that are unused.
+
+To enable it, you can do:
+
+```nix
+{
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
+}
+```
+
+You can play a little with the `zramSwap.algorithm` parameter, but I recommend
+either `lz4` or `zstd`. It is important for the compression algorithm to be
+fast, since you probably want to minize CPU usage. Well, unless you have a very
+good CPU and small amounts of RAM, them it may make sense to use an algorithm
+that compress better but uses more CPU.
+
+## [services.fstrim](https://github.com/NixOS/nixpkgs/blob/master/nixos/maintainers/scripts/ec2/amazon-image.nix)
+
+_Added in 2024-08-22_
+
+Do you have a SSD? If so, you probably want to
+[trim](https://en.wikipedia.org/wiki/Trim_(computing)) it regurlarly to keep a
+good performance. This should be as easy as:
+
+```nix
+{
+  services.fstrim.enable = true;
+}
+```
+
+One caveat though: if you are using Full Disk Encryption with LUKS, you also
+need to enable `boot.initrd.luks.devices.<name>.allowDiscards`, otherwise
+`fstrim` will not work. The reason that this is not enabled by default is
+because there are some [security
+implications](https://asalor.blogspot.com/2011/08/trim-dm-crypt-problems.html).
+It shouldn't be an issue for most people, but if you are paranoid please assess
+your risks first.
+
+## [boot.binfmt.emulatedSystems](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/binfmt.nix)
+
+_Added in 2024-08-22_
+
+This is one of my favorites. Do you want to have the power to run binaries from
+other architectures like
+[ARM](https://en.wikipedia.org/wiki/ARM_architecture_family) or
+[RISC-V](https://en.wikipedia.org/wiki/RISC-V)? In NixOS it is easy:
+
+```nix
+{
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
+}
+```
+
+This will install a QEMU emulator for the target architectures, and configure
+[`binfmt`](https://en.wikipedia.org/wiki/Binfmt_misc) so that the kernel will
+automatically detect when a binary from another architecture is run,
+running it with the QEMU emulator instead.
+
+Now, keep in mind that you still need e.g.: libraries for the target
+architecture. However this is where the Nix magic comes in, you can easily
+compile something to another architecture as:
+
+```console
+$ uname -a
+Linux sankyuu-nixos 6.10.3 #1-NixOS SMP PREEMPT_DYNAMIC Sat Aug  3 07:01:09 UTC 2024 x86_64 GNU/Linux
+$ cd nixpkgs
+$ nix build .#hello --system aarch64-linux
+$ file ./result/bin/hello
+./result/bin/hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /nix/store/kz7xglxzhad64v667wwpn8vrxhjwcbna-glibc-2.39-52/lib/ld-linux-aarch64.so.1, for GNU/Linux 3.10.0, not stripped
+$ ./result/bin/hello
+Hello, world!
+```
+
+And since the binary will be linked with the libraries from the target
+architecture, evertyhing works as expect.
+
+You also need to temper your expectations: QEMU emulation is slow. It is
+sufficient fast to build small programs, but if you need to build something
+bigger, I would recommend you to do it via [cross-compilation
+instead](/posts/2024-08-11/01-building-static-binaries-in-nix.md).
