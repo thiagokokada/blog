@@ -16,8 +16,8 @@ while [ "$i" -ne 100 ]; do
 	fi
 
 	file="$DATE/$n-$SLUG.md"
-	echo "Creating file: $file"
 	echo "# ${TITLE}" > "$file"
+	echo "$file"
 	exit 0
 done
 

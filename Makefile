@@ -24,7 +24,7 @@ TITLE = $(error TITLE is not defined)
 SLUG = $(shell ./blog -slugify "$(TITLE)")
 .PHONY: post
 post: blog day
-	DATE=$(DATE) SLUG=$(SLUG) ./.scripts/gen-post.sh
+	$(EDITOR) $(shell DATE=$(DATE) SLUG=$(SLUG) ./.scripts/gen-post.sh)
 
 FILE = $(error FILE is not defined)
 .PHONY: draft
