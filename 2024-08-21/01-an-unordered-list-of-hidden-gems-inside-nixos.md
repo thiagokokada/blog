@@ -128,7 +128,7 @@ not the objective anyway. The real reason for the rewrite is to make it easier
 to colaborate. I hope one day we also have someone brave enough to rewrite the
 `nixos-rebuild` script in something saner.
 
-## [boot.initrd.systemd](https://github.com/NixOS/nixpkgs/blob/cce9aef6fd8f010d288d685b9d2a38f3b6ac47e9/nixos/modules/system/boot/systemd/initrd.nix)
+## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/cce9aef6fd8f010d288d685b9d2a38f3b6ac47e9/nixos/modules/system/boot/systemd/initrd.nix)
 
 A quick recap on how a modern Linux distro generally boots: the first thing
 that the bootloader (say [GRUB](https://www.gnu.org/software/grub/) or
@@ -163,7 +163,7 @@ from network). I can't say that I have any system like this to test if it is
 actually more reliable or not, but I don't remember having any issues since I
 set `boot.initrd.systemd.enable = true`, so there is that.
 
-## [services.pipewire](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
+## [`services.pipewire`](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
 
 If there is something in that list that has a good chance that you're using
 already, it is this one, especially if you're using
