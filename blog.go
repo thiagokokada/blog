@@ -39,7 +39,6 @@ const (
 	blogBaseUrl    = "https://github.com/thiagokokada/blog"
 	blogMainUrl    = blogBaseUrl + "/blob/main/"
 	blogRawUrl     = blogBaseUrl + "/raw/main/"
-	highlightStyle = "monokai"
 	readmeTemplate = `# Blog
 
 Mirror of my blog in https://kokada.capivaras.dev/.
@@ -222,7 +221,7 @@ func genRss(ps posts) string {
 	md := goldmark.New(goldmark.WithExtensions(
 		NewLinkRewriter(blogMainUrl, nil),
 		extension.GFM,
-		highlighting.NewHighlighting(highlighting.WithStyle(highlightStyle)),
+		highlighting.NewHighlighting(highlighting.WithStyle("monokai")),
 	))
 
 	var items []*feeds.Item
