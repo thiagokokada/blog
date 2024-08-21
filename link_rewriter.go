@@ -105,7 +105,12 @@ func (e *linkRewriter) rewriteLink(l *ast.Link) {
 			}
 		} else {
 			// Else we will just append the prefixUrl to the link
-			dest = must1(url.JoinPath(e.prefixUrl, link))
+			if _, err := os.Stat(filepath.Join(".", link)); err == nil {
+				dest = must1(url.JoinPath(e.prefixUrl, link))
+			} else {
+				log.Printf("[WARN] did not find link: %s\n", link)
+				return
+			}
 		}
 
 		l.Destination = []byte(dest)
