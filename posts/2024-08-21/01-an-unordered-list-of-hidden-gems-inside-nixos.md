@@ -369,3 +369,16 @@ protocol used mostly in Linux desktop. And distros like
 and
 [Fedora](https://fedoraproject.org/wiki/Changes/DbusBrokerAsTheDefaultDbusImplementation)
 already use it to default, so there aren't lots of reason to not use it.
+
+## [`services.irqbalance`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/hardware/irqbalance.nix)
+
+_Added in 2024-08-23_
+
+Here is one that I have no experience but got curious after this comment in
+[Lobte.rs](https://lobste.rs/s/ymmale/unordered_list_hidden_gems_inside_nixos#c_aghpwy):
+
+> One more option to add is maybe `services.irqbalance.enable`. For my old
+> laptop it’s a life savior: no more freezes of the DE or video playback during
+> heavy operations like e.g. compilation.
+
+Never tried it before but will give a try!
