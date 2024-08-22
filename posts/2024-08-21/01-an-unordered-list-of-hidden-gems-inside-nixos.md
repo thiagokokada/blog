@@ -351,3 +351,21 @@ You also need to temper your expectations: QEMU emulation is slow. It is
 sufficient fast to build small programs, but if you need to build something
 bigger, I would recommend you to do it via [cross-compilation
 instead](/posts/2024-08-11/01-building-static-binaries-in-nix.md).
+
+## [`services.dbus.implementation = "broker"`](https://github.com/NixOS/nixpkgs/blob/d9cf6ea6f809b862b73766705bdadb1236eeeff8/nixos/modules/services/system/dbus.nix#L40-L50)
+
+_Added in 2024-08-22_
+
+Someone in
+[Lobste.rs](https://lobste.rs/s/ymmale/unordered_list_hidden_gems_inside_nixos#c_dz1hck)
+remembered me of this gem: [dbus-broker](https://github.com/bus1/dbus-broker),
+a high performance implementation of
+[D-Bus](https://en.wikipedia.org/wiki/D-Bus).
+
+For those that doesn't know, D-Bus is the [Inter-Process
+Communication](https://en.wikipedia.org/wiki/Inter-process_communication)
+protocol used in most of Linux desktop. And distos like
+[Arch](https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/)
+and
+[Fedora](https://fedoraproject.org/wiki/Changes/DbusBrokerAsTheDefaultDbusImplementation)
+already use it to default, so there isn't lots of reason to not use it.
