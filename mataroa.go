@@ -32,9 +32,9 @@ import (
 )
 
 const (
-	mataroaBaseUrl = "https://kokada.capivaras.dev"
+	mataroaBaseUrl = "https://capivaras.dev"
 	mataroaApiUrl  = mataroaBaseUrl + "/api/"
-	mataroaBlogUrl = mataroaBaseUrl + "/blog/"
+	mataroaBlogUrl = "https://kokada.dev/blog/"
 )
 
 var mataroaToken = os.Getenv("MATAROA_TOKEN")
