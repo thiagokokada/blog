@@ -142,7 +142,7 @@ start init system (`systemd`).
 It may surprising that this `initrd` image does **not** generally include
 `systemd`. Traditionally `initrd` is composed by a bunch of shell scripts and a
 minimal runtime (e.g.: [busybox](https://www.busybox.net/)), however `systemd`
-can also do this job since a long time ago. It is just the paper of the distros
+can also do this job since a long time ago. It is just the role of the distros
 to integrate `systemd` inside the `initrd`.
 
 This is what `boot.initrd.systemd` does: enable `systemd` inside the `initrd`.
