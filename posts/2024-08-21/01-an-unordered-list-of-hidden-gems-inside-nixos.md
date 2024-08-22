@@ -362,10 +362,10 @@ remembered me of this gem: [dbus-broker](https://github.com/bus1/dbus-broker),
 a high performance implementation of
 [D-Bus](https://en.wikipedia.org/wiki/D-Bus).
 
-For those that doesn't know, D-Bus is the [Inter-Process
+For those who doesn't know, D-Bus is the [Inter-Process
 Communication](https://en.wikipedia.org/wiki/Inter-process_communication)
-protocol used in most of Linux desktop. And distos like
+protocol used mostly in Linux desktop. And distros like
 [Arch](https://archlinux.org/news/making-dbus-broker-our-default-d-bus-daemon/)
 and
 [Fedora](https://fedoraproject.org/wiki/Changes/DbusBrokerAsTheDefaultDbusImplementation)
-already use it to default, so there isn't lots of reason to not use it.
+already use it to default, so there aren't lots of reason to not use it.
