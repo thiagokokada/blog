@@ -9,7 +9,7 @@ SLUG = $(shell ./blog -slugify "$(TITLE)")
 .PHONY: all
 all: README.md rss.xml
 
-blog: *.go go.*
+blog: *.go go.* vendor
 	go build -v
 
 README.md: blog $(MARKDOWN)
