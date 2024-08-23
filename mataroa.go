@@ -132,11 +132,12 @@ func prepareToMataroa(ps posts) posts {
 	)
 
 	preparedPosts := orderedmap.NewOrderedMap[path, post]()
-	for filename, p := range ps.Iterator() {
+	for el := ps.Front(); el != nil; el = el.Next() {
+		path, post := el.Key, el.Value
 		buf := bytes.Buffer{}
-		must(md.Convert([]byte(p.contents), &buf))
-		p.contents = buf.Bytes()
-		preparedPosts.Set(filename, p)
+		must(md.Convert([]byte(post.contents), &buf))
+		post.contents = buf.Bytes()
+		preparedPosts.Set(path, post)
 	}
 	return preparedPosts
 }
@@ -146,7 +147,8 @@ func publishToMataroa(ps posts) {
 		log.Fatal("empty MATAROA_TOKEN environment variable")
 	}
 
-	for _, post := range prepareToMataroa(ps).Iterator() {
+	for el := prepareToMataroa(ps).Front(); el != nil; el = el.Next() {
+		post := el.Value
 		p, resp := must2(getMataroaPost(post.slug))
 		var err error
 		if p.Ok {

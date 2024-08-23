@@ -225,7 +225,8 @@ func genRss(ps posts) string {
 	))
 
 	var items []*feeds.Item
-	for path, post := range ps.ReverseIterator() {
+	for el := ps.Back(); el != nil; el = el.Prev() {
+		path, post := el.Key, el.Value
 		link := must1(url.JoinPath(blogMainUrl, path))
 		var buf bytes.Buffer
 		must(md.Convert(post.contents, &buf))
@@ -243,7 +244,8 @@ func genRss(ps posts) string {
 
 func genReadme(ps posts) string {
 	var titles []string
-	for path, post := range ps.ReverseIterator() {
+	for el := ps.Back(); el != nil; el = el.Prev() {
+		path, post := el.Key, el.Value
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,
