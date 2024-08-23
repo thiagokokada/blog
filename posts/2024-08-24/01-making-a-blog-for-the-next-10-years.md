@@ -17,7 +17,7 @@ working so I can publish blog posts:
 - Hosting and blog platform
 - Shell script and
 [Makefile](/posts/2024-08-13/01-abusing-makefiles-for-fun-and-profit.md)
-- Go compiler and dependencies
+- Go toolchain and modules
 
 Let's start with the most important one: the texts themselves, they're all
 written in [Markdown](https://www.markdownguide.org/). The nice thing about
@@ -67,6 +67,11 @@ and
 [Makefile](https://github.com/thiagokokada/blog/commit/074580065b21fbdaf930aa51968e69f015d49505)
 to avoid GNUisms, so in the eventual case that I decide to e.g.: stop using a
 GNU/Linux system like NixOS and use a *BSD system instead, I am covered.
+
+In other projects I would probably add a `shell.nix` file and add the GNU
+versions of the tools that I am using, but I am trying to avoid Nix while
+building this blog as much as I can, mainly because it is not available
+everywhere (e.g.: *BSD systems).
 
 Go is the more important part: the tooling used to [publish this blog is
 written in
@@ -122,9 +127,9 @@ me to ensure that this blog will still be publishable in the future, as long as
 I have a working Go toolchain (and Go toolchain makes this
 [easy](/posts/2024-08-19/01-quick-bits-go-automatically-downloads-a-newer-toolchain-if-needed.md)).
 
-There is a few other things that can bitrot this blog, for example links going
+There are a few other things that can bitrot this blog, for example links going
 nowhere. I always try to use
-[permalinks](https://en.wikipedia.org/wiki/Permalink) where it makes sense, but
+[permalinks](https://en.wikipedia.org/wiki/Permalink) when it makes sense, but
 the only actual way to ensure those links would work in the future would be to
 point them to [archive.org](https://archive.org/) (but even archive.org may not
 exist forever). Maybe something to fix in the future, hope not in the far
