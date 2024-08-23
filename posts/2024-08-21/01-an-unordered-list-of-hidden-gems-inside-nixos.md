@@ -126,7 +126,7 @@ Benchmark 1: sudo nixos-rebuild switch
 
 But yes, the difference is not enough to make a significant impact, and it is
 not the objective anyway. The real reason for the rewrite is to make it easier
-to colaborate. I hope one day we also have someone brave enough to rewrite the
+to collaborate. I hope one day we also have someone brave enough to rewrite the
 `nixos-rebuild` script in something saner.
 
 ## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/systemd/initrd.nix)
@@ -136,7 +136,7 @@ that the bootloader (say [GRUB](https://www.gnu.org/software/grub/) or
 [systemd-boot](https://systemd.io/BOOT/)) loads is `initrd` (_initial
 ramdisk_), a small image that runs from RAM and includes the Linux kernel and
 some utilities that are responsible for setting up the main system. For
-example, one of the responsabilities of the `initrd` is to mount the disks and
+example, one of the responsibilities of the `initrd` is to mount the disks and
 start init system (`systemd`).
 
 It may surprising that this `initrd` image does **not** generally include
@@ -177,7 +177,7 @@ also didn't had any issues with
 [PulseAudio](https://www.freedesktop.org/wiki/Software/PulseAudio/) for a
 while, but I still remember when I first tried PulseAudio during the 0.x in
 Fedora and having tons of issues. So bonus points for PipeWire developers for
-polishing the experience of enough that most people will feel no diffference.
+polishing the experience of enough that most people will feel no difference.
 
 To enable PipeWire, I would recommend:
 
@@ -251,7 +251,7 @@ for large files.
 
 If you don't want to use `/tmp` inside tmpfs for some reason, I recommend at
 least setting `boot.tmp.cleanOnBoot = true`. This is to avoid issues with e.g.:
-mistankely writing a program that depends in `/tmp` being persistent, because
+mistakenly writing a program that depends in `/tmp` being persistent, because
 this is the behavior that most other distros expects.
 
 ## [`zramSwap`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/zram.nix)
@@ -283,16 +283,16 @@ To enable it, you can do:
 
 You can play a little with the `zramSwap.algorithm` parameter, but I recommend
 either `lz4` or `zstd`. It is important for the compression algorithm to be
-fast, since you probably want to minize CPU usage. Well, unless you have a very
-good CPU and small amounts of RAM, them it may make sense to use an algorithm
-that compress better but uses more CPU.
+fast, since you probably want to minimise CPU usage. Well, unless you have a
+very good CPU and small amounts of RAM, them it may make sense to use an
+algorithm that compress better but uses more CPU.
 
 ## [`services.fstrim`](https://github.com/NixOS/nixpkgs/blob/master/nixos/maintainers/scripts/ec2/amazon-image.nix)
 
 _Added in 2024-08-22_
 
 Do you have a SSD? If so, you probably want to
-[trim](https://en.wikipedia.org/wiki/Trim_(computing)) it regurlarly to keep a
+[trim](https://en.wikipedia.org/wiki/Trim_(computing)) it regularly to keep a
 good performance. This should be as easy as:
 
 ```nix
