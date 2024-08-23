@@ -345,7 +345,7 @@ Hello, world!
 ```
 
 And since the binary will be linked with the libraries from the target
-architecture, evertyhing works as expect.
+architecture, everything works as expect.
 
 You also need to temper your expectations: QEMU emulation is slow. It is
 sufficient fast to build small programs, but if you need to build something
