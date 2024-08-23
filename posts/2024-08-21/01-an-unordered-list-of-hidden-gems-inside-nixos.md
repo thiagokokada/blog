@@ -15,7 +15,7 @@ here.
 
 With all above, let's start.
 
-## [`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/networking/nftables.nix)
+## [`networking.nftables`](https://github.com/NixOS/nixpkgs/blob/6afb255d976f85f3359e4929abd6f5149c323a02/nixos/modules/services/networking/nftables.nix)
 
 [nftables](https://www.nftables.org/) is, accordingly to Wikipedia:
 
@@ -129,7 +129,7 @@ not the objective anyway. The real reason for the rewrite is to make it easier
 to collaborate. I hope one day we also have someone brave enough to rewrite the
 `nixos-rebuild` script in something saner.
 
-## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/systemd/initrd.nix)
+## [`boot.initrd.systemd`](https://github.com/NixOS/nixpkgs/blob/cce9aef6fd8f010d288d685b9d2a38f3b6ac47e9/nixos/modules/system/boot/systemd/initrd.nix)
 
 A quick recap on how a modern Linux distro generally boots: the first thing
 that the bootloader (say [GRUB](https://www.gnu.org/software/grub/) or
@@ -164,7 +164,7 @@ from network). I can't say that I have any system like this to test if it is
 actually more reliable or not, but I don't remember having any issues since I
 set `boot.initrd.systemd.enable = true`, so there is that.
 
-## [`services.pipewire`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/libraries/pipewire/default.nix)
+## [`services.pipewire`](https://github.com/NixOS/nixpkgs/blob/b4a09f1f9d1599478afadffa782a02690550447c/pkgs/development/libraries/pipewire/default.nix)
 
 If there is something in that list that has a good chance that you're using
 already, it is this one, especially if you're using
@@ -254,7 +254,7 @@ least setting `boot.tmp.cleanOnBoot = true`. This is to avoid issues with e.g.:
 mistakenly writing a program that depends in `/tmp` being persistent, because
 this is the behavior that most other distros expects.
 
-## [`zramSwap`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/zram.nix)
+## [`zramSwap`](https://github.com/NixOS/nixpkgs/blob/68142254d20256e617f596a5d50f9950f98fa36a/nixos/modules/config/zram.nix)
 
 _Added in 2024-08-22_
 
@@ -287,7 +287,7 @@ fast, since you probably want to minimise CPU usage. Well, unless you have a
 very good CPU and small amounts of RAM, them it may make sense to use an
 algorithm that compress better but uses more CPU.
 
-## [`services.fstrim`](https://github.com/NixOS/nixpkgs/blob/master/nixos/maintainers/scripts/ec2/amazon-image.nix)
+## [`services.fstrim`](https://github.com/NixOS/nixpkgs/blob/5356420466c4d7901b63acc5e337c5bf30573f8a/nixos/modules/services/misc/fstrim.nix)
 
 _Added in 2024-08-22_
 
@@ -309,7 +309,7 @@ implications](https://asalor.blogspot.com/2011/08/trim-dm-crypt-problems.html).
 It shouldn't be an issue for most people, but if you are paranoid please assess
 your risks first.
 
-## [`boot.binfmt.emulatedSystems`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/system/boot/binfmt.nix)
+## [`boot.binfmt.emulatedSystems`](https://github.com/NixOS/nixpkgs/blob/e83fc891118e5e5660ccca000040e33b0a0a3080/nixos/modules/system/boot/binfmt.nix)
 
 _Added in 2024-08-22_
 
@@ -370,7 +370,7 @@ and
 [Fedora](https://fedoraproject.org/wiki/Changes/DbusBrokerAsTheDefaultDbusImplementation)
 already use it to default, so there aren't lots of reason to not use it.
 
-## [`services.irqbalance`](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/hardware/irqbalance.nix)
+## [`services.irqbalance`](https://github.com/NixOS/nixpkgs/blob/6afb255d976f85f3359e4929abd6f5149c323a02/nixos/modules/services/hardware/irqbalance.nix)
 
 _Added in 2024-08-23_
 
