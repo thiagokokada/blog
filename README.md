@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Making a blog for the next 10 years](posts/2024-08-24/01-making-a-blog-for-the-next-10-years.md) - 2024-08-24
 - [An unordered list of hidden gems inside NixOS](posts/2024-08-21/01-an-unordered-list-of-hidden-gems-inside-nixos.md) - 2024-08-21
 - [Quick bits: using forks with Go modules](posts/2024-08-20/01-quick-bits-using-forks-with-go-modules.md) - 2024-08-20
 - [Quick bits: Go automatically downloads a newer toolchain if needed](posts/2024-08-19/01-quick-bits-go-automatically-downloads-a-newer-toolchain-if-needed.md) - 2024-08-19
