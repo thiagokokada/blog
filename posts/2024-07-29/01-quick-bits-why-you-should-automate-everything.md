@@ -2,7 +2,7 @@
 
 If everything works as expected this blog post should appear in [in my
 blog](https://kokada.capivaras.dev/) without I ever touching the
-[capivaras.dev](https://capivavas.dev) website. I rewrote my [previous Python
+[capivaras.dev](https://capivaras.dev) website. I rewrote my [previous Python
 script](/posts/2024-07-26/02-using-github-as-a-bad-blog-platform.md) to Go
 ([permalink](https://github.com/thiagokokada/blog/blob/3c39e0f7cd58b1af885f69871490b05bf6fc7d99/blog.go))
 since my attempt to generate proper description to the RSS feed resulted in
@@ -13,13 +13,13 @@ Python dependencies).
 
 My previous workflow of this blog already involved me writing the texts in
 [neovim](https://neovim.io/), copying and pasting the result in the
-[capivaras.dev](https://capivavas.dev) website and publishing. This was not
+[capivaras.dev](https://capivaras.dev) website and publishing. This was not
 that bad, except that it seems I have a heavy tendency of editing my posts
 multiple times. Copying and pasting data between neovim and the website became
 tedious, so I decided to give up and automate the whole process.
 
 [Mataroa](https://mataroa.blog/) (the blog platform
-[capivaras.dev](https://capivavas.dev) run) has a reasonable good
+[capivaras.dev](https://capivaras.dev) run) has a reasonable good
 [API](https://mataroa.blog/api/docs/), and it only took a few hours to get a
 version of publishing working (it would take less if
 [Django](https://www.djangoproject.com/), the framework Mataroa is written, did
