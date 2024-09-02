@@ -20,8 +20,9 @@ shined, and where it just completely wasted my time.
 
 A disclaimer, I never bothered to buy a ChatGPT subscription because I don't
 feel that the tool is useful enough (at least yet), so most of the examples
-here are either with GPT-3.5 or GPT-4o mini, since those where the models
-offered by free in ChatGPT.
+here are either with [GPT-3.5](https://openai.com/index/chatgpt/) or [GPT-4o
+mini](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/),
+since those where the models offered by free in ChatGPT.
 
 An addendum, I have some experience with [GitHub
 Copilot](https://github.com/features/copilot) (another LLM, but this one runs
@@ -258,7 +259,7 @@ This is one of those cases where I saw something once and was trying to
 remember. ChatGPT just gave me lots of answers that were not a fork of Go
 ([V](https://vlang.io/), [Gluon](https://github.com/gluon-lang/gluon),
 [Pony](https://www.ponylang.io)), hallucinated a programming language (Gomini),
-and said that Zig is focused in STEM.
+and said that [Zig](https://ziglang.org/) is focused in STEM.
 
 By the way, I eventually remember what the language was:
 [Go+](https://goplus.org/). To be fair with ChatGPT, I misremembered that the
@@ -293,7 +294,7 @@ or other context". Thanks for wasting my time, I guess.
 
 I do think that LLMs, in particular ChatGPT since this is the one I have more
 experience with, are improving. But still, if there is anything that I
-concluded after putting all those experiences in a post is that you still
+concluded after putting all those experiences in a post is that you still need
 someone that knows at least as much about whatever you're asking ChatGPT to
 actually validate the answer.
 
