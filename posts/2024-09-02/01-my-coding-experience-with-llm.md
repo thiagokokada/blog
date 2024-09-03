@@ -184,7 +184,7 @@ remotely similar during my searches.
 > me to rewrite `[link](../2024-07-30/post.md)` to
 > `[link](https://kokada.capivaras.dev/slug)`
 
-Here is the resulting code:
+Here is the generated code:
 
 ```go
 package linkrewriter
@@ -241,6 +241,29 @@ func rewriteLink(link *ast.Link) {
 func generateSlug(url string) string {
 	// Assuming the slug is the last part of the URL without the extension
 	return strings.TrimSuffix(path.Base(url), path.Ext(url))
+}
+```
+
+```go
+package main
+
+import (
+	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/renderer/html"
+	linkrewriter "path/to/your/linkrewriter"
+)
+
+func main() {
+	md := goldmark.New(
+		goldmark.WithExtensions(
+			linkrewriter.NewLinkRewriter(),
+		),
+		goldmark.WithRendererOptions(
+			html.WithHardWraps(),
+		),
+	)
+
+	// Use `md.Convert` to convert your markdown to HTML as usual
 }
 ```
 
