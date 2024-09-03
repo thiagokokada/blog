@@ -184,6 +184,66 @@ remotely similar during my searches.
 > me to rewrite `[link](../2024-07-30/post.md)` to
 > `[link](https://kokada.capivaras.dev/slug)`
 
+Here is the resulting code:
+
+```go
+package linkrewriter
+
+import (
+	"fmt"
+	"path"
+	"strings"
+
+	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/ast"
+	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer"
+	"github.com/yuin/goldmark/util"
+)
+
+// LinkRewriter is the main struct for your extension
+type LinkRewriter struct{}
+
+// NewLinkRewriter returns a new instance of LinkRewriter
+func NewLinkRewriter() *LinkRewriter {
+	return &LinkRewriter{}
+}
+
+// Extend will be called by Goldmark to add your extension
+func (e *LinkRewriter) Extend(m goldmark.Markdown) {
+	m.Parser().AddOptions(parser.WithASTTransformers(util.Prioritized(e, 0)))
+}
+
+// Transform is the method that modifies the AST
+func (e *LinkRewriter) Transform(node *ast.Document, reader text.Reader, pc parser.Context) {
+	ast.Walk(node, func(n ast.Node, entering bool) (ast.WalkStatus, error) {
+		if !entering {
+			return ast.WalkContinue, nil
+		}
+		if link, ok := n.(*ast.Link); ok {
+			rewriteLink(link)
+		}
+		return ast.WalkContinue, nil
+	})
+}
+
+// rewriteLink modifies the link URL
+func rewriteLink(link *ast.Link) {
+	url := string(link.Destination)
+	if strings.HasPrefix(url, "../") {
+		// Modify this part according to your slug generation logic
+		slug := generateSlug(url)
+		link.Destination = []byte(fmt.Sprintf("https://kokada.capivaras.dev/%s", slug))
+	}
+}
+
+// generateSlug generates a slug from the given URL
+func generateSlug(url string) string {
+	// Assuming the slug is the last part of the URL without the extension
+	return strings.TrimSuffix(path.Base(url), path.Ext(url))
+}
+```
+
 This one will need some context. [Goldmark](https://github.com/yuin/goldmark/),
 the Markdown renderer that [powers this
 blog](/posts/2024-08-24/01-making-a-blog-for-the-next-10-years.md), does not
