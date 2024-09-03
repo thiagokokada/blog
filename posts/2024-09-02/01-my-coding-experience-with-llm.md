@@ -164,6 +164,11 @@ happening. But still, it didn't talked at all about the gotcha of setting the
 read deadline and reusing the underlying connection, needing another prompt to
 give me this information.
 
+Also, there is one issue in ChatGPT solution though: we are discarding the
+values of the buffer once the context is done by returning `n = 0` instead of
+the number of bytes read. In this particular case this is what I wanted, but
+this is a possible issue that ChatGPT didn't talk.
+
 For comparison,
 [this](https://stackoverflow.com/questions/61637359/how-to-use-context-context-with-tcp-connection-read)
 is the best that I got searching in both DuckDuckGo and Google, that is where I
