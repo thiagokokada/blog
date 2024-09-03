@@ -252,8 +252,8 @@ have good examples or documentation (at least I didn't found neither).
 So I was not really hopeful I would get any answers in ChatGPT, but not only it
 put me in the correct path, the code was almost correct. It did had some unused
 and missing imports, and there were some compilation errors that were easily
-fixed. Also, it just registered a `html.WithHardWraps()` renderer for no reason
-at all.
+fixed. And when it registered the extension, it also added a
+`html.WithHardWraps()` renderer for no reason at all.
 
 But this is one of the experiences in LLM that most impressed me. I had no idea
 at all on how to solve this problem, and ChatGPT basically gave me the
