@@ -268,3 +268,123 @@ This feature I am still somewhat hopeful that may become a reality in some
 future version of the language, since they didn't close the
 [issue](https://github.com/golang/go/issues/21498) yet, and the discussion
 about the possibility of this feature is still ongoing.
+
+## Error on unused return values
+
+_Added in 2024-09-12_
+
+In a [recent post about
+LLMs](/posts/2024-09-02/01-my-coding-experience-with-llm.md), I talked about
+this function that I asked ChatGPT to generate to create a socket that accepted
+a [context](https://pkg.go.dev/context):
+
+```go
+func readWithContext(ctx context.Context, conn net.Conn, buf []byte) (int, error) {
+    done := make(chan struct{})
+    var n int
+    var err error
+
+    // Start a goroutine to perform the read
+    go func() {
+        n, err = conn.Read(buf)
+        close(done)
+    }()
+
+    select {
+    case <-ctx.Done(): // Context was canceled or timed out
+        // Set a short deadline to unblock the Read()
+        conn.SetReadDeadline(time.Now())
+        <-done // Wait for the read to finish
+        return 0, ctx.Err()
+    case <-done: // Read finished successfully
+        return n, err
+    }
+}
+```
+
+However while reading [this blog
+post](https://joeduffyblog.com/2016/02/07/the-error-model/) about "The Error
+Model", I realised that this function is lacking error check during
+`conn.SetReadDeadline()` calls:
+
+```go
+func readWithContext(ctx context.Context, conn net.Conn, buf []byte) (n int, err error) {
+	done := make(chan struct{})
+
+	// Start a goroutine to perform the read
+	go func() {
+		n, err = conn.Read(buf)
+		close(done)
+	}()
+
+	select {
+	case <-done:
+		return n, err
+	case <-ctx.Done():
+		// Set a short deadline to unblock the Read()
+		err = conn.SetReadDeadline(time.Now())
+		if err != nil {
+			return 0, err
+		}
+		// Reset read deadline
+		defer func() {
+			if e := conn.SetReadDeadline(time.Time{}); e != nil {
+				err = errors.Join(err, e)
+			}
+		}()
+		// Make sure that the goroutine is done to avoid leaks
+		<-done
+		return 0, errors.Join(err, ctx.Err())
+	}
+}
+```
+
+I could blame the LLM on this, but this is the type of mistake that I could see
+happening even in a Pull Request done by an actual human.
+
+Ignoring errors is bad, especially because once the error is ignored it is
+gone, forever. You may have strange issues in the code that are impossible to
+debug because you can't know about something that doesn't exist. This is one of
+the reasons I think exceptions are better, since this is the kind of error that
+would be impossible to ignore if the language had exceptions, and the exception
+would eventually propagate in your stack until it is captured or you get a
+crash (with a stack trace to debug the issue).
+
+Now, I don't think this is a fault of using error as values instead of
+exceptions. Go has the tools to encapsulate the errors and propagate them
+properly, like it is shown in the fixed code. But the fact that someone can do
+this mistake without any warning or error from the compiler is bad.
+
+If Go had a warning or error for unused return values, this would be different:
+
+```go
+func foo(conn *net.Conn) {
+  // ...
+  _ = conn.SetReadDeadline(time.Now())
+}
+```
+
+Now in this case it is clear: I am ignoring the error explicitly, probably for
+a good reason. I can ask during a Pull Request why the committer is ignoring if
+it is lacking appropriate context, and maybe even ask for some comments to be
+added why this would be safe. What can't happen is this being ignored by
+mistake.
+
+I am not completely sure if I want this only for errors or for any unused value
+though. There are lots of cases where ignoring non-error values is ok, but I
+also don't see the issue of having something like:
+
+```go
+func foo() {
+  // ...
+  _, _ = FuncThatReturnIntAndError()
+}
+```
+
+If anything, it is clear for whoever is reading this code later that you're
+only calling this function only for its side-effects.
+
+By the way, yes, [errcheck](https://github.com/kisielk/errcheck) linter exists,
+but if the language itself doesn't enforce this it means that there are lots of
+libraries that are probably mistakenly ignoring errors. And if the library is
+ignoring errors by mistake, you can't do much when you actually have them.
