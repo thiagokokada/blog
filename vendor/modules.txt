@@ -47,9 +47,6 @@ github.com/gosimple/slug
 # github.com/gosimple/unidecode v1.0.1
 ## explicit; go 1.16
 github.com/gosimple/unidecode
-# github.com/teekennedy/goldmark-markdown v0.3.0 => github.com/thiagokokada/goldmark-markdown v0.0.0-20240820111219-f30775d8ed15
-## explicit; go 1.21
-github.com/teekennedy/goldmark-markdown
 # github.com/yuin/goldmark v1.7.4
 ## explicit; go 1.19
 github.com/yuin/goldmark
@@ -64,4 +61,6 @@ github.com/yuin/goldmark/util
 # github.com/yuin/goldmark-highlighting v0.0.0-20220208100518-594be1970594
 ## explicit; go 1.13
 github.com/yuin/goldmark-highlighting
+# gopkg.in/yaml.v3 v3.0.0
+## explicit
 # github.com/teekennedy/goldmark-markdown => github.com/thiagokokada/goldmark-markdown v0.0.0-20240820111219-f30775d8ed15

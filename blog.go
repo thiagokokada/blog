@@ -27,6 +27,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/elliotchance/orderedmap/v2"
 	"github.com/gorilla/feeds"
 	"github.com/gosimple/slug"
@@ -218,11 +219,16 @@ func genRss(ps posts) string {
 		Title:       "kokada's blog",
 		Description: "# dd if=/dev/urandom of=/dev/brain0",
 	}
-	md := goldmark.New(goldmark.WithExtensions(
-		NewLinkRewriter(blogMainUrl, nil),
-		extension.GFM,
-		highlighting.NewHighlighting(highlighting.WithStyle("monokai")),
-	))
+	md := goldmark.New(
+		goldmark.WithExtensions(
+			NewLinkRewriter(blogMainUrl, nil),
+			extension.GFM,
+			highlighting.NewHighlighting(
+				highlighting.WithStyle("monokai"),
+				highlighting.WithFormatOptions(html.Standalone(true)),
+			),
+		),
+	)
 
 	var items []*feeds.Item
 	for el := ps.Back(); el != nil; el = el.Prev() {
