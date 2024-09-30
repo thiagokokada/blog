@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Quick bits: where does Nix store Flake's trusted settings?](posts/2024-09-30/01-quick-bits-where-does-nix-store-flakes-trusted-settings.md) - 2024-09-30
 - [My coding experience with LLM](posts/2024-09-02/01-my-coding-experience-with-llm.md) - 2024-09-02
 - [Making a blog for the next 10 years](posts/2024-08-24/01-making-a-blog-for-the-next-10-years.md) - 2024-08-24
 - [An unordered list of hidden gems inside NixOS](posts/2024-08-21/01-an-unordered-list-of-hidden-gems-inside-nixos.md) - 2024-08-21
