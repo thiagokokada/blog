@@ -50,7 +50,7 @@ If you can get the headset to connect, go to the "Bluetooth" settings in
 Android, click in the gear icon for the headset and enable "LE Audio" option:
 
 [![LE Audio option Bluetooth
-Settings](/posts/2024-10-07/photo_4909454744305642937_y.jpg)](/posts/2024-10-07/photo_4909454744305642937_y)
+Settings](/posts/2024-10-07/photo_4909454744305642937_y.jpg)](/posts/2024-10-07/photo_4909454744305642937_y.jpg)
 
 If you can't, you may want to [restore the headset to factory
 settings](https://helpguide.sony.net/mdr/2963/v1/en/contents/TP1000783925.html)
