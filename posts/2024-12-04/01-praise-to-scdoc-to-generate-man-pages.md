@@ -87,7 +87,7 @@ will try to accomplish.
 To start, let's have a quick summary of the syntax, written in `scdoc` as
 comments:
 
-```
+```scdoc
 ; quick summary:
 ; # new section
 ; comments starts with ;
@@ -107,7 +107,7 @@ collaborating.
 
 And here an example of a (summarised) man page in `.scd` format:
 
-```
+```markdown
 nixos-rebuild-ng(8)
 
 # NAME
