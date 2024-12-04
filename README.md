@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [Praise to scdoc to generate man pages](posts/2024-12-04/01-praise-to-scdoc-to-generate-man-pages.md) - 2024-12-04
 - [Enabling LE Audio/LC3 in WF-1000XM5](posts/2024-10-07/01-enabling-le-audio-lc3-in-wf-1000xm5.md) - 2024-10-07
 - [Quick bits: where does Nix store Flake's trusted settings?](posts/2024-09-30/01-quick-bits-where-does-nix-store-flakes-trusted-settings.md) - 2024-09-30
 - [My coding experience with LLM](posts/2024-09-02/01-my-coding-experience-with-llm.md) - 2024-09-02
