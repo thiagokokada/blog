@@ -75,12 +75,13 @@ man pages: it more flexible than Markdown, but still far from optimal.
 Thanks to Drew DeVault (creator of [SwayWM](https://swaywm.org/)) that seems it
 had the same issues in the past and created
 [`scdoc`](https://drewdevault.com/2018/05/13/scdoc.html), a very simple man
-page generator in using a DSL inspired in Markdown but specific to generate
-manpages. The binary is written in C and has no dependencies, so it fits the
-requirement.
+page generator using a DSL inspired in Markdown, but specific to generate man
+pages. The binary is written in C (and advantage in this case since it means it
+is easier to bootstrap), is small (~1 Kloc) and has no dependencies, so it
+fits the requirement.
 
 While the language suffers from being a niche project for a niche segment, the
-[manpage](https://man.archlinux.org/man/scdoc.5.en) for it is actually really
+[man page](https://man.archlinux.org/man/scdoc.5.en) for it is actually really
 nice. It is terse though and lacks examples, and this is what this blog post
 will try to accomplish.
 
@@ -195,8 +196,8 @@ In the end, I think all that matters is the result. And for the first time for
 all those years trying to write a man page, I am satisfied with the result. The
 man page looks exactly as I wanted once rendered, and the `.scd` file looks
 reasonable good that it can work as a documentation for someone that for one
-reason or another can't use the man page. Also, it is really easy for someone
-to just go there and update the man page, even without experience in the format
-(except for maybe the requirement of tabs). So all in all, I really liked the
-format, and will use it again if I need to write another man page in the
-future.
+reason or another can't use the man page (can't say the same for the troff
+version). Also, it is really easy for someone to just go there and update the
+man page, even without experience in the format (except for maybe the
+requirement of tabs). So all in all, I really liked the format, and will use it
+again if I need to write another man page in the future.
