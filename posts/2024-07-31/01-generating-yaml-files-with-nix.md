@@ -82,7 +82,7 @@ new `flake.nix` file and put the following contents:
         {
           toYAML = pkgs.runCommand "toYAML" {
             buildInputs = with pkgs; [ yj ];
-            json = builtins.toJSON (import ./go.nix);
+            json = builtins.toJSON (import ./foo.nix);
             passAsFile = [ "json" ]; # will be available as `$jsonPath`
           } ''
             mkdir -p $out
