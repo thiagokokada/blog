@@ -207,7 +207,7 @@ post, we can modify `pkgs.runCommand` to run some kind of validator. I use
 [`action-validator`](https://github.com/mpalmer/action-validator), one that I
 particularly packaged in
 [nixpkgs](https://github.com/NixOS/nixpkgs/pull/260217) to use in those cases.
-But you could use e.g.: a validator of Kubernetes YAML. Or a generic YAML lint
+But you could use e.g.: a validator of Kubernetes YAML like this [one](https://yamline.com/k8s/). Or a generic YAML lint
 like this [one](https://github.com/adrienverge/yamllint). The possibilities are
 endless.
 
