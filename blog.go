@@ -28,7 +28,7 @@ import (
 	"time"
 
 	"github.com/alecthomas/chroma/formatters/html"
-	"github.com/elliotchance/orderedmap/v2"
+	"github.com/elliotchance/orderedmap/v3"
 	"github.com/gorilla/feeds"
 	"github.com/gosimple/slug"
 	"github.com/yuin/goldmark"
@@ -231,8 +231,7 @@ func genRss(ps posts) string {
 	)
 
 	var items []*feeds.Item
-	for el := ps.Back(); el != nil; el = el.Prev() {
-		path, post := el.Key, el.Value
+	for path, post := range ps.AllFromBack() {
 		link := must1(url.JoinPath(blogMainUrl, path))
 		var buf bytes.Buffer
 		must(md.Convert(post.contents, &buf))
@@ -250,8 +249,7 @@ func genRss(ps posts) string {
 
 func genReadme(ps posts) string {
 	var titles []string
-	for el := ps.Back(); el != nil; el = el.Prev() {
-		path, post := el.Key, el.Value
+	for path, post := range ps.AllFromBack() {
 		title := fmt.Sprintf(
 			"- [%s](%s) - %s",
 			post.title,

@@ -26,7 +26,7 @@ import (
 	"time"
 
 	"github.com/alecthomas/chroma/formatters/html"
-	"github.com/elliotchance/orderedmap/v2"
+	"github.com/elliotchance/orderedmap/v3"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting"
 	"github.com/yuin/goldmark/extension"
@@ -150,8 +150,7 @@ func publishToMataroa(ps posts) {
 		log.Fatal("empty MATAROA_TOKEN environment variable")
 	}
 
-	for el := prepareToMataroa(ps).Front(); el != nil; el = el.Next() {
-		post := el.Value
+	for post := range prepareToMataroa(ps).Values() {
 		p, resp := must2(getMataroaPost(post.slug))
 		var err error
 		if p.Ok {

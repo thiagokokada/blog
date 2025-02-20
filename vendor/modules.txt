@@ -31,17 +31,17 @@ github.com/alecthomas/chroma/lexers/x
 github.com/alecthomas/chroma/lexers/y
 github.com/alecthomas/chroma/lexers/z
 github.com/alecthomas/chroma/styles
-# github.com/dlclark/regexp2 v1.11.4
+# github.com/dlclark/regexp2 v1.11.5
 ## explicit; go 1.13
 github.com/dlclark/regexp2
 github.com/dlclark/regexp2/syntax
-# github.com/elliotchance/orderedmap/v2 v2.4.0
-## explicit; go 1.18
-github.com/elliotchance/orderedmap/v2
+# github.com/elliotchance/orderedmap/v3 v3.1.0
+## explicit; go 1.23.0
+github.com/elliotchance/orderedmap/v3
 # github.com/gorilla/feeds v1.2.0
 ## explicit; go 1.20
 github.com/gorilla/feeds
-# github.com/gosimple/slug v1.14.0
+# github.com/gosimple/slug v1.15.0
 ## explicit; go 1.11
 github.com/gosimple/slug
 # github.com/gosimple/unidecode v1.0.1
