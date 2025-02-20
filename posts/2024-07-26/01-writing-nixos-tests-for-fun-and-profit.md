@@ -195,7 +195,7 @@ If you want to take a look at the final result, it is
 [here](https://github.com/thiagokokada/hyprland-go/blob/v0.0.1/flake.nix). This
 tests run in any Linux machine that supports KVM, and also works in [GitHub
 Actions](https://github.com/thiagokokada/hyprland-go/actions/workflows/nix.yaml)
-thanks to the the
+thanks to the
 [nix-installer-action](https://github.com/DeterminateSystems/nix-installer-action).
 
 And now I have a proper CI pipeline in a way that I never imagined would be
