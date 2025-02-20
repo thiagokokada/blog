@@ -64,15 +64,17 @@ configure it any other way (e.g.: static IP):
         nodes.machine =
           { pkgs, lib, ... }:
           {
+            # Not strictly necessary, but if you are depending in Nix inside
+            # your VM tests, this has the effect of increasing reproducibility
             nix.nixPath = [ "${nixpkgs}" ];
 
             # Here is the important bit, starting the DHCP server
             networking.useDHCP = true;
 
+            # Tweak some VM options
             virtualisation = {
               cores = 2;
               memorySize = 2048;
-              diskSize = 10240;
             };
           };
 
@@ -83,6 +85,7 @@ configure it any other way (e.g.: static IP):
             # Good to make sure that DHCP client started before testing
             machine.wait_for_unit("multi-user.target")
 
+            # Check if we have network
             machine.succeed("ping -c 3 8.8.8.8")
           '';
       };
