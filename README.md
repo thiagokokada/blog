@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [NixOS VM test with network access](posts/2025-02-20/01-nixos-vm-test-with-network-access.md) - 2025-02-20
 - [Quick bits: basic flake.nix template](posts/2024-12-19/01-quick-bits-basic-flake-nix-template.md) - 2024-12-19
 - [Praise to scdoc to generate man pages](posts/2024-12-04/01-praise-to-scdoc-to-generate-man-pages.md) - 2024-12-04
 - [Enabling LE Audio/LC3 in WF-1000XM5](posts/2024-10-07/01-enabling-le-audio-lc3-in-wf-1000xm5.md) - 2024-10-07
