@@ -18,5 +18,3 @@ require (
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	gopkg.in/yaml.v3 v3.0.0 // indirect
 )
-
-replace github.com/teekennedy/goldmark-markdown => github.com/thiagokokada/goldmark-markdown v0.0.0-20240820111219-f30775d8ed15

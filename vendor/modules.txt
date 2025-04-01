@@ -63,4 +63,3 @@ github.com/yuin/goldmark/util
 github.com/yuin/goldmark-highlighting
 # gopkg.in/yaml.v3 v3.0.0
 ## explicit
-# github.com/teekennedy/goldmark-markdown => github.com/thiagokokada/goldmark-markdown v0.0.0-20240820111219-f30775d8ed15
