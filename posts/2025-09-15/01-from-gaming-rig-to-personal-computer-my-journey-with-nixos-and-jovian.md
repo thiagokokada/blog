@@ -86,11 +86,14 @@ environment variable before launching a game. Of course, there is no
     };
 
     # Add custom proton packages to Steam in Desktop session
-    # They show in the compatibility tools for each game in Steam, and setting
-    # it to "Proton-CachyOS" and adding `PROTON_FSR4_UPGRADE=1` to the command
-    # line arguments for that particular game I get FSR4 support
+    # They show in the compatibility tools for each game in Steam,
+    # (see: https://steamdeckhq.com/tips-and-guides/the-proton-ge-steam-deck-guide/)
+    # and setting it to "Proton-CachyOS" or "GE-Proton" and adding
+    # `PROTON_FSR4_UPGRADE=1` to the command-line arguments for
+    # that particular game I get FSR4 support
     programs.steam.extraCompatPackages = with pkgs; [
       proton-cachyos
+      proton-ge-custom
     ];
 
     # Enable KDE as the desktop environment.
