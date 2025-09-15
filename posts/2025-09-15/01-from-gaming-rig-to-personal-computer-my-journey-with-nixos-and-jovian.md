@@ -96,16 +96,16 @@ environment variable before launching a game. Of course, there is no
       proton-ge-custom
     ];
 
-    # Enable KDE as the desktop environment.
+    # Enable KDE as the desktop environment
     # If you enabled `jovian.steam.autoStart` even things like
-    # "Switch to Desktop" works fine.
+    # "Switch to Desktop" works fine
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.defaultSession = "plasma";
     };
 
     home-manager.users."deck" = {
-      # Add "Return to Gaming Mode" desktop shortcut, like in Steam Deck.
+      # Add "Return to Gaming Mode" desktop shortcut, like in Steam Deck
       home.file."Desktop/Return-to-Gaming-Mode.desktop".source =
         (pkgs.makeDesktopItem {
           desktopName = "Return to Gaming Mode";
@@ -117,7 +117,7 @@ environment variable before launching a game. Of course, there is no
           type = "Application";
         })
         + "/share/applications/Return-to-Gaming-Mode.desktop";
-      # Boot in desktop mode instead of gaming mode by default.
+      # Boot in desktop mode instead of gaming mode by default
       # https://github.com/Jovian-Experiments/Jovian-NixOS/discussions/488
       xdg.stateFile."steamos-session-select" = {
         text = config.jovian.steam.desktopSession;
