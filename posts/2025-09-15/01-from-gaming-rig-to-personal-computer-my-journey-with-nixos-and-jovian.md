@@ -40,7 +40,7 @@ always make it work with other systems thanks to its declarative approach.
 
 I will not go too deep about the setup, but I can recommend this [blog
 post](https://ciarandegroot.com/archive/nixos-steam-box/) for a nice tutorial.
-In my particular case I wanted to support for
+In my particular case I wanted support for
 [FSR4](https://www.amd.com/en/products/graphics/technologies/fidelityfx/super-resolution.html)
 and eventually I figured out that there is built-in support in
 [`proton-cachyos`](https://github.com/CachyOS/proton-cachyos), by simply
@@ -59,11 +59,15 @@ environment variable before launching a game. Of course, there is no
   ];
 
   {
-    chaotic = {
-      # This will probably break NVIDIA Optimus, do not use if you have a
-      # NVIDIA GPU
-      mesa-git.enable = true;
-    };
+    # Any recent kernel will do, but since we are already pulling chaotic-nyx
+    # why not use CachyOS's kernel?
+    boot.kernelPackages = pkgs.linuxPackages_cachyos;
+
+    # Add the newest MESA drivers so we can get the latest performance
+    # improvements
+    # This will probably break NVIDIA Optimus, do not use if you have a
+    # NVIDIA GPU
+    chaotic.mesa-git.enable = true;
 
     jovian = {
       steam = {
@@ -71,7 +75,7 @@ environment variable before launching a game. Of course, there is no
         autoStart = true;
         user = "deck";
         desktopSession = config.services.displayManager.defaultSession;
-        # Add custom proton packages to Gamescope session
+        # Add custom proton packages to Steam in Gamescope session
         environment = {
           STEAM_EXTRA_COMPAT_TOOLS_PATHS =
             lib.makeSearchPathOutput "steamcompattool" ""
@@ -81,10 +85,12 @@ environment variable before launching a game. Of course, there is no
       hardware.has.amd.gpu = true;
     };
 
-    # Add custom proton packages to steam
+    # Add custom proton packages to Steam in Desktop session
+    # They show in the compatibility tools for each game in Steam, and setting
+    # it to "Proton-CachyOS" and adding `PROTON_FSR4_UPGRADE=1` to the command
+    # line arguments for that particular game I get FSR4 support
     programs.steam.extraCompatPackages = with pkgs; [
       proton-cachyos
-      proton-ge-custom
     ];
 
     # Enable KDE as the desktop environment.
