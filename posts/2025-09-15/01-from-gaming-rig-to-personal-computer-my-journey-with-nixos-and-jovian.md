@@ -130,8 +130,8 @@ streamlined experience of SteamOS makes for a great experience. I still have
 all the power from NixOS to do things like connecting to my Tailscale account
 for remote management, or having support for
 [ROCm](https://www.amd.com/en/products/software/rocm.html) and
-[distrobox](https://distrobox.it/) to play with AI (I probably should
-nixify this too but this will work for future me). Of course I could
-probably do all the same with SteamOS or Bazzite, but having access to
-NixOS sure makes things easier, especially since I can reuse my
-[Nix configuration](https://github.com/thiagokokada/nix-configs/).
+[distrobox](https://distrobox.it/) to play with AI (I probably should nixify
+this too but this will be work for future me). Of course I could probably do
+all the same with SteamOS or Bazzite, but having access to NixOS sure makes
+things easier, especially since I can reuse my [Nix
+configuration](https://github.com/thiagokokada/nix-configs/).
