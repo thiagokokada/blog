@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [KDE is now my favorite desktop](posts/2025-09-17/01-kde-is-now-my-favorite-desktop.md) - 2025-09-17
 - [From Gaming Rig to Personal Computer: My Journey with NixOS and Jovian](posts/2025-09-15/01-from-gaming-rig-to-personal-computer-my-journey-with-nixos-and-jovian.md) - 2025-09-15
 - [NixOS VM test with network access](posts/2025-02-20/01-nixos-vm-test-with-network-access.md) - 2025-02-20
 - [Quick bits: basic flake.nix template](posts/2024-12-19/01-quick-bits-basic-flake-nix-template.md) - 2024-12-19
