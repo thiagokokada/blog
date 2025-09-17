@@ -1,5 +1,6 @@
 export POST_ROOT := posts
 export DATE := $(shell date '+%Y-%m-%d')
+export CGO_ENABLED := 0
 
 MARKDOWN := $(wildcard $(POST_ROOT)/**/*.md)
 TITLE = $(error TITLE is not defined)
