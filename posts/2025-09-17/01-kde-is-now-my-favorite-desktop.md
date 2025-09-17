@@ -17,7 +17,7 @@ gives lots of information that in other operational systems are either not
 available or difficult to access. It is easy to see in the screenshot below:
 
 [![Wi-Fi information available in the network applet from
-KDE](/posts/2025-09-17/Screenshot_20250917_191837.png)(/posts/2025-09-17/Screenshot_20250917_191837.png)]
+KDE](/posts/2025-09-17/Screenshot_20250917_191837.png)](/posts/2025-09-17/Screenshot_20250917_191837.png)
 
 You can see things like channel, signal strength, frequency, MAC address, BSSID
 address (so the MAC address of the router). It even includes a handy button to
@@ -48,7 +48,7 @@ many things that I used to need a third-party program that KDE just has
 available by default.
 
 [![Flatpak permission
-management](/posts/2025-09-17/Screenshot_20250917_192302.png)(/posts/2025-09-17/Screenshot_20250917_192302.png)]
+management](/posts/2025-09-17/Screenshot_20250917_192302.png)](/posts/2025-09-17/Screenshot_20250917_192302.png)
 
 But not only KDE is fully featured, it is also fast. Now to be clear, this is
 a completely subjective analysis but I find KDE faster than Windows 11 in the
