@@ -72,3 +72,5 @@ remember right now.
 After using KDE for about a week I can say that this is the first time that I
 really enjoy a desktop environment on Linux, after all those years. Props for
 the KDE developers for making the experience so good.
+
+[![About this System](/posts/2025-09-17/Screenshot_20250917_195215.png)](/posts/2025-09-17/Screenshot_20250917_195215.png)
