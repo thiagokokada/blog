@@ -47,8 +47,8 @@ github.com/gosimple/slug
 # github.com/gosimple/unidecode v1.0.1
 ## explicit; go 1.16
 github.com/gosimple/unidecode
-# github.com/yuin/goldmark v1.7.8
-## explicit; go 1.19
+# github.com/yuin/goldmark v1.7.13
+## explicit; go 1.22
 github.com/yuin/goldmark
 github.com/yuin/goldmark/ast
 github.com/yuin/goldmark/extension

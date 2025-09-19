@@ -9,7 +9,7 @@ require (
 	github.com/elliotchance/orderedmap/v3 v3.1.0
 	github.com/gorilla/feeds v1.2.0
 	github.com/gosimple/slug v1.15.0
-	github.com/yuin/goldmark v1.7.8
+	github.com/yuin/goldmark v1.7.13
 	github.com/yuin/goldmark-highlighting v0.0.0-20220208100518-594be1970594
 )
 
