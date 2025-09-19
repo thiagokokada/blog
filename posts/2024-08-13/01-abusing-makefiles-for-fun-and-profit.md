@@ -91,7 +91,7 @@ uses [Mataroa](https://mataroa.blog/) platform), while `link_rewriter.go` is
 responsible to do some transformations in the Markdown files before posting.
 
 While I could manage everything by just using `go` CLI and a few other *nix
-commands, to make it easier to manager everything I have the following
+commands, to make it easier to manage everything I have the following
 [`Makefile`](https://github.com/thiagokokada/blog/blob/527466a2a7c8baae532281bff5db3f0695f018cb/Makefile):
 
 ```Makefile
