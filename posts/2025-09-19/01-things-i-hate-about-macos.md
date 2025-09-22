@@ -31,7 +31,17 @@ Benchmark 1: zsh -ci exit
   Time (mean ± σ):     233.0 ms ± 180.9 ms    [User: 54.6 ms, System: 51.0 ms]
   Range (min … max):   153.0 ms … 746.5 ms    10 runs
 
-  Warning: The first benchmarking run for this command was significantly slower than the rest (746.5 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+  Warning: The first benchmarking run for this command was significantly slower
+  than the rest (746.5 ms). This could be caused by (filesystem) caches that
+  were not filled until after the first run. You should consider using the
+  '--warmup' option to fill those caches before the actual benchmark.
+  Alternatively, use the '--prepare' option to clear the caches before each
+  Timing run.
+
+$ hyperfine 'zsh -ic exit' # Chromebook
+Benchmark 1: zsh -ic exit
+  Time (mean ± σ):     393.1 ms ±  24.7 ms    [User: 136.8 ms, System: 270.8 ms]
+  Range (min … max):   357.0 ms … 430.6 ms    10 runs
 ```
 
 This may look like a unfair comparison because it seems that I run the macOS
@@ -42,6 +52,15 @@ cache expires much faster than on Linux. So while on Linux I rarely see ZSH
 taking time to start, it is a common occurrence in macOS. But even ignoring
 this issue macOS in general seems to be much slower, and this is not isolated
 to my `zsh`, almost every binary inside my terminal seems to start slower.
+
+I also add the results from my
+[Chromebook](/posts/2024-08-05/01-my-favorite-device-is-a-chromebook.md). It is
+much slower than both my Linux desktop and my macOS system, but this is
+expected considering that both the CPU and I/O is much slower (this device
+still uses an [eMMC](https://en.wikipedia.org/wiki/MultiMediaCard#eMMC), that
+in some metrics is slower than a HDD). But also the results are much more
+consistent, again matching what is my experience with macOS: the system is just
+inconsistent slow sometimes.
 
 Now let's look out of the terminal and more for the desktop part. One of my
 major grips about the system is the lack of choice. For example, I want to set
