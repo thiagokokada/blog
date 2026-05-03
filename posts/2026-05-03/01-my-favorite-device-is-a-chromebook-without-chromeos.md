@@ -1,6 +1,6 @@
 # My favorite device is a Chromebook, without ChromeOS
 
-I wrote in 2024 a blog post about how cheap and low powered
+I wrote in 2024 a blog post about a how cheap and low powered
 [Chromebook](/posts/2024-08-05/01-my-favorite-device-is-a-chromebook.md)
 was one of my favorite devices to use day to day. At the time I was
 praising how well ChromeOS worked, especially thanks
@@ -9,11 +9,12 @@ run inside ChromeOS.
 
 Two years later, things changed. I still have the same Chromebook Lenovo Duet
 3, and up until now I would sporadically use it. However the experience is
-getting worse for each day: I need to constantly [resize the disk VM a few
+getting worse each day: I need to constantly [resize the VM disk a few
 MBs](https://old.reddit.com/r/Crostini/comments/1rl2m2k/if_you_are_not_able_to_start_crostini_after_the/)
-because otherwise Crostini would fail to start, corrupted characters in the
-[Terminal app](https://issues.chromium.org/issues/502262228) that means I
-needed to disable the 2D Canvas Acceleration in `chrome:flags`.
+because otherwise Crostini would fail to start; I got corrupted characters in
+the [Terminal app](https://issues.chromium.org/issues/502262228), because of a
+recent introduced bug, and thanks to that I needed to disable the 2D Canvas
+Acceleration in `chrome:flags`.
 
 None of those issues are deal breaker since they both have workarounds, but
 they're all recent issues. I kind think that this is the result of [Android and
@@ -23,9 +24,9 @@ Google seems to be focusing more in getting Android to work well as a desktop
 OS (and this shows, I have a Pixel 9 Pro and its [Linux
 Terminal
 VM](https://www.zdnet.com/article/how-to-use-the-new-linux-terminal-on-android/)
-is getting much better) than to improve ChromeOS. That makes sense, in some
-ways Android is a much more capable OS than ChromeOS, but on the other hand it
-is sad to see ChromeOS to wither in real time.
+is getting better) than to improve ChromeOS. That makes sense, in some ways
+Android is a much more capable OS than ChromeOS, but on the other hand it is
+sad to see ChromeOS to wither in real time.
 
 Since I was kind frustrated with ChromeOS, I decided to take a look at
 something that [I knew supported my Lenovo Duet
@@ -34,7 +35,7 @@ for some time: [postmarketOS](https://postmarketos.org/). For those who don't
 know, postmarketOS is an [Alpine Linux](https://www.alpinelinux.org/)
 based-distro focused in replacing the original OS from old phones (generally
 running Android) with a "true" Linux distro. They also seem to support some
-Chromebooks because of their unique architecture and luckily they support my
+Chromebooks because of their unique architecture and, luckily, they support my
 device under the [google-trogdor
 platform](https://wiki.postmarketos.org/wiki/Google_Trogdor_Chromebook_(google-trogdor)).
 
@@ -51,7 +52,7 @@ $ pmbootstrap install --disk=/dev/mmcblk1 --fde --filesystem=btrfs
 
 The `--fde` flag enables Full Disk Encryption that I think it is a must have
 for a portable device. Keep in mind that this will ask the password at every
-boot and the password screen will always show in vertical instead of horizontal
+boot and the password screen will always show in portrait instead of landscape
 orientation, one of the quirks of using a LCD panel for tablets instead of one
 for laptops.
 
@@ -155,23 +156,30 @@ entry for the device first. For example, the pen is not working for me (but it
 seems there is a workaround), neither docking (if I undock and dock the device
 again the device stays in portrait). I don't use the pen so the first issue
 doesn't matter to me, and for the second issue I disabled the rotation sensor
-like the Wiki says. Also the external display support is wonky enough that I
-stopped trying to use it for now. Another issue is that this device is working
-well enough in v25.12 release, but I tried edge once (the rolling release
+like the Wiki says.
+
+Also the external display support is wonky enough that I stopped trying to use
+it for now (the device has limited bandwidth anyway so I can't drive my desktop
+monitor at full resolution). Another issue is that this device is working well
+enough in `v25.12` release, but I tried `edge` once (the rolling release
 channel) and my touchpad started to work in absolute instead of relative mode.
-Sadly because I wanted to use edge to get GNOME 50, but I hope those issues get
-ironed out until the next stable release.
+Sadly because I wanted to use `edge` to get GNOME 50, but I hope those issues
+get ironed out until the next stable release.
 
 But on the other hand, this is an actual Linux distro. Given the limitations
 and issues, it is working really well. Before trying postmarketOS I thought the
 only reason ChromeOS worked as well in this device as it did is because Google
 invested a lot to optimise the OS and browser to run well in low end devices.
 And while this is probably true, GNOME is also running really well here, and
-GNOME is considered one of the heaviest desktop environments in Linux. Also
-I am really happy to use Firefox as my browser instead of Chrome, since I used
-Firefox everywhere else except in ChromeOS. I was worried that Firefox would
-run too slow here since I tried it once via Crostini, but running it natively
-in postmarketOS feels relatively snappy (considering the hardware constraints).
+GNOME is considered one of the heaviest desktop environments in Linux. I think
+the fact that the base system is lean and the usage of `musl` instead of
+`glibc` helps here, but I don't have any scientific measurement of this.
+
+Also I am really happy to use Firefox as my browser instead of Chrome, since I
+used Firefox everywhere else except in ChromeOS. I was worried that Firefox
+would run too slow here since I tried it once via Crostini, but running it
+natively in postmarketOS feels relatively snappy (considering the hardware
+constraints).
 
 While Crostini was really good, there was still some overhead of running a
 Linux VM in a already constrained device. For example, cloning
@@ -180,6 +188,6 @@ minutes, while it took more than half an hour to clone in ChromeOS.
 
 So for me, postmarketOS is a revelation. It kind remembers me at the time when
 I installed Arch Linux in my Netbook and making it usable again after fighting
-a Windows installation. It is making this device usable again for my needs, and
-I can say that the Duet 3 is back to becoming my favorite device again, just
-this time without ChromeOS.
+an old Windows installation. It is making this device usable again for my
+needs, and I can say that the Duet 3 is back to becoming my favorite device
+again, just this time without ChromeOS.
