@@ -6,6 +6,7 @@ Mirror of my blog in https://kokada.capivaras.dev/.
 
 [![RSS](https://img.shields.io/badge/RSS-FFA562?style=for-the-badge&logo=rss&logoColor=white)](https://raw.githubusercontent.com/thiagokokada/blog/main/rss.xml)
 
+- [My favorite device is a Chromebook, without ChromeOS](posts/2026-05-03/01-my-favorite-device-is-a-chromebook-without-chromeos.md) - 2026-05-03
 - [Things I hate about macOS](posts/2025-09-19/01-things-i-hate-about-macos.md) - 2025-09-19
 - [KDE is now my favorite desktop](posts/2025-09-17/01-kde-is-now-my-favorite-desktop.md) - 2025-09-17
 - [From Gaming Rig to Personal Computer: My Journey with NixOS and Jovian](posts/2025-09-15/01-from-gaming-rig-to-personal-computer-my-journey-with-nixos-and-jovian.md) - 2025-09-15
